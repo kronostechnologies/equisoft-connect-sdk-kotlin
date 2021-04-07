@@ -1,15 +1,3 @@
-group 'com.equisoft.connect.sdk'
-version project.findProperty("application.version") ?:  "dev-SNAPSHOT"
-
-plugins {
-    id("maven-publish")
-}
-
-wrapper {
-    gradleVersion = '6.8.3'
-    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
-}
-
 buildscript {
     ext.kotlin_version = '1.4.30'
 
@@ -19,6 +7,18 @@ buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
+}
+
+plugins {
+    id("maven-publish")
+}
+
+group 'com.equisoft.connect.sdk'
+version project.findProperty("application.version") ?:  "dev-SNAPSHOT"
+
+wrapper {
+    gradleVersion = '6.8.3'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 
 apply plugin: 'kotlin'

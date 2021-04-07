@@ -1,46 +1,52 @@
 name: CI
 
 on:
-  push:
-      branches: [ master ]
-      tags:
-          - v*.*.*
-  pull_request:
-      branches: [ master ]
+    push:
+        branches: [ master ]
+        tags:
+            - v*.*.*
+    pull_request:
+        branches: [ master ]
 
 jobs:
-  build:
-      name: Build and publish
-      runs-on: ubuntu-latest
-      steps:
-          - name: Checkout
-            uses: actions/checkout@v2
+    build:
+        name: Build and publish
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
 
-          # Setup asdf-vm
-          - name: Cache asdf tooling
-            uses: actions/cache@v2
-            with:
-                key: ${{ runner.os }}-asdf-${{ hashFiles('.tool-versions') }}
-                restore-keys: ${{ runner.os }}-asdf-
-                path: |
-                    ${ASDF_DIR}/installs
-                    ${ASDF_DIR}/plugins
-          - name: Install required tooling
-            uses: asdf-vm/actions/install@v1
+            # Setup asdf-vm
+            - name: Cache asdf tooling
+              uses: actions/cache@v2
+              with:
+                  key: ${{ runner.os }}-asdf-${{ hashFiles('.tool-versions') }}
+                  restore-keys: ${{ runner.os }}-asdf-
+                  path: |
+                      ${ASDF_DIR}/installs
+                      ${ASDF_DIR}/plugins
 
-          - name: Switch to the asdf-provided version of java
-            run: |
-                echo "JAVA_HOME=$(dirname "$(dirname "$(realpath "$(asdf which java)")")")" >> $GITHUB_ENV;
-          - name: Build and Test
-            run: ./gradlew assemble test
+            - name: Install required tooling
+              uses: asdf-vm/actions/install@v1
 
-          - name: Publish Data
-            id: publish_data
-            run: |
-                VERSION="dev-SNAPSHOT"
-                if [[ $GITHUB_REF == refs/tags/v* ]]; then
-                  VERSION=${GITHUB_REF#refs/tags/v}
-                fi
-                echo ::set-output name=version::${VERSION}
-          - name: Publish
-            run: ./gradlew -Papplication.version="${{ steps.publish_data.outputs.version }}" -Pgpr.user=build -Pgpr.key=${{ secrets.GITHUB_TOKEN }} publish
+            - name: Switch to the asdf-provided version of java
+              run: |
+                  echo "JAVA_HOME=$(dirname "$(dirname "$(realpath "$(asdf which java)")")")" >> $GITHUB_ENV;
+
+            - name: Run code checks
+              run: ./gradlew check e2e
+
+            - name: Build app
+              run: ./gradlew assemble
+
+            - name: Publish Data
+              id: publish_data
+              run: |
+                  VERSION="dev-SNAPSHOT"
+                  if [[ $GITHUB_REF == refs/tags/v* ]]; then
+                    VERSION=${GITHUB_REF#refs/tags/v}
+                  fi
+                  echo ::set-output name=version::${VERSION}
+
+            - name: Publish
+              run: ./gradlew -Papplication.version="${{ steps.publish_data.outputs.version }}" -Pgpr.user=build -Pgpr.key=${{ secrets.GITHUB_TOKEN }} publish
