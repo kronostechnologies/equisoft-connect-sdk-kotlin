@@ -1,0 +1,11 @@
+
+# MovementDistributionList
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | **kotlin.Int** |  |  [optional]
+**label** | **kotlin.String** |  |  [optional]
+
+
+
