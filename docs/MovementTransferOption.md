@@ -4,9 +4,9 @@
 ## Enum
 
 
-    * `cOPY` (value: `"COPY"`)
+    * `COPY` (value: `"COPY"`)
 
-    * `tRANSFER` (value: `"TRANSFER"`)
+    * `TRANSFER` (value: `"TRANSFER"`)
 
 
 

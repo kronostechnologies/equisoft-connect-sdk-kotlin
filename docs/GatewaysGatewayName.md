@@ -4,7 +4,7 @@
 ## Enum
 
 
-    * `eQUISOFTANALYZE` (value: `"EQUISOFT_ANALYZE"`)
+    * `EQUISOFT_ANALYZE` (value: `"EQUISOFT_ANALYZE"`)
 
 
 

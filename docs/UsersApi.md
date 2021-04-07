@@ -17,8 +17,8 @@ Get informations about the current user
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = UsersApi()
 val acceptLanguage : kotlin.String = acceptLanguage_example // kotlin.String | Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282
@@ -64,8 +64,8 @@ Get user context metadata.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = UsersApi()
 try {

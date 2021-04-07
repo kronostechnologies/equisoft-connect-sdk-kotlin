@@ -7,8 +7,8 @@ Name | Type | Description | Notes
 **to** | **kotlin.String** | to recipients | 
 **cc** | **kotlin.String** | cc recipients | 
 **bcc** | **kotlin.String** | bcc recipients | 
-**groups** | [**AnyType**](.md) | group recipients | 
-**contacts** | [**AnyType**](.md) | contact recipients | 
+**groups** | **kotlin.collections.List&lt;kotlin.Int&gt;** | group recipients | 
+**contacts** | **kotlin.collections.List&lt;kotlin.Int&gt;** | contact recipients | 
 
 
 

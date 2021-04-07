@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**invalidRecipients** | [**AnyType**](.md) | invalidRecipients | 
+**invalidRecipients** | [**kotlin.collections.List&lt;Mxrecipient&gt;**](Mxrecipient.md) | invalidRecipients | 
 
 
 

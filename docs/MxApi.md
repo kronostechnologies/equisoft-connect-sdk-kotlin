@@ -16,8 +16,8 @@ Validate recipients
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = MxApi()
 val mxrecipientsPayload : MxrecipientsPayload =  // MxrecipientsPayload | 

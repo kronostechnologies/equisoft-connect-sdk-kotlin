@@ -26,8 +26,8 @@ Archive an internal note for a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | Task unique identifier.
@@ -77,8 +77,8 @@ Create a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val tasksCreateTaskPayload : TasksCreateTaskPayload =  // TasksCreateTaskPayload | 
@@ -126,8 +126,8 @@ Add an internal note to a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | Task unique identifier.
@@ -177,8 +177,8 @@ Delete a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | 
@@ -224,8 +224,8 @@ Return the detail of a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | 
@@ -273,8 +273,8 @@ Get the internal notes list for a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | 
@@ -324,8 +324,8 @@ List or search tasks.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val ownerId : kotlin.String = ownerId_example // kotlin.String | Owner ID filter param.
@@ -389,8 +389,8 @@ Partially update a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | Task unique identifier.
@@ -440,8 +440,8 @@ Add an internal note to a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | Task unique identifier.
@@ -493,8 +493,8 @@ Restore an archived internal note for a task.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | Task unique identifier.
@@ -544,8 +544,8 @@ Transfer a task to completed/done.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | Task unique identifier.

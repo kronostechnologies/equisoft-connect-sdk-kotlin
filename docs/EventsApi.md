@@ -29,8 +29,8 @@ Archive an internal note for and event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -80,8 +80,8 @@ Create an event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventsCreateEventPayload : EventsCreateEventPayload =  // EventsCreateEventPayload | 
@@ -129,8 +129,8 @@ Add an internal note to and event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -182,8 +182,8 @@ Delete an event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -229,8 +229,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val calendarId : kotlin.String = calendarId_example // kotlin.String | Calendar ID filter param. An id returned by listCalendars. The string `primary` for the current connected user primary (TODO) calendar. The string `completed` for the current connected user completed (DONE) calendar.
@@ -278,8 +278,8 @@ Return the detail of an event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -327,8 +327,8 @@ Get a recurring event instances.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -384,8 +384,8 @@ Get the internal notes list for an event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -435,8 +435,8 @@ Get the list of available calendars.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val acceptLanguage : kotlin.String = acceptLanguage_example // kotlin.String | Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282
@@ -482,8 +482,8 @@ List or search events.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val calendarId : kotlin.String = calendarId_example // kotlin.String | Calendar ID filter param. An id returned by listCalendars. The string `primary` for the current connected user primary (TODO) calendar. The string `completed` for the current connected user completed (DONE) calendar.
@@ -551,8 +551,8 @@ Partially update an event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -602,8 +602,8 @@ Add an internal note to and event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -655,8 +655,8 @@ Restore an archived internal note for an event.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
@@ -706,8 +706,8 @@ Transfer an event to the completed/done calendar.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.

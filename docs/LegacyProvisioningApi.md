@@ -17,8 +17,8 @@ Get all informations about an organization.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyProvisioningApi()
 val orgId : kotlin.String = orgId_example // kotlin.String | Organization Id
@@ -64,8 +64,8 @@ List all organizations
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyProvisioningApi()
 try {

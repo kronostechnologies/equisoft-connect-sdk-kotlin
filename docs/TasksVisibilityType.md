@@ -4,9 +4,9 @@
 ## Enum
 
 
-    * `nORMAL` (value: `"NORMAL"`)
+    * `NORMAL` (value: `"NORMAL"`)
 
-    * `pRIVATE` (value: `"PRIVATE"`)
+    * `PRIVATE` (value: `"PRIVATE"`)
 
 
 
