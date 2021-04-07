@@ -20,8 +20,8 @@ Method | HTTP request | Description
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = MovementApi()
 val movementMovementPayload : MovementMovementPayload =  // MovementMovementPayload | 
@@ -67,8 +67,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = MovementApi()
 val movementId : kotlin.Int = 56 // kotlin.Int | 
@@ -114,8 +114,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = MovementApi()
 val movementId : kotlin.Int = 56 // kotlin.Int | 
@@ -161,8 +161,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = MovementApi()
 val movementId : kotlin.Int = 56 // kotlin.Int | 
@@ -208,8 +208,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = MovementApi()
 try {

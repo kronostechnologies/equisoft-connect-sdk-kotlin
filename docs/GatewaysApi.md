@@ -26,8 +26,8 @@ Create a user access configuration for Equisoft/analyze gateway
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val gatewaysaccessesCreateEquisoftAnalyzeAccessPayload : GatewaysaccessesCreateEquisoftAnalyzeAccessPayload =  // GatewaysaccessesCreateEquisoftAnalyzeAccessPayload | 
@@ -75,8 +75,8 @@ Delete user access configuration for given gateway
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val accessId : kotlin.Int = 56 // kotlin.Int | 
@@ -115,20 +115,21 @@ Configure OAuth2:
 
 <a name="gatewayAdminLogin"></a>
 # **gatewayAdminLogin**
-> GatewaysaccessesAdminCredentialsResponse gatewayAdminLogin(gatewayName)
+> GatewaysaccessesAdminCredentialsResponse gatewayAdminLogin(gatewayName, authorization)
 
 
 
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val gatewayName : kotlin.String = gatewayName_example // kotlin.String | 
+val authorization : kotlin.String = authorization_example // kotlin.String | Authorization header using the Bearer scheme
 try {
-    val result : GatewaysaccessesAdminCredentialsResponse = apiInstance.gatewayAdminLogin(gatewayName)
+    val result : GatewaysaccessesAdminCredentialsResponse = apiInstance.gatewayAdminLogin(gatewayName, authorization)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling GatewaysApi#gatewayAdminLogin")
@@ -144,6 +145,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gatewayName** | **kotlin.String**|  |
+ **authorization** | **kotlin.String**| Authorization header using the Bearer scheme |
 
 ### Return type
 
@@ -162,21 +164,22 @@ Configure OAuth2:
 
 <a name="gatewayCredentials"></a>
 # **gatewayCredentials**
-> GatewaysaccessesvalidationCredentialsResponse gatewayCredentials(gatewayId, status)
+> GatewaysaccessesvalidationCredentialsResponse gatewayCredentials(gatewayId, status, authorization)
 
 
 
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val gatewayId : kotlin.String = gatewayId_example // kotlin.String | 
 val status : kotlin.String = status_example // kotlin.String | 
+val authorization : kotlin.String = authorization_example // kotlin.String | Authorization header using the Bearer scheme
 try {
-    val result : GatewaysaccessesvalidationCredentialsResponse = apiInstance.gatewayCredentials(gatewayId, status)
+    val result : GatewaysaccessesvalidationCredentialsResponse = apiInstance.gatewayCredentials(gatewayId, status, authorization)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling GatewaysApi#gatewayCredentials")
@@ -193,6 +196,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gatewayId** | **kotlin.String**|  |
  **status** | **kotlin.String**|  |
+ **authorization** | **kotlin.String**| Authorization header using the Bearer scheme |
 
 ### Return type
 
@@ -218,8 +222,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 try {
@@ -263,8 +267,8 @@ List user accesses configuration for equisoft/analyze gateway
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val userUuid : kotlin.String = d2507338-78f2-4299-8bec-e82b1d242d4c // kotlin.String | 
@@ -310,8 +314,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val gatewayName : kotlin.String = gatewayName_example // kotlin.String | 
@@ -356,8 +360,8 @@ Configure OAuth2:
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val gatewayName : kotlin.String = gatewayName_example // kotlin.String | 
@@ -407,8 +411,8 @@ Update user access configuration for Equisoft/analyze gateway
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = GatewaysApi()
 val accessId : kotlin.Int = 56 // kotlin.Int | 

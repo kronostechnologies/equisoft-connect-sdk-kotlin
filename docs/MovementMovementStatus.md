@@ -4,15 +4,15 @@
 ## Enum
 
 
-    * `tODO` (value: `"TODO"`)
+    * `TODO` (value: `"TODO"`)
 
-    * `cANCELLED` (value: `"CANCELLED"`)
+    * `CANCELLED` (value: `"CANCELLED"`)
 
-    * `iGNORED` (value: `"IGNORED"`)
+    * `IGNORED` (value: `"IGNORED"`)
 
-    * `fAILURE` (value: `"FAILURE"`)
+    * `FAILURE` (value: `"FAILURE"`)
 
-    * `sUCCESS` (value: `"SUCCESS"`)
+    * `SUCCESS` (value: `"SUCCESS"`)
 
 
 

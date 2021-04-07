@@ -4,13 +4,13 @@
 ## Enum
 
 
-    * `cREATE` (value: `"CREATE"`)
+    * `CREATE` (value: `"CREATE"`)
 
-    * `mODIFY` (value: `"MODIFY"`)
+    * `MODIFY` (value: `"MODIFY"`)
 
-    * `aRCHIVE` (value: `"ARCHIVE"`)
+    * `ARCHIVE` (value: `"ARCHIVE"`)
 
-    * `rESTORE` (value: `"RESTORE"`)
+    * `RESTORE` (value: `"RESTORE"`)
 
 
 

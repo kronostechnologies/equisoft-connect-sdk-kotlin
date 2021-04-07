@@ -23,8 +23,8 @@ Create a new document.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 val legacydocumentDocumentPayloadRequest : LegacydocumentDocumentPayloadRequest =  // LegacydocumentDocumentPayloadRequest | 
@@ -70,8 +70,8 @@ Delete a document and it&#39;s related files.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 val id : kotlin.String = id_example // kotlin.String | Document Id
@@ -117,8 +117,8 @@ Delete one file from a document
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 val id : kotlin.String = id_example // kotlin.String | Document File Id
@@ -164,8 +164,8 @@ Download a file. File data is encoded in base64.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 val id : kotlin.String = id_example // kotlin.String | Document File Id
@@ -211,8 +211,8 @@ Get all data for a document record.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 val id : kotlin.String = id_example // kotlin.String | Document Id
@@ -260,8 +260,8 @@ Please note that a document is similar to a folder and may contain one or many f
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 try {
@@ -303,8 +303,8 @@ Update a document.
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 val legacydocumentDocumentPayloadRequest : LegacydocumentDocumentPayloadRequest =  // LegacydocumentDocumentPayloadRequest | 
@@ -350,8 +350,8 @@ Upload a new file in a document
 ### Example
 ```kotlin
 // Import classes:
-//import equisoft/openapi.infrastructure.*
-//import equisoft/openapi.models.*
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
 
 val apiInstance = LegacyDocumentApi()
 val id : kotlin.String = id_example // kotlin.String | Document File Id

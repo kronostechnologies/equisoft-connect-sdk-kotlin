@@ -4,15 +4,15 @@
 ## Enum
 
 
-    * `mOVE` (value: `"MOVE"`)
+    * `MOVE` (value: `"MOVE"`)
 
-    * `cOPY` (value: `"COPY"`)
+    * `COPY` (value: `"COPY"`)
 
-    * `rEASSIGNMENT` (value: `"REASSIGNMENT"`)
+    * `REASSIGNMENT` (value: `"REASSIGNMENT"`)
 
-    * `cLIENTBASEUSINGFILE` (value: `"CLIENTBASE_USING_FILE"`)
+    * `CLIENTBASE_USING_FILE` (value: `"CLIENTBASE_USING_FILE"`)
 
-    * `cLIENTBASEUSINGDISTLIST` (value: `"CLIENTBASE_USING_DISTLIST"`)
+    * `CLIENTBASE_USING_DISTLIST` (value: `"CLIENTBASE_USING_DISTLIST"`)
 
 
 

@@ -4,17 +4,17 @@
 ## Enum
 
 
-    * `cALL` (value: `"CALL"`)
+    * `CALL` (value: `"CALL"`)
 
-    * `lETTER` (value: `"LETTER"`)
+    * `LETTER` (value: `"LETTER"`)
 
-    * `mEETING` (value: `"MEETING"`)
+    * `MEETING` (value: `"MEETING"`)
 
-    * `vACATION` (value: `"VACATION"`)
+    * `VACATION` (value: `"VACATION"`)
 
-    * `fILE` (value: `"FILE"`)
+    * `FILE` (value: `"FILE"`)
 
-    * `nOTE` (value: `"NOTE"`)
+    * `NOTE` (value: `"NOTE"`)
 
 
 
