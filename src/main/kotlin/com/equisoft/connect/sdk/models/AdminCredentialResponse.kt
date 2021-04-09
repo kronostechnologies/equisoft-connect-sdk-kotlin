@@ -11,17 +11,22 @@
 */
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.GatewaysaccessesvalidationCredentialDto
 
 import com.squareup.moshi.Json
 
 /**
  * 
- * @param credentials 
+ * @param name 
+ * @param defaultLang 
+ * @param gatewayId 
  */
 
-data class GatewaysaccessesvalidationCredentialsResponse (
-    @Json(name = "credentials")
-    val credentials: kotlin.collections.List<GatewaysaccessesvalidationCredentialDto>
+data class AdminCredentialResponse (
+    @Json(name = "name")
+    val name: kotlin.String,
+    @Json(name = "defaultLang")
+    val defaultLang: kotlin.String,
+    @Json(name = "gatewayId")
+    val gatewayId: kotlin.Int? = null
 )
 

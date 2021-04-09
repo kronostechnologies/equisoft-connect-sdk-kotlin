@@ -20,7 +20,7 @@ import com.squareup.moshi.Json
  * @param adminPassword 
  */
 
-data class GatewaysaccessesAdminCredential (
+data class AdminCredentialPayload (
     @Json(name = "adminEmail")
     val adminEmail: kotlin.String,
     @Json(name = "adminPassword")

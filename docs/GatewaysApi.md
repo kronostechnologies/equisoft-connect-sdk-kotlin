@@ -115,7 +115,7 @@ Configure OAuth2:
 
 <a name="gatewayAdminLogin"></a>
 # **gatewayAdminLogin**
-> GatewaysaccessesAdminCredentialsResponse gatewayAdminLogin(gatewayName, authorization, gatewaysaccessesvalidationAdminCredentialPayload)
+> AdminCredentialResponse gatewayAdminLogin(gatewayName, authorization, adminCredentialPayload)
 
 
 
@@ -128,9 +128,9 @@ Configure OAuth2:
 val apiInstance = GatewaysApi()
 val gatewayName : kotlin.String = gatewayName_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | Authorization header using the Bearer scheme
-val gatewaysaccessesvalidationAdminCredentialPayload : GatewaysaccessesvalidationAdminCredentialPayload =  // GatewaysaccessesvalidationAdminCredentialPayload | 
+val adminCredentialPayload : AdminCredentialPayload =  // AdminCredentialPayload | 
 try {
-    val result : GatewaysaccessesAdminCredentialsResponse = apiInstance.gatewayAdminLogin(gatewayName, authorization, gatewaysaccessesvalidationAdminCredentialPayload)
+    val result : AdminCredentialResponse = apiInstance.gatewayAdminLogin(gatewayName, authorization, adminCredentialPayload)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling GatewaysApi#gatewayAdminLogin")
@@ -147,11 +147,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gatewayName** | **kotlin.String**|  |
  **authorization** | **kotlin.String**| Authorization header using the Bearer scheme |
- **gatewaysaccessesvalidationAdminCredentialPayload** | [**GatewaysaccessesvalidationAdminCredentialPayload**](GatewaysaccessesvalidationAdminCredentialPayload.md)|  |
+ **adminCredentialPayload** | [**AdminCredentialPayload**](AdminCredentialPayload.md)|  |
 
 ### Return type
 
-[**GatewaysaccessesAdminCredentialsResponse**](GatewaysaccessesAdminCredentialsResponse.md)
+[**AdminCredentialResponse**](AdminCredentialResponse.md)
 
 ### Authorization
 
@@ -166,7 +166,7 @@ Configure OAuth2:
 
 <a name="gatewayCredentials"></a>
 # **gatewayCredentials**
-> GatewaysaccessesvalidationCredentialsResponse gatewayCredentials(gatewayId, status, authorization)
+> CredentialsResponse gatewayCredentials(gatewayId, status, authorization)
 
 
 
@@ -181,7 +181,7 @@ val gatewayId : kotlin.String = gatewayId_example // kotlin.String |
 val status : kotlin.String = status_example // kotlin.String | 
 val authorization : kotlin.String = authorization_example // kotlin.String | Authorization header using the Bearer scheme
 try {
-    val result : GatewaysaccessesvalidationCredentialsResponse = apiInstance.gatewayCredentials(gatewayId, status, authorization)
+    val result : CredentialsResponse = apiInstance.gatewayCredentials(gatewayId, status, authorization)
     println(result)
 } catch (e: ClientException) {
     println("4xx response calling GatewaysApi#gatewayCredentials")
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**GatewaysaccessesvalidationCredentialsResponse**](GatewaysaccessesvalidationCredentialsResponse.md)
+[**CredentialsResponse**](CredentialsResponse.md)
 
 ### Authorization
 

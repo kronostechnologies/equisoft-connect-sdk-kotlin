@@ -1,5 +1,5 @@
 
-# GatewaysaccessesvalidationAdminCredentialPayload
+# AdminCredentialPayload
 
 ## Properties
 Name | Type | Description | Notes

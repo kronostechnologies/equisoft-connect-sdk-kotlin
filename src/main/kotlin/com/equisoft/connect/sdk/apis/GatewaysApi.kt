@@ -11,15 +11,15 @@
 */
 package com.equisoft.connect.sdk.apis
 
+import com.equisoft.connect.sdk.models.AdminCredentialPayload
+import com.equisoft.connect.sdk.models.AdminCredentialResponse
+import com.equisoft.connect.sdk.models.CredentialsResponse
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.GatewaysListCredentialsResponse
-import com.equisoft.connect.sdk.models.GatewaysaccessesAdminCredentialsResponse
 import com.equisoft.connect.sdk.models.GatewaysaccessesCreateAccessResponse
 import com.equisoft.connect.sdk.models.GatewaysaccessesCreateEquisoftAnalyzeAccessPayload
 import com.equisoft.connect.sdk.models.GatewaysaccessesListGatewayAccessesResponse
 import com.equisoft.connect.sdk.models.GatewaysaccessesPatchEquisoftAnalyzeAccessPayload
-import com.equisoft.connect.sdk.models.GatewaysaccessesvalidationAdminCredentialPayload
-import com.equisoft.connect.sdk.models.GatewaysaccessesvalidationCredentialsResponse
 
 import com.equisoft.connect.sdk.infrastructure.ApiClient
 import com.equisoft.connect.sdk.infrastructure.ClientException
@@ -156,23 +156,23 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
     * 
     * @param gatewayName  
     * @param authorization Authorization header using the Bearer scheme 
-    * @param gatewaysaccessesvalidationAdminCredentialPayload  
-    * @return GatewaysaccessesAdminCredentialsResponse
+    * @param adminCredentialPayload  
+    * @return AdminCredentialResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun gatewayAdminLogin(gatewayName: kotlin.String, authorization: kotlin.String, gatewaysaccessesvalidationAdminCredentialPayload: GatewaysaccessesvalidationAdminCredentialPayload) : GatewaysaccessesAdminCredentialsResponse {
-        val localVariableConfig = gatewayAdminLoginRequestConfig(gatewayName = gatewayName, authorization = authorization, gatewaysaccessesvalidationAdminCredentialPayload = gatewaysaccessesvalidationAdminCredentialPayload)
+    fun gatewayAdminLogin(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : AdminCredentialResponse {
+        val localVariableConfig = gatewayAdminLoginRequestConfig(gatewayName = gatewayName, authorization = authorization, adminCredentialPayload = adminCredentialPayload)
 
-        val localVarResponse = request<GatewaysaccessesAdminCredentialsResponse>(
+        val localVarResponse = request<AdminCredentialResponse>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GatewaysaccessesAdminCredentialsResponse
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AdminCredentialResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -191,11 +191,11 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
     *
     * @param gatewayName  
     * @param authorization Authorization header using the Bearer scheme 
-    * @param gatewaysaccessesvalidationAdminCredentialPayload  
+    * @param adminCredentialPayload  
     * @return RequestConfig
     */
-    fun gatewayAdminLoginRequestConfig(gatewayName: kotlin.String, authorization: kotlin.String, gatewaysaccessesvalidationAdminCredentialPayload: GatewaysaccessesvalidationAdminCredentialPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = gatewaysaccessesvalidationAdminCredentialPayload
+    fun gatewayAdminLoginRequestConfig(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : RequestConfig {
+        val localVariableBody: kotlin.Any? = adminCredentialPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization?.apply { localVariableHeaders["Authorization"] = this.toString() }
@@ -217,22 +217,22 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
     * @param gatewayId  
     * @param status  
     * @param authorization Authorization header using the Bearer scheme 
-    * @return GatewaysaccessesvalidationCredentialsResponse
+    * @return CredentialsResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun gatewayCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : GatewaysaccessesvalidationCredentialsResponse {
+    fun gatewayCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : CredentialsResponse {
         val localVariableConfig = gatewayCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization)
 
-        val localVarResponse = request<GatewaysaccessesvalidationCredentialsResponse>(
+        val localVarResponse = request<CredentialsResponse>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as GatewaysaccessesvalidationCredentialsResponse
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CredentialsResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

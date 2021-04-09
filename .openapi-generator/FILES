@@ -1,6 +1,8 @@
 README.md
 build.gradle
 docs/AccessRights.md
+docs/AdminCredentialPayload.md
+docs/AdminCredentialResponse.md
 docs/CalendarDefaultCalendarId.md
 docs/CalendarsCalendar.md
 docs/CalendarsListCalendarResponse.md
@@ -11,6 +13,7 @@ docs/ContextInstance.md
 docs/ContextPreferences.md
 docs/ContextUser.md
 docs/ContextUserContext.md
+docs/CredentialsResponse.md
 docs/DateOrDateTime.md
 docs/ErrorResponse.md
 docs/EventsApi.md
@@ -27,8 +30,6 @@ docs/EventsTransferToCompletedResponse.md
 docs/EventsVisibilityType.md
 docs/FieldValue.md
 docs/GatewaysAccessesAccess.md
-docs/GatewaysAccessesAdminCredential.md
-docs/GatewaysAccessesAdminCredentialsResponse.md
 docs/GatewaysAccessesCreateAccessResponse.md
 docs/GatewaysAccessesCreateEquisoftAnalyzeAccessPayload.md
 docs/GatewaysAccessesEquisoftAnalyzeAccess.md
@@ -36,9 +37,7 @@ docs/GatewaysAccessesEquisoftAnalyzeAccessAllOf.md
 docs/GatewaysAccessesListGatewayAccessesResponse.md
 docs/GatewaysAccessesPatchEquisoftAnalyzeAccessPayload.md
 docs/GatewaysAccessesUser.md
-docs/GatewaysAccessesValidationAdminCredentialPayload.md
 docs/GatewaysAccessesValidationCredentialDto.md
-docs/GatewaysAccessesValidationCredentialsResponse.md
 docs/GatewaysApi.md
 docs/GatewaysCredentials.md
 docs/GatewaysCredentialsWithSsn.md
@@ -177,6 +176,8 @@ src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ResponseExtensions.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/Serializer.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/UUIDAdapter.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/AccessRights.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/AdminCredentialPayload.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/AdminCredentialResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CalendarDefaultCalendarId.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CalendarsCalendar.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CalendarsListCalendarResponse.kt
@@ -187,6 +188,7 @@ src/main/kotlin/com/equisoft/connect/sdk/models/Contextinstance.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/Contextpreferences.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/Contextuser.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/ContextuserContext.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/CredentialsResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/DateOrDateTime.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/ErrorResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/EventsCreateEventPayload.kt
@@ -209,17 +211,13 @@ src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysGatewayName.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysGatewayType.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysListCredentialsResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesAccess.kt
-src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesAdminCredential.kt
-src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesAdminCredentialsResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesCreateAccessResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesCreateEquisoftAnalyzeAccessPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesEquisoftAnalyzeAccess.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesListGatewayAccessesResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesPatchEquisoftAnalyzeAccessPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesUser.kt
-src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesvalidationAdminCredentialPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesvalidationCredentialDto.kt
-src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesvalidationCredentialsResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/Handlersoauth2assetbookAssetBookTokenPostBody.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesAuthor.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesCreateNotePayload.kt

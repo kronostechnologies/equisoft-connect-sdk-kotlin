@@ -1,5 +1,5 @@
 
-# GatewaysaccessesvalidationCredentialsResponse
+# CredentialsResponse
 
 ## Properties
 Name | Type | Description | Notes
