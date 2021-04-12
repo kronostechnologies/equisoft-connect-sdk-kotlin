@@ -16,17 +16,17 @@ import com.squareup.moshi.Json
 
 /**
  * 
+ * @param gatewayId 
  * @param name 
  * @param defaultLang 
- * @param gatewayId 
  */
 
 data class AdminCredentialResponse (
+    @Json(name = "gatewayId")
+    val gatewayId: kotlin.Int,
     @Json(name = "name")
     val name: kotlin.String,
     @Json(name = "defaultLang")
-    val defaultLang: kotlin.String,
-    @Json(name = "gatewayId")
-    val gatewayId: kotlin.Int? = null
+    val defaultLang: kotlin.String
 )
 
