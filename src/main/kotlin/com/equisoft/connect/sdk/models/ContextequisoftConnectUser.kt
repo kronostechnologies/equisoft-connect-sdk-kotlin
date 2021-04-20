@@ -16,12 +16,12 @@ import com.squareup.moshi.Json
 
 /**
  * 
- * @param id $profile
+ * @param id $id
  */
 
 data class ContextequisoftConnectUser (
-    /* $profile */
+    /* $id */
     @Json(name = "id")
-    val id: kotlin.String
+    val id: kotlin.Int
 )
 

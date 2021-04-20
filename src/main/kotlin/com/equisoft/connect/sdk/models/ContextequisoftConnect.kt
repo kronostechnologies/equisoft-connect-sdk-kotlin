@@ -11,9 +11,9 @@
 */
 package com.equisoft.connect.sdk.models
 
+import com.equisoft.connect.sdk.models.ContextequisoftConnectUser
 import com.equisoft.connect.sdk.models.Contextinstance
 import com.equisoft.connect.sdk.models.Contextpreferences
-import com.equisoft.connect.sdk.models.Contextuser
 
 import com.squareup.moshi.Json
 
@@ -36,7 +36,7 @@ data class ContextequisoftConnect (
     @Json(name = "instance")
     val instance: Contextinstance,
     @Json(name = "user")
-    val user: Contextuser,
+    val user: ContextequisoftConnectUser,
     @Json(name = "preferences")
     val preferences: Contextpreferences
 )

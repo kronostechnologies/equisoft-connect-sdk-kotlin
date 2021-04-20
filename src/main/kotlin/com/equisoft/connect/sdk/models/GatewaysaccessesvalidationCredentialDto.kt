@@ -21,6 +21,7 @@ import com.squareup.moshi.Json
  * @param webUserName 
  * @param webUserEmail 
  * @param dealerCode 
+ * @param status 
  * @param district 
  * @param us 
  * @param creationDate 
@@ -41,6 +42,8 @@ data class GatewaysaccessesvalidationCredentialDto (
     val webUserEmail: kotlin.String,
     @Json(name = "dealerCode")
     val dealerCode: kotlin.String? = null,
+    @Json(name = "status")
+    val status: kotlin.String? = null,
     @Json(name = "district")
     val district: kotlin.String? = null,
     @Json(name = "us")

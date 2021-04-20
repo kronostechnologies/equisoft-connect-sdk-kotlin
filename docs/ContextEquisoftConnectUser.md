@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **kotlin.String** | $profile | 
+**id** | **kotlin.Int** | $id | 
 
 
 

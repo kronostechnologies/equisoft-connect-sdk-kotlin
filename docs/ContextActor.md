@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **displayName** | **kotlin.String** | $displayName | 
-**uuid** | **kotlin.String** | $displayName | 
+**uuid** | **kotlin.String** | $uuid | 
 
 
 

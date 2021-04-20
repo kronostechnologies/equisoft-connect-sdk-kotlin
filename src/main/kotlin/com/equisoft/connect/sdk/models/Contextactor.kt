@@ -17,14 +17,14 @@ import com.squareup.moshi.Json
 /**
  * 
  * @param displayName $displayName
- * @param uuid $displayName
+ * @param uuid $uuid
  */
 
 data class Contextactor (
     /* $displayName */
     @Json(name = "displayName")
     val displayName: kotlin.String,
-    /* $displayName */
+    /* $uuid */
     @Json(name = "uuid")
     val uuid: kotlin.String
 )

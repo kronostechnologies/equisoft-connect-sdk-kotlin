@@ -7,12 +7,13 @@ Method | HTTP request | Description
 [**createEquisoftAnalyzeAccess**](GatewaysApi.md#createEquisoftAnalyzeAccess) | **POST** /crm/api/v1/gateways/equisoftAnalyze/accesses | 
 [**deleteEquisoftAnalyzeAccess**](GatewaysApi.md#deleteEquisoftAnalyzeAccess) | **DELETE** /crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId} | 
 [**gatewayAdminLogin**](GatewaysApi.md#gatewayAdminLogin) | **POST** /crm/api/v1/gateways/credentials-validation/{gatewayName}/admin-credentials/login | 
-[**gatewayCredentials**](GatewaysApi.md#gatewayCredentials) | **GET** /crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status} | 
 [**listAssetBookCredentials**](GatewaysApi.md#listAssetBookCredentials) | **GET** /crm/api/v1/gateways/assetbook/credentials | 
+[**listCredentials**](GatewaysApi.md#listCredentials) | **GET** /crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status} | 
 [**listEquisoftAnalyzeAccesses**](GatewaysApi.md#listEquisoftAnalyzeAccesses) | **GET** /crm/api/v1/gateways/equisoftAnalyze/accesses | 
 [**listGatewayConfigurations**](GatewaysApi.md#listGatewayConfigurations) | **GET** /crm/api/v1/gateways/generic/{gatewayName}/configuration | 
 [**listGenericCredentials**](GatewaysApi.md#listGenericCredentials) | **GET** /crm/api/v1/gateways/generic/{gatewayName}/credentials | 
 [**patchEquisoftAnalyzeAccess**](GatewaysApi.md#patchEquisoftAnalyzeAccess) | **PATCH** /crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId} | 
+[**updateCredentials**](GatewaysApi.md#updateCredentials) | **PUT** /crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status} | 
 
 
 <a name="createEquisoftAnalyzeAccess"></a>
@@ -164,57 +165,6 @@ Configure OAuth2:
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="gatewayCredentials"></a>
-# **gatewayCredentials**
-> CredentialsResponse gatewayCredentials(gatewayId, status, authorization)
-
-
-
-### Example
-```kotlin
-// Import classes:
-//import com.equisoft.connect.sdk.infrastructure.*
-//import com.equisoft.connect.sdk.models.*
-
-val apiInstance = GatewaysApi()
-val gatewayId : kotlin.String = gatewayId_example // kotlin.String | 
-val status : kotlin.String = status_example // kotlin.String | 
-val authorization : kotlin.String = authorization_example // kotlin.String | Authorization header using the Bearer scheme
-try {
-    val result : CredentialsResponse = apiInstance.gatewayCredentials(gatewayId, status, authorization)
-    println(result)
-} catch (e: ClientException) {
-    println("4xx response calling GatewaysApi#gatewayCredentials")
-    e.printStackTrace()
-} catch (e: ServerException) {
-    println("5xx response calling GatewaysApi#gatewayCredentials")
-    e.printStackTrace()
-}
-```
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **gatewayId** | **kotlin.String**|  |
- **status** | **kotlin.String**|  |
- **authorization** | **kotlin.String**| Authorization header using the Bearer scheme |
-
-### Return type
-
-[**CredentialsResponse**](CredentialsResponse.md)
-
-### Authorization
-
-
-Configure OAuth2:
-    ApiClient.accessToken = ""
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
 <a name="listAssetBookCredentials"></a>
 # **listAssetBookCredentials**
 > GatewaysListCredentialsResponse listAssetBookCredentials()
@@ -246,6 +196,57 @@ This endpoint does not need any parameter.
 ### Return type
 
 [**GatewaysListCredentialsResponse**](GatewaysListCredentialsResponse.md)
+
+### Authorization
+
+
+Configure OAuth2:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="listCredentials"></a>
+# **listCredentials**
+> CredentialsResponse listCredentials(gatewayId, status, authorization)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
+
+val apiInstance = GatewaysApi()
+val gatewayId : kotlin.String = gatewayId_example // kotlin.String | 
+val status : kotlin.String = status_example // kotlin.String | 
+val authorization : kotlin.String = authorization_example // kotlin.String | Authorization header using the Bearer scheme
+try {
+    val result : CredentialsResponse = apiInstance.listCredentials(gatewayId, status, authorization)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling GatewaysApi#listCredentials")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling GatewaysApi#listCredentials")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **gatewayId** | **kotlin.String**|  |
+ **status** | **kotlin.String**|  |
+ **authorization** | **kotlin.String**| Authorization header using the Bearer scheme |
+
+### Return type
+
+[**CredentialsResponse**](CredentialsResponse.md)
 
 ### Authorization
 
@@ -451,5 +452,58 @@ Configure OAuth2:
 ### HTTP request headers
 
  - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="updateCredentials"></a>
+# **updateCredentials**
+> CredentialsResponse updateCredentials(gatewayId, status, authorization, credentialIds)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
+
+val apiInstance = GatewaysApi()
+val gatewayId : kotlin.String = gatewayId_example // kotlin.String | 
+val status : kotlin.String = status_example // kotlin.String | 
+val authorization : kotlin.String = authorization_example // kotlin.String | Authorization header using the Bearer scheme
+val credentialIds : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | Many ids can be passed to this argument separated by coma. Ex: '?credentialIds=1,2,3'.
+try {
+    val result : CredentialsResponse = apiInstance.updateCredentials(gatewayId, status, authorization, credentialIds)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling GatewaysApi#updateCredentials")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling GatewaysApi#updateCredentials")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **gatewayId** | **kotlin.String**|  |
+ **status** | **kotlin.String**|  |
+ **authorization** | **kotlin.String**| Authorization header using the Bearer scheme |
+ **credentialIds** | [**kotlin.collections.List&lt;kotlin.Int&gt;**](kotlin.Int.md)| Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. | [optional]
+
+### Return type
+
+[**CredentialsResponse**](CredentialsResponse.md)
+
+### Authorization
+
+
+Configure OAuth2:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 

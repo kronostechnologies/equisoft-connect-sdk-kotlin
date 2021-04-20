@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **webUserName** | **kotlin.String** |  | 
 **webUserEmail** | **kotlin.String** |  | 
 **dealerCode** | **kotlin.String** |  |  [optional]
+**status** | **kotlin.String** |  |  [optional]
 **district** | **kotlin.String** |  |  [optional]
 **us** | **kotlin.String** |  |  [optional]
 **creationDate** | **kotlin.String** |  |  [optional]

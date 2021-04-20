@@ -214,66 +214,6 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
     /**
     * 
     * 
-    * @param gatewayId  
-    * @param status  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @return CredentialsResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun gatewayCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : CredentialsResponse {
-        val localVariableConfig = gatewayCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization)
-
-        val localVarResponse = request<CredentialsResponse>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as CredentialsResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation gatewayCredentials
-    *
-    * @param gatewayId  
-    * @param status  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @return RequestConfig
-    */
-    fun gatewayCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        authorization?.apply { localVariableHeaders["Authorization"] = this.toString() }
-        
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status}".replace("{"+"gatewayId"+"}", "$gatewayId").replace("{"+"status"+"}", "$status"),
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
     * @return GatewaysListCredentialsResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -316,6 +256,66 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/assetbook/credentials",
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param gatewayId  
+    * @param status  
+    * @param authorization Authorization header using the Bearer scheme 
+    * @return CredentialsResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun listCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : CredentialsResponse {
+        val localVariableConfig = listCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization)
+
+        val localVarResponse = request<CredentialsResponse>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CredentialsResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation listCredentials
+    *
+    * @param gatewayId  
+    * @param status  
+    * @param authorization Authorization header using the Bearer scheme 
+    * @return RequestConfig
+    */
+    fun listCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        authorization?.apply { localVariableHeaders["Authorization"] = this.toString() }
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
+            path = "/crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status}".replace("{"+"gatewayId"+"}", "$gatewayId").replace("{"+"status"+"}", "$status"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
@@ -549,6 +549,73 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId}".replace("{"+"accessId"+"}", "$accessId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param gatewayId  
+    * @param status  
+    * @param authorization Authorization header using the Bearer scheme 
+    * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
+    * @return CredentialsResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun updateCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : CredentialsResponse {
+        val localVariableConfig = updateCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization, credentialIds = credentialIds)
+
+        val localVarResponse = request<CredentialsResponse>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as CredentialsResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation updateCredentials
+    *
+    * @param gatewayId  
+    * @param status  
+    * @param authorization Authorization header using the Bearer scheme 
+    * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
+    * @return RequestConfig
+    */
+    fun updateCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+            .apply {
+                if (credentialIds != null) {
+                    put("credentialIds", toMultiValue(credentialIds.toList(), "multi"))
+                }
+            }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        authorization?.apply { localVariableHeaders["Authorization"] = this.toString() }
+        
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.PUT,
+            path = "/crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status}".replace("{"+"gatewayId"+"}", "$gatewayId").replace("{"+"status"+"}", "$status"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
