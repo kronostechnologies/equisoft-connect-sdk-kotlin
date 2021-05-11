@@ -59,6 +59,8 @@ Class | Method | HTTP request | Description
 *GatewaysApi* | [**listGenericCredentials**](docs/GatewaysApi.md#listgenericcredentials) | **GET** /crm/api/v1/gateways/generic/{gatewayName}/credentials | 
 *GatewaysApi* | [**patchEquisoftAnalyzeAccess**](docs/GatewaysApi.md#patchequisoftanalyzeaccess) | **PATCH** /crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId} | 
 *GatewaysApi* | [**updateCredentials**](docs/GatewaysApi.md#updatecredentials) | **PUT** /crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status} | 
+*IntegrationsApi* | [**downloadLaserAppEnterpriseContactData**](docs/IntegrationsApi.md#downloadlaserappenterprisecontactdata) | **GET** /crm/api/app/integrations/laserapp/enterprise/{contactId} | Download contact data for LaserApp Enterprise.
+*IntegrationsApi* | [**redirectContactToLaserAppAnywhere**](docs/IntegrationsApi.md#redirectcontacttolaserappanywhere) | **GET** /crm/api/app/integrations/laserapp/anywhere/{contactId} | Redirect contact to LaserApp Anywhere.
 *LegacyDocumentApi* | [**addDocument**](docs/LegacyDocumentApi.md#adddocument) | **POST** /apps/api/kronos.document.add | Create a new document.
 *LegacyDocumentApi* | [**deleteDocument**](docs/LegacyDocumentApi.md#deletedocument) | **POST** /apps/api/kronos.document.delete | Delete a document and it's related files.
 *LegacyDocumentApi* | [**deleteDocumentFile**](docs/LegacyDocumentApi.md#deletedocumentfile) | **POST** /apps/api/kronos.document.deleteFile | Delete one file from a document
@@ -106,6 +108,7 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.Contextpreferences](docs/Contextpreferences.md)
  - [com.equisoft.connect.sdk.models.Contextuser](docs/Contextuser.md)
  - [com.equisoft.connect.sdk.models.ContextuserContext](docs/ContextuserContext.md)
+ - [com.equisoft.connect.sdk.models.CredentialDto](docs/CredentialDto.md)
  - [com.equisoft.connect.sdk.models.CredentialsResponse](docs/CredentialsResponse.md)
  - [com.equisoft.connect.sdk.models.DateOrDateTime](docs/DateOrDateTime.md)
  - [com.equisoft.connect.sdk.models.ErrorResponse](docs/ErrorResponse.md)
@@ -135,7 +138,6 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.GatewaysaccessesListGatewayAccessesResponse](docs/GatewaysaccessesListGatewayAccessesResponse.md)
  - [com.equisoft.connect.sdk.models.GatewaysaccessesPatchEquisoftAnalyzeAccessPayload](docs/GatewaysaccessesPatchEquisoftAnalyzeAccessPayload.md)
  - [com.equisoft.connect.sdk.models.GatewaysaccessesUser](docs/GatewaysaccessesUser.md)
- - [com.equisoft.connect.sdk.models.GatewaysaccessesvalidationCredentialDto](docs/GatewaysaccessesvalidationCredentialDto.md)
  - [com.equisoft.connect.sdk.models.Handlersoauth2assetbookAssetBookTokenPostBody](docs/Handlersoauth2assetbookAssetBookTokenPostBody.md)
  - [com.equisoft.connect.sdk.models.InternalNotesAuthor](docs/InternalNotesAuthor.md)
  - [com.equisoft.connect.sdk.models.InternalNotesCreateNotePayload](docs/InternalNotesCreateNotePayload.md)
@@ -148,6 +150,8 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.InternalNotesNoteRevisionType](docs/InternalNotesNoteRevisionType.md)
  - [com.equisoft.connect.sdk.models.InternalNotesPatchNotePayload](docs/InternalNotesPatchNotePayload.md)
  - [com.equisoft.connect.sdk.models.InternalNotesPatchNoteResponse](docs/InternalNotesPatchNoteResponse.md)
+ - [com.equisoft.connect.sdk.models.LaserApplaserAppAnywhereError](docs/LaserApplaserAppAnywhereError.md)
+ - [com.equisoft.connect.sdk.models.LaserApplaserAppAnywhereResponse](docs/LaserApplaserAppAnywhereResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyAddUpdateItem](docs/LegacyAddUpdateItem.md)
  - [com.equisoft.connect.sdk.models.LegacyAddUpdateResponse](docs/LegacyAddUpdateResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyAddUpdateResponseAllOf](docs/LegacyAddUpdateResponseAllOf.md)

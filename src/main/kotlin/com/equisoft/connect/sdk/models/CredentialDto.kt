@@ -18,32 +18,34 @@ import com.squareup.moshi.Json
  * 
  * @param id 
  * @param repCode 
+ * @param status 
+ * @param isActive 
  * @param webUserName 
  * @param webUserEmail 
  * @param dealerCode 
- * @param status 
  * @param district 
  * @param us 
  * @param creationDate 
  * @param approvalDate 
  * @param refusalDate 
  * @param revocationDate 
- * @param isActive 
  */
 
-data class GatewaysaccessesvalidationCredentialDto (
+data class CredentialDto (
     @Json(name = "id")
     val id: kotlin.Int,
     @Json(name = "repCode")
     val repCode: kotlin.String?,
+    @Json(name = "status")
+    val status: kotlin.String,
+    @Json(name = "isActive")
+    val isActive: kotlin.Boolean,
     @Json(name = "webUserName")
     val webUserName: kotlin.String,
     @Json(name = "webUserEmail")
     val webUserEmail: kotlin.String,
     @Json(name = "dealerCode")
     val dealerCode: kotlin.String? = null,
-    @Json(name = "status")
-    val status: kotlin.String? = null,
     @Json(name = "district")
     val district: kotlin.String? = null,
     @Json(name = "us")
@@ -55,8 +57,6 @@ data class GatewaysaccessesvalidationCredentialDto (
     @Json(name = "refusalDate")
     val refusalDate: kotlin.String? = null,
     @Json(name = "revocationDate")
-    val revocationDate: kotlin.String? = null,
-    @Json(name = "isActive")
-    val isActive: kotlin.Boolean? = null
+    val revocationDate: kotlin.String? = null
 )
 

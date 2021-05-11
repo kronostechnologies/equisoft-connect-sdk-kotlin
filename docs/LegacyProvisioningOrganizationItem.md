@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **orgId** | **kotlin.String** | Unique identifier for the organization |  [optional]
 **displayName** | **kotlin.String** | Organization Name |  [optional]
 **status** | **kotlin.String** | Organization status In creation, Active, Maintenance |  [optional]
-**diskUsageQuota** | **kotlin.Int** | Organization disk usage quota. Deprecated. Always empty. |  [optional]
+**diskUsageQuota** | **kotlin.String** | Organization disk usage quota. Deprecated. Always empty. |  [optional]
 **lang** | **kotlin.String** | Default language |  [optional]
 **mainPhone** | **kotlin.String** | Organization main phone number |  [optional]
 **tollFree** | **kotlin.String** | Organization tollFree phone number |  [optional]

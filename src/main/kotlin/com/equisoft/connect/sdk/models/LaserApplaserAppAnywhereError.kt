@@ -11,17 +11,17 @@
 */
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.CredentialDto
 
 import com.squareup.moshi.Json
 
 /**
  * 
- * @param credentials 
+ * @param message $message;
  */
 
-data class CredentialsResponse (
-    @Json(name = "credentials")
-    val credentials: kotlin.collections.List<CredentialDto>
+data class LaserApplaserAppAnywhereError (
+    /* $message; */
+    @Json(name = "message")
+    val message: kotlin.String
 )
 

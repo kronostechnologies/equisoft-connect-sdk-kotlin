@@ -13,6 +13,7 @@ docs/ContextInstance.md
 docs/ContextPreferences.md
 docs/ContextUser.md
 docs/ContextUserContext.md
+docs/CredentialDto.md
 docs/CredentialsResponse.md
 docs/DateOrDateTime.md
 docs/ErrorResponse.md
@@ -37,7 +38,6 @@ docs/GatewaysAccessesEquisoftAnalyzeAccessAllOf.md
 docs/GatewaysAccessesListGatewayAccessesResponse.md
 docs/GatewaysAccessesPatchEquisoftAnalyzeAccessPayload.md
 docs/GatewaysAccessesUser.md
-docs/GatewaysAccessesValidationCredentialDto.md
 docs/GatewaysApi.md
 docs/GatewaysCredentials.md
 docs/GatewaysCredentialsWithSsn.md
@@ -46,6 +46,7 @@ docs/GatewaysGatewayName.md
 docs/GatewaysGatewayType.md
 docs/GatewaysListCredentialsResponse.md
 docs/HandlersOauth2AssetbookAssetBookTokenPostBody.md
+docs/IntegrationsApi.md
 docs/InternalNotesAuthor.md
 docs/InternalNotesCreateNotePayload.md
 docs/InternalNotesCreateNoteResponse.md
@@ -57,6 +58,8 @@ docs/InternalNotesNoteRevision.md
 docs/InternalNotesNoteRevisionType.md
 docs/InternalNotesPatchNotePayload.md
 docs/InternalNotesPatchNoteResponse.md
+docs/LaserAppLaserAppAnywhereError.md
+docs/LaserAppLaserAppAnywhereResponse.md
 docs/LegacyAddUpdateItem.md
 docs/LegacyAddUpdateResponse.md
 docs/LegacyAddUpdateResponseAllOf.md
@@ -155,6 +158,7 @@ gradlew.bat
 settings.gradle
 src/main/kotlin/com/equisoft/connect/sdk/apis/EventsApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/GatewaysApi.kt
+src/main/kotlin/com/equisoft/connect/sdk/apis/IntegrationsApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/LegacyDocumentApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/LegacyProvisioningApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/MovementApi.kt
@@ -188,6 +192,7 @@ src/main/kotlin/com/equisoft/connect/sdk/models/Contextinstance.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/Contextpreferences.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/Contextuser.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/ContextuserContext.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/CredentialDto.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CredentialsResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/DateOrDateTime.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/ErrorResponse.kt
@@ -217,7 +222,6 @@ src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesEquisoftAnalyzeA
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesListGatewayAccessesResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesPatchEquisoftAnalyzeAccessPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesUser.kt
-src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesvalidationCredentialDto.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/Handlersoauth2assetbookAssetBookTokenPostBody.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesAuthor.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesCreateNotePayload.kt
@@ -230,6 +234,8 @@ src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesNoteRevision.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesNoteRevisionType.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesPatchNotePayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/InternalNotesPatchNoteResponse.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/LaserApplaserAppAnywhereError.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/LaserApplaserAppAnywhereResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/LegacyAddUpdateItem.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/LegacyAddUpdateResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/LegacyAddUpdateResponseAllOf.kt

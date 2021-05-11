@@ -49,7 +49,7 @@ data class LegacyprovisioningOrganizationItem (
     val status: kotlin.String? = null,
     /* Organization disk usage quota. Deprecated. Always empty. */
     @Json(name = "diskUsageQuota")
-    val diskUsageQuota: kotlin.Int? = null,
+    val diskUsageQuota: kotlin.String? = null,
     /* Default language */
     @Json(name = "lang")
     val lang: kotlin.String? = null,
