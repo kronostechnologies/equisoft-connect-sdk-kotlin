@@ -35,6 +35,10 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DSFApi* | [**createDsfFinancialCenter**](docs/DSFApi.md#createdsffinancialcenter) | **POST** /crm/api/v1/dsf/financialCenters | 
+*DSFApi* | [**deleteDsfFinancialCenter**](docs/DSFApi.md#deletedsffinancialcenter) | **DELETE** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
+*DSFApi* | [**listDsfFinancialCenters**](docs/DSFApi.md#listdsffinancialcenters) | **GET** /crm/api/v1/dsf/financialCenters | 
+*DSFApi* | [**updateDsfFinancialCenter**](docs/DSFApi.md#updatedsffinancialcenter) | **POST** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
 *EventsApi* | [**archiveEventInternalNote**](docs/EventsApi.md#archiveeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes/{noteId}/archive | Archive an internal note for and event.
 *EventsApi* | [**createEvent**](docs/EventsApi.md#createevent) | **POST** /crm/api/v1/events | Create an event.
 *EventsApi* | [**createEventInternalNote**](docs/EventsApi.md#createeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes | Add an internal note to and event.
@@ -111,6 +115,10 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.CredentialDto](docs/CredentialDto.md)
  - [com.equisoft.connect.sdk.models.CredentialsResponse](docs/CredentialsResponse.md)
  - [com.equisoft.connect.sdk.models.DateOrDateTime](docs/DateOrDateTime.md)
+ - [com.equisoft.connect.sdk.models.DsfCreateOrUpdateFinancialCenterResponse](docs/DsfCreateOrUpdateFinancialCenterResponse.md)
+ - [com.equisoft.connect.sdk.models.DsfFinancialCenter](docs/DsfFinancialCenter.md)
+ - [com.equisoft.connect.sdk.models.DsfFinancialCenterPayload](docs/DsfFinancialCenterPayload.md)
+ - [com.equisoft.connect.sdk.models.DsfListFinancialCenterResponse](docs/DsfListFinancialCenterResponse.md)
  - [com.equisoft.connect.sdk.models.ErrorResponse](docs/ErrorResponse.md)
  - [com.equisoft.connect.sdk.models.EventsCreateEventPayload](docs/EventsCreateEventPayload.md)
  - [com.equisoft.connect.sdk.models.EventsCreateEventResponse](docs/EventsCreateEventResponse.md)

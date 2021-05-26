@@ -15,7 +15,12 @@ docs/ContextUser.md
 docs/ContextUserContext.md
 docs/CredentialDto.md
 docs/CredentialsResponse.md
+docs/DSFApi.md
 docs/DateOrDateTime.md
+docs/DsfCreateOrUpdateFinancialCenterResponse.md
+docs/DsfFinancialCenter.md
+docs/DsfFinancialCenterPayload.md
+docs/DsfListFinancialCenterResponse.md
 docs/ErrorResponse.md
 docs/EventsApi.md
 docs/EventsCreateEventPayload.md
@@ -156,6 +161,7 @@ gradle/wrapper/gradle-wrapper.properties
 gradlew
 gradlew.bat
 settings.gradle
+src/main/kotlin/com/equisoft/connect/sdk/apis/DSFApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/EventsApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/GatewaysApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/IntegrationsApi.kt
@@ -195,6 +201,10 @@ src/main/kotlin/com/equisoft/connect/sdk/models/ContextuserContext.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CredentialDto.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CredentialsResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/DateOrDateTime.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/DsfCreateOrUpdateFinancialCenterResponse.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/DsfFinancialCenter.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/DsfFinancialCenterPayload.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/DsfListFinancialCenterResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/ErrorResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/EventsCreateEventPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/EventsCreateEventResponse.kt
