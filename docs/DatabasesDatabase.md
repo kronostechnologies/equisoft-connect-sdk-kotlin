@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **uuid** | **kotlin.String** | Uuid | 
 **databaseName** | **kotlin.String** | Database name | 
 **displayName** | **kotlin.String** | Display name | 
+**profileName** | **kotlin.String** | Profile | 
 **state** | **kotlin.String** | Database state | 
-**profileName** | **kotlin.String** | Profile |  [optional]
 **organizationUuid** | **kotlin.String** | Organization uuid |  [optional]
 
 
