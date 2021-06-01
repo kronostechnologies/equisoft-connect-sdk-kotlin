@@ -39,6 +39,7 @@ Class | Method | HTTP request | Description
 *DSFApi* | [**deleteDsfFinancialCenter**](docs/DSFApi.md#deletedsffinancialcenter) | **DELETE** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
 *DSFApi* | [**listDsfFinancialCenters**](docs/DSFApi.md#listdsffinancialcenters) | **GET** /crm/api/v1/dsf/financialCenters | 
 *DSFApi* | [**updateDsfFinancialCenter**](docs/DSFApi.md#updatedsffinancialcenter) | **POST** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
+*DatabasesApi* | [**listDatabases**](docs/DatabasesApi.md#listdatabases) | **POST** /crm/api/v1/databases | 
 *EventsApi* | [**archiveEventInternalNote**](docs/EventsApi.md#archiveeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes/{noteId}/archive | Archive an internal note for and event.
 *EventsApi* | [**createEvent**](docs/EventsApi.md#createevent) | **POST** /crm/api/v1/events | Create an event.
 *EventsApi* | [**createEventInternalNote**](docs/EventsApi.md#createeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes | Add an internal note to and event.
@@ -81,6 +82,8 @@ Class | Method | HTTP request | Description
 *MovementApi* | [**getMovementStatus**](docs/MovementApi.md#getmovementstatus) | **GET** /crm/api/v1/movements/{movementId}/status | 
 *MovementApi* | [**listMovements**](docs/MovementApi.md#listmovements) | **GET** /crm/api/v1/movements | 
 *MxApi* | [**validateRecipients**](docs/MxApi.md#validaterecipients) | **POST** /crm/api/app/mail/validateRecipients | Validate recipients
+*RemoteAccountApi* | [**synchronizeCalendars**](docs/RemoteAccountApi.md#synchronizecalendars) | **POST** /crm/api/agenda/account/calendarSync | Synchronize calendars with remote account
+*RemoteAccountApi* | [**synchronizeTasks**](docs/RemoteAccountApi.md#synchronizetasks) | **POST** /crm/api/agenda/account/tasksSync | Synchronize tasks with remote account
 *TasksApi* | [**archiveTaskInternalNote**](docs/TasksApi.md#archivetaskinternalnote) | **POST** /crm/api/v1/tasks/{taskId}/notes/{noteId}/archive | Archive an internal note for a task.
 *TasksApi* | [**createTask**](docs/TasksApi.md#createtask) | **POST** /crm/api/v1/tasks | Create a task.
 *TasksApi* | [**createTaskInternalNote**](docs/TasksApi.md#createtaskinternalnote) | **POST** /crm/api/v1/tasks/{taskId}/notes | Add an internal note to a task.
@@ -114,6 +117,8 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.ContextuserContext](docs/ContextuserContext.md)
  - [com.equisoft.connect.sdk.models.CredentialDto](docs/CredentialDto.md)
  - [com.equisoft.connect.sdk.models.CredentialsResponse](docs/CredentialsResponse.md)
+ - [com.equisoft.connect.sdk.models.DatabasesDatabase](docs/DatabasesDatabase.md)
+ - [com.equisoft.connect.sdk.models.DatabasesListDatabasesResponse](docs/DatabasesListDatabasesResponse.md)
  - [com.equisoft.connect.sdk.models.DateOrDateTime](docs/DateOrDateTime.md)
  - [com.equisoft.connect.sdk.models.DsfCreateOrUpdateFinancialCenterResponse](docs/DsfCreateOrUpdateFinancialCenterResponse.md)
  - [com.equisoft.connect.sdk.models.DsfFinancialCenter](docs/DsfFinancialCenter.md)
@@ -234,6 +239,9 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.Mxrecipient](docs/Mxrecipient.md)
  - [com.equisoft.connect.sdk.models.MxrecipientsPayload](docs/MxrecipientsPayload.md)
  - [com.equisoft.connect.sdk.models.MxvalidateRecipientsResponse](docs/MxvalidateRecipientsResponse.md)
+ - [com.equisoft.connect.sdk.models.RemoteaccountAccountSyncResponse](docs/RemoteaccountAccountSyncResponse.md)
+ - [com.equisoft.connect.sdk.models.RemoteaccountSyncStatus](docs/RemoteaccountSyncStatus.md)
+ - [com.equisoft.connect.sdk.models.RemoteaccountSyncTaskStatus](docs/RemoteaccountSyncTaskStatus.md)
  - [com.equisoft.connect.sdk.models.TasksCreateTaskPayload](docs/TasksCreateTaskPayload.md)
  - [com.equisoft.connect.sdk.models.TasksCreateTaskResponse](docs/TasksCreateTaskResponse.md)
  - [com.equisoft.connect.sdk.models.TasksDueDateFilter](docs/TasksDueDateFilter.md)

@@ -16,6 +16,9 @@ docs/ContextUserContext.md
 docs/CredentialDto.md
 docs/CredentialsResponse.md
 docs/DSFApi.md
+docs/DatabasesApi.md
+docs/DatabasesDatabase.md
+docs/DatabasesListDatabasesResponse.md
 docs/DateOrDateTime.md
 docs/DsfCreateOrUpdateFinancialCenterResponse.md
 docs/DsfFinancialCenter.md
@@ -143,6 +146,10 @@ docs/MxApi.md
 docs/MxRecipient.md
 docs/MxRecipientsPayload.md
 docs/MxValidateRecipientsResponse.md
+docs/RemoteAccountApi.md
+docs/RemoteaccountAccountSyncResponse.md
+docs/RemoteaccountSyncStatus.md
+docs/RemoteaccountSyncTaskStatus.md
 docs/TasksApi.md
 docs/TasksCreateTaskPayload.md
 docs/TasksCreateTaskResponse.md
@@ -162,6 +169,7 @@ gradlew
 gradlew.bat
 settings.gradle
 src/main/kotlin/com/equisoft/connect/sdk/apis/DSFApi.kt
+src/main/kotlin/com/equisoft/connect/sdk/apis/DatabasesApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/EventsApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/GatewaysApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/IntegrationsApi.kt
@@ -169,6 +177,7 @@ src/main/kotlin/com/equisoft/connect/sdk/apis/LegacyDocumentApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/LegacyProvisioningApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/MovementApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/MxApi.kt
+src/main/kotlin/com/equisoft/connect/sdk/apis/RemoteAccountApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/TasksApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/apis/UsersApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiAbstractions.kt
@@ -200,6 +209,8 @@ src/main/kotlin/com/equisoft/connect/sdk/models/Contextuser.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/ContextuserContext.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CredentialDto.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/CredentialsResponse.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/DatabasesDatabase.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/DatabasesListDatabasesResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/DateOrDateTime.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/DsfCreateOrUpdateFinancialCenterResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/DsfFinancialCenter.kt
@@ -320,6 +331,9 @@ src/main/kotlin/com/equisoft/connect/sdk/models/MovementValidationErrorResponse.
 src/main/kotlin/com/equisoft/connect/sdk/models/Mxrecipient.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/MxrecipientsPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/MxvalidateRecipientsResponse.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/RemoteaccountAccountSyncResponse.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/RemoteaccountSyncStatus.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/RemoteaccountSyncTaskStatus.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/TasksCreateTaskPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/TasksCreateTaskResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/TasksDueDateFilter.kt
