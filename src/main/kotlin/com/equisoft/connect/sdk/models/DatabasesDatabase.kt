@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
  * @param databaseName Database name
  * @param displayName Display name
  * @param state Database state
- * @param profile Profile
+ * @param profileName Profile
  * @param organizationUuid Organization uuid
  */
 
@@ -42,8 +42,8 @@ data class DatabasesDatabase (
     @Json(name = "state")
     val state: kotlin.String,
     /* Profile */
-    @Json(name = "profile")
-    val profile: kotlin.String? = null,
+    @Json(name = "profileName")
+    val profileName: kotlin.String? = null,
     /* Organization uuid */
     @Json(name = "organizationUuid")
     val organizationUuid: kotlin.String? = null

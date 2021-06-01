@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **databaseName** | **kotlin.String** | Database name | 
 **displayName** | **kotlin.String** | Display name | 
 **state** | **kotlin.String** | Database state | 
-**profile** | **kotlin.String** | Profile |  [optional]
+**profileName** | **kotlin.String** | Profile |  [optional]
 **organizationUuid** | **kotlin.String** | Organization uuid |  [optional]
 
 
