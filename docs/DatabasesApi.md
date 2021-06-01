@@ -4,7 +4,7 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**listDatabases**](DatabasesApi.md#listDatabases) | **POST** /crm/api/v1/databases | 
+[**listDatabases**](DatabasesApi.md#listDatabases) | **GET** /crm/api/v1/databases | 
 
 
 <a name="listDatabases"></a>

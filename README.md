@@ -39,7 +39,7 @@ Class | Method | HTTP request | Description
 *DSFApi* | [**deleteDsfFinancialCenter**](docs/DSFApi.md#deletedsffinancialcenter) | **DELETE** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
 *DSFApi* | [**listDsfFinancialCenters**](docs/DSFApi.md#listdsffinancialcenters) | **GET** /crm/api/v1/dsf/financialCenters | 
 *DSFApi* | [**updateDsfFinancialCenter**](docs/DSFApi.md#updatedsffinancialcenter) | **POST** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
-*DatabasesApi* | [**listDatabases**](docs/DatabasesApi.md#listdatabases) | **POST** /crm/api/v1/databases | 
+*DatabasesApi* | [**listDatabases**](docs/DatabasesApi.md#listdatabases) | **GET** /crm/api/v1/databases | 
 *EventsApi* | [**archiveEventInternalNote**](docs/EventsApi.md#archiveeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes/{noteId}/archive | Archive an internal note for and event.
 *EventsApi* | [**createEvent**](docs/EventsApi.md#createevent) | **POST** /crm/api/v1/events | Create an event.
 *EventsApi* | [**createEventInternalNote**](docs/EventsApi.md#createeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes | Add an internal note to and event.

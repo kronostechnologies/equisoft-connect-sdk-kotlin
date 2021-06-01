@@ -89,7 +89,7 @@ class DatabasesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         
         val localVariableConfig = RequestConfig(
-            method = RequestMethod.POST,
+            method = RequestMethod.GET,
             path = "/crm/api/v1/databases",
             query = localVariableQuery,
             headers = localVariableHeaders,
