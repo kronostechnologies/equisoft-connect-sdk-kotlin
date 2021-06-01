@@ -8,9 +8,9 @@ Name | Type | Description | Notes
 **uuid** | **kotlin.String** | Uuid | 
 **databaseName** | **kotlin.String** | Database name | 
 **displayName** | **kotlin.String** | Display name | 
-**organizationUuid** | **kotlin.String** | Organization uuid | 
+**state** | **kotlin.String** | Database state | 
 **profile** | **kotlin.String** | Profile |  [optional]
-**state** | **kotlin.String** | Database state |  [optional]
+**organizationUuid** | **kotlin.String** | Organization uuid |  [optional]
 
 
 
