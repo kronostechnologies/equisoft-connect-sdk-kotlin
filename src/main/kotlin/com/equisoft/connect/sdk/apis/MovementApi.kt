@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.MovementAddMovementResponse
 import com.equisoft.connect.sdk.models.MovementGetStatusResponse
@@ -30,7 +31,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class MovementApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class MovementApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -81,7 +88,7 @@ class MovementApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = movementMovementPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/movements",
@@ -136,7 +143,7 @@ class MovementApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/movements/{movementId}/cancel".replace("{"+"movementId"+"}", "$movementId"),
@@ -191,7 +198,7 @@ class MovementApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/movements/{movementId}".replace("{"+"movementId"+"}", "$movementId"),
@@ -246,7 +253,7 @@ class MovementApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/movements/{movementId}/status".replace("{"+"movementId"+"}", "$movementId"),
@@ -299,7 +306,7 @@ class MovementApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/movements",

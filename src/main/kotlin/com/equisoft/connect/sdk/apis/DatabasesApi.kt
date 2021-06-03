@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.DatabasesListDatabasesResponse
 import com.equisoft.connect.sdk.models.ErrorResponse
 
@@ -26,7 +27,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class DatabasesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class DatabasesApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -87,7 +94,7 @@ class DatabasesApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePa
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/databases",

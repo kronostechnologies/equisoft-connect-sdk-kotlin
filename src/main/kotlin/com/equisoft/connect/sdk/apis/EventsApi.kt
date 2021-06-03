@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.CalendarsCalendar
 import com.equisoft.connect.sdk.models.CalendarsListCalendarResponse
 import com.equisoft.connect.sdk.models.ErrorResponse
@@ -42,7 +43,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class EventsApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -98,7 +105,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/notes/{noteId}/archive".replace("{"+"eventId"+"}", "$eventId").replace("{"+"noteId"+"}", "$noteId"),
@@ -156,7 +163,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events",
@@ -216,7 +223,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/notes".replace("{"+"eventId"+"}", "$eventId"),
@@ -271,7 +278,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/events/{eventId}".replace("{"+"eventId"+"}", "$eventId"),
@@ -329,7 +336,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/calendars/{calendarId}".replace("{"+"calendarId"+"}", "$calendarId"),
@@ -387,7 +394,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events/{eventId}".replace("{"+"eventId"+"}", "$eventId"),
@@ -467,7 +474,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events/{eventId}/instances".replace("{"+"eventId"+"}", "$eventId"),
@@ -532,7 +539,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events/{eventId}/notes".replace("{"+"eventId"+"}", "$eventId"),
@@ -588,7 +595,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/calendars",
@@ -696,7 +703,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events",
@@ -756,7 +763,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/events/{eventId}".replace("{"+"eventId"+"}", "$eventId"),
@@ -818,7 +825,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/events/{eventId}/notes/{noteId}".replace("{"+"eventId"+"}", "$eventId").replace("{"+"noteId"+"}", "$noteId"),
@@ -878,7 +885,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/notes/{noteId}/restore".replace("{"+"eventId"+"}", "$eventId").replace("{"+"noteId"+"}", "$noteId"),
@@ -933,7 +940,7 @@ class EventsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath)
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/transferToCompleted".replace("{"+"eventId"+"}", "$eventId"),

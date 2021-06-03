@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.MxrecipientsPayload
 import com.equisoft.connect.sdk.models.MxvalidateRecipientsResponse
 
@@ -26,7 +27,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class MxApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class MxApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -77,7 +84,7 @@ class MxApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
         val localVariableBody: kotlin.Any? = mxrecipientsPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/app/mail/validateRecipients",

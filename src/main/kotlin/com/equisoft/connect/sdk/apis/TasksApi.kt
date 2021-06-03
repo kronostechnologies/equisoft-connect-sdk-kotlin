@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.InternalNotesCreateNotePayload
 import com.equisoft.connect.sdk.models.InternalNotesCreateNoteResponse
@@ -40,7 +41,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class TasksApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -96,7 +103,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/notes/{noteId}/archive".replace("{"+"taskId"+"}", "$taskId").replace("{"+"noteId"+"}", "$noteId"),
@@ -154,7 +161,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks",
@@ -214,7 +221,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/notes".replace("{"+"taskId"+"}", "$taskId"),
@@ -269,7 +276,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/tasks/{taskId}".replace("{"+"taskId"+"}", "$taskId"),
@@ -327,7 +334,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/tasks/{taskId}".replace("{"+"taskId"+"}", "$taskId"),
@@ -392,7 +399,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/tasks/{taskId}/notes".replace("{"+"taskId"+"}", "$taskId"),
@@ -495,7 +502,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/tasks",
@@ -555,7 +562,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/tasks/{taskId}".replace("{"+"taskId"+"}", "$taskId"),
@@ -617,7 +624,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/tasks/{taskId}/notes/{noteId}".replace("{"+"taskId"+"}", "$taskId").replace("{"+"noteId"+"}", "$noteId"),
@@ -677,7 +684,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/notes/{noteId}/restore".replace("{"+"taskId"+"}", "$taskId").replace("{"+"noteId"+"}", "$noteId"),
@@ -732,7 +739,7 @@ class TasksApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) 
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/transferToCompleted".replace("{"+"taskId"+"}", "$taskId"),

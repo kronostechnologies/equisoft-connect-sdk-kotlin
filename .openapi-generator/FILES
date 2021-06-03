@@ -184,6 +184,8 @@ src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiAbstractions.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiClient.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiInfrastructureResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApplicationDelegates.kt
+src/main/kotlin/com/equisoft/connect/sdk/infrastructure/BigDecimalAdapter.kt
+src/main/kotlin/com/equisoft/connect/sdk/infrastructure/BigIntegerAdapter.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ByteArrayAdapter.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/Errors.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/LocalDateAdapter.kt
