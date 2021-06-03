@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.DsfCreateOrUpdateFinancialCenterResponse
 import com.equisoft.connect.sdk.models.DsfFinancialCenterPayload
 import com.equisoft.connect.sdk.models.DsfListFinancialCenterResponse
@@ -28,7 +29,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class DSFApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class DSFApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -79,7 +86,7 @@ class DSFApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
         val localVariableBody: kotlin.Any? = dsfFinancialCenterPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/dsf/financialCenters",
@@ -133,7 +140,7 @@ class DSFApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/dsf/financialCenters/{financialCenterId}".replace("{"+"financialCenterId"+"}", "$financialCenterId"),
@@ -186,7 +193,7 @@ class DSFApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/dsf/financialCenters",
@@ -243,7 +250,7 @@ class DSFApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
         val localVariableBody: kotlin.Any? = dsfFinancialCenterPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/dsf/financialCenters/{financialCenterId}".replace("{"+"financialCenterId"+"}", "$financialCenterId"),

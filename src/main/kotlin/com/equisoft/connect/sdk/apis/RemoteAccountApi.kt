@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.RemoteaccountAccountSyncResponse
 
 import com.equisoft.connect.sdk.infrastructure.ApiClient
@@ -25,7 +26,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class RemoteAccountApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class RemoteAccountApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -84,7 +91,7 @@ class RemoteAccountApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
         val localVariableBody: kotlin.Any? = mapOf("dateTimeStart" to dateTimeStart, "dateTimeEnd" to dateTimeEnd, "webuserCalendarIds" to webuserCalendarIds, "remoteFolderIds" to remoteFolderIds, "webuserIds" to webuserIds)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/agenda/account/calendarSync",
@@ -147,7 +154,7 @@ class RemoteAccountApi(basePath: kotlin.String = defaultBasePath) : ApiClient(ba
         val localVariableBody: kotlin.Any? = mapOf("dateTimeStart" to dateTimeStart, "dateTimeEnd" to dateTimeEnd, "webuserCalendarIds" to webuserCalendarIds, "remoteFolderIds" to remoteFolderIds, "webuserIds" to webuserIds)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/agenda/account/tasksSync",

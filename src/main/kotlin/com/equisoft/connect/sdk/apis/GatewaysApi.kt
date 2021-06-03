@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.AdminCredentialPayload
 import com.equisoft.connect.sdk.models.AdminCredentialResponse
 import com.equisoft.connect.sdk.models.CredentialsResponse
@@ -33,7 +34,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class GatewaysApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -84,7 +91,7 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses",
@@ -139,7 +146,7 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId}".replace("{"+"accessId"+"}", "$accessId"),
@@ -198,8 +205,8 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = adminCredentialPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        authorization?.apply { localVariableHeaders["Authorization"] = this.toString() }
-        
+        authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/gateways/credentials-validation/{gatewayName}/admin-credentials/login".replace("{"+"gatewayName"+"}", "$gatewayName"),
@@ -252,7 +259,7 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/assetbook/credentials",
@@ -311,8 +318,8 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        authorization?.apply { localVariableHeaders["Authorization"] = this.toString() }
-        
+        authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status}".replace("{"+"gatewayId"+"}", "$gatewayId").replace("{"+"status"+"}", "$status"),
@@ -372,7 +379,7 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses",
@@ -426,7 +433,7 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/generic/{gatewayName}/configuration".replace("{"+"gatewayName"+"}", "$gatewayName"),
@@ -488,7 +495,7 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/generic/{gatewayName}/credentials".replace("{"+"gatewayName"+"}", "$gatewayName"),
@@ -545,7 +552,7 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
         val localVariableBody: kotlin.Any? = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId}".replace("{"+"accessId"+"}", "$accessId"),
@@ -611,8 +618,8 @@ class GatewaysApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePat
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        authorization?.apply { localVariableHeaders["Authorization"] = this.toString() }
-        
+        authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.PUT,
             path = "/crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status}".replace("{"+"gatewayId"+"}", "$gatewayId").replace("{"+"status"+"}", "$status"),

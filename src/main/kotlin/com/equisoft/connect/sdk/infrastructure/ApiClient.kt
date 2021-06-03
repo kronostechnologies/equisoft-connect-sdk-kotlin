@@ -13,7 +13,10 @@ import okhttp3.Request
 import okhttp3.Headers
 import okhttp3.MultipartBody
 import java.io.File
+import java.io.BufferedWriter
+import java.io.FileWriter
 import java.net.URLConnection
+import java.nio.file.Files
 import java.util.Date
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -21,7 +24,10 @@ import java.time.LocalTime
 import java.time.OffsetDateTime
 import java.time.OffsetTime
 
-open class ApiClient(val baseUrl: String) {
+open class ApiClient(
+    val baseUrl: String,
+    accessToken: String? = null
+) {
     companion object {
         protected const val ContentType = "Content-Type"
         protected const val Accept = "Accept"
@@ -44,6 +50,17 @@ open class ApiClient(val baseUrl: String) {
 
         @JvmStatic
         val builder: OkHttpClient.Builder = OkHttpClient.Builder()
+    }
+
+    private var internalAccessToken: String? = null
+    var accessToken: String?
+        get() = internalAccessToken ?: Companion.accessToken
+        set(value) {
+            internalAccessToken = value
+        }
+
+    init {
+        internalAccessToken = accessToken
     }
 
     /**
@@ -113,6 +130,15 @@ open class ApiClient(val baseUrl: String) {
         val bodyContent = body.string()
         if (bodyContent.isEmpty()) {
             return null
+        }
+        if (T::class.java == File::class.java) {
+            // return tempfile
+            val f = Files.createTempFile("tmp.com.equisoft.connect.sdk", null).toFile()
+            f.deleteOnExit()
+            val out = BufferedWriter(FileWriter(f))
+            out.write(bodyContent)
+            out.close()
+            return f as T
         }
         return when(mediaType) {
             JsonMediaType -> Serializer.moshi.adapter(T::class.java).fromJson(bodyContent)

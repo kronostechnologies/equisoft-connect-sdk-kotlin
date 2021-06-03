@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.LaserApplaserAppAnywhereError
 import com.equisoft.connect.sdk.models.LaserApplaserAppAnywhereResponse
@@ -27,7 +28,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class IntegrationsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class IntegrationsApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -77,7 +84,7 @@ class IntegrationsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/app/integrations/laserapp/enterprise/{contactId}".replace("{"+"contactId"+"}", "$contactId"),
@@ -132,7 +139,7 @@ class IntegrationsApi(basePath: kotlin.String = defaultBasePath) : ApiClient(bas
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/app/integrations/laserapp/anywhere/{contactId}".replace("{"+"contactId"+"}", "$contactId"),

@@ -11,6 +11,7 @@
 */
 package com.equisoft.connect.sdk.apis
 
+
 import com.equisoft.connect.sdk.models.LegacyResponse
 import com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationListResponse
 import com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationResponse
@@ -27,7 +28,13 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class LegacyProvisioningApi(basePath: kotlin.String = defaultBasePath) : ApiClient(basePath) {
+class LegacyProvisioningApi(
+    basePath: kotlin.String = defaultBasePath,
+    accessToken: String? = null
+) : ApiClient(
+    basePath,
+    accessToken
+) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -81,7 +88,7 @@ class LegacyProvisioningApi(basePath: kotlin.String = defaultBasePath) : ApiClie
                 put("orgId", listOf(orgId.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/apps/provisioning/kronos.provisioning.getOrganization",
@@ -134,7 +141,7 @@ class LegacyProvisioningApi(basePath: kotlin.String = defaultBasePath) : ApiClie
         val localVariableBody: kotlin.Any? = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        
+
         val localVariableConfig = RequestConfig(
             method = RequestMethod.GET,
             path = "/apps/provisioning/kronos.provisioning.getOrganizationList",
