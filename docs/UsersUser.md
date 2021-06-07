@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **firstName** | **kotlin.String** | The user&#39;s first name. |  [optional]
 **lastName** | **kotlin.String** | The user&#39;s last name. |  [optional]
 **locale** | **kotlin.String** | The user&#39;s preferred locale. |  [optional]
+**role** | **kotlin.String** | The user&#39;s role. |  [optional]
 
 
 

@@ -22,6 +22,7 @@ import com.squareup.moshi.Json
  * @param firstName The user's first name.
  * @param lastName The user's last name.
  * @param locale The user's preferred locale.
+ * @param role The user's role.
  */
 
 data class UsersUser (
@@ -42,6 +43,9 @@ data class UsersUser (
     val lastName: kotlin.String? = null,
     /* The user's preferred locale. */
     @Json(name = "locale")
-    val locale: kotlin.String? = null
+    val locale: kotlin.String? = null,
+    /* The user's role. */
+    @Json(name = "role")
+    val role: kotlin.String? = null
 )
 

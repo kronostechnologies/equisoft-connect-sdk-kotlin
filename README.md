@@ -96,7 +96,9 @@ Class | Method | HTTP request | Description
 *TasksApi* | [**restoreTaskInternalNote**](docs/TasksApi.md#restoretaskinternalnote) | **POST** /crm/api/v1/tasks/{taskId}/notes/{noteId}/restore | Restore an archived internal note for a task.
 *TasksApi* | [**transferTaskToCompleted**](docs/TasksApi.md#transfertasktocompleted) | **POST** /crm/api/v1/tasks/{taskId}/transferToCompleted | Transfer a task to completed/done.
 *UsersApi* | [**getCurrentUser**](docs/UsersApi.md#getcurrentuser) | **GET** /crm/api/v1/users/me | Get informations about the current user
+*UsersApi* | [**getUser**](docs/UsersApi.md#getuser) | **POST** /crm/api/v1/databases/{uuid}/users/{id} | 
 *UsersApi* | [**getUserContext**](docs/UsersApi.md#getusercontext) | **GET** /crm/api/v1/context | Get user context metadata.
+*UsersApi* | [**listUsers**](docs/UsersApi.md#listusers) | **POST** /crm/api/v1/databases/{uuid}/users | 
 
 
 <a name="documentation-for-models"></a>
@@ -252,6 +254,7 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.TasksTask](docs/TasksTask.md)
  - [com.equisoft.connect.sdk.models.TasksTransferToCompletedResponse](docs/TasksTransferToCompletedResponse.md)
  - [com.equisoft.connect.sdk.models.TasksVisibilityType](docs/TasksVisibilityType.md)
+ - [com.equisoft.connect.sdk.models.UsersListUsersResponse](docs/UsersListUsersResponse.md)
  - [com.equisoft.connect.sdk.models.UsersUser](docs/UsersUser.md)
 
 
