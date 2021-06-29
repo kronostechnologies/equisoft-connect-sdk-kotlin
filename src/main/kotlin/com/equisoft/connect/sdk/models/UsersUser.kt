@@ -23,6 +23,7 @@ import com.squareup.moshi.Json
  * @param lastName The user's last name.
  * @param locale The user's preferred locale.
  * @param role The user's role.
+ * @param maxConcurrentAccess 
  */
 
 data class UsersUser (
@@ -46,6 +47,8 @@ data class UsersUser (
     val locale: kotlin.String? = null,
     /* The user's role. */
     @Json(name = "role")
-    val role: kotlin.String? = null
+    val role: kotlin.String? = null,
+    @Json(name = "maxConcurrentAccess")
+    val maxConcurrentAccess: kotlin.Int? = null
 )
 

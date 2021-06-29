@@ -39,7 +39,9 @@ Class | Method | HTTP request | Description
 *DSFApi* | [**deleteDsfFinancialCenter**](docs/DSFApi.md#deletedsffinancialcenter) | **DELETE** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
 *DSFApi* | [**listDsfFinancialCenters**](docs/DSFApi.md#listdsffinancialcenters) | **GET** /crm/api/v1/dsf/financialCenters | 
 *DSFApi* | [**updateDsfFinancialCenter**](docs/DSFApi.md#updatedsffinancialcenter) | **POST** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
+*DatabasesApi* | [**getUser**](docs/DatabasesApi.md#getuser) | **GET** /crm/api/v1/databases/{uuid}/users/{id} | 
 *DatabasesApi* | [**listDatabases**](docs/DatabasesApi.md#listdatabases) | **GET** /crm/api/v1/databases | 
+*DatabasesApi* | [**listUsers**](docs/DatabasesApi.md#listusers) | **GET** /crm/api/v1/databases/{uuid}/users | 
 *EventsApi* | [**archiveEventInternalNote**](docs/EventsApi.md#archiveeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes/{noteId}/archive | Archive an internal note for and event.
 *EventsApi* | [**createEvent**](docs/EventsApi.md#createevent) | **POST** /crm/api/v1/events | Create an event.
 *EventsApi* | [**createEventInternalNote**](docs/EventsApi.md#createeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes | Add an internal note to and event.
@@ -96,9 +98,7 @@ Class | Method | HTTP request | Description
 *TasksApi* | [**restoreTaskInternalNote**](docs/TasksApi.md#restoretaskinternalnote) | **POST** /crm/api/v1/tasks/{taskId}/notes/{noteId}/restore | Restore an archived internal note for a task.
 *TasksApi* | [**transferTaskToCompleted**](docs/TasksApi.md#transfertasktocompleted) | **POST** /crm/api/v1/tasks/{taskId}/transferToCompleted | Transfer a task to completed/done.
 *UsersApi* | [**getCurrentUser**](docs/UsersApi.md#getcurrentuser) | **GET** /crm/api/v1/users/me | Get informations about the current user
-*UsersApi* | [**getUser**](docs/UsersApi.md#getuser) | **POST** /crm/api/v1/databases/{uuid}/users/{id} | 
 *UsersApi* | [**getUserContext**](docs/UsersApi.md#getusercontext) | **GET** /crm/api/v1/context | Get user context metadata.
-*UsersApi* | [**listUsers**](docs/UsersApi.md#listusers) | **POST** /crm/api/v1/databases/{uuid}/users | 
 
 
 <a name="documentation-for-models"></a>
