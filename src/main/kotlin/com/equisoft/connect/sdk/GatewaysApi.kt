@@ -9,8 +9,7 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
-
+package com.equisoft.connect.sdk
 
 import com.equisoft.connect.sdk.models.AdminCredentialPayload
 import com.equisoft.connect.sdk.models.AdminCredentialResponse
@@ -37,10 +36,7 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 class GatewaysApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -62,7 +58,7 @@ class GatewaysApi(
     fun createEquisoftAnalyzeAccess(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload: GatewaysaccessesCreateEquisoftAnalyzeAccessPayload) : GatewaysaccessesCreateAccessResponse {
         val localVariableConfig = createEquisoftAnalyzeAccessRequestConfig(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload)
 
-        val localVarResponse = request<GatewaysaccessesCreateAccessResponse>(
+        val localVarResponse = request<GatewaysaccessesCreateEquisoftAnalyzeAccessPayload, GatewaysaccessesCreateAccessResponse>(
             localVariableConfig
         )
 
@@ -87,20 +83,18 @@ class GatewaysApi(
     * @param gatewaysaccessesCreateEquisoftAnalyzeAccessPayload  
     * @return RequestConfig
     */
-    fun createEquisoftAnalyzeAccessRequestConfig(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload: GatewaysaccessesCreateEquisoftAnalyzeAccessPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload
+    fun createEquisoftAnalyzeAccessRequestConfig(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload: GatewaysaccessesCreateEquisoftAnalyzeAccessPayload) : RequestConfig<GatewaysaccessesCreateEquisoftAnalyzeAccessPayload> {
+        val localVariableBody = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -117,7 +111,7 @@ class GatewaysApi(
     fun deleteEquisoftAnalyzeAccess(accessId: kotlin.Int) : kotlin.Any {
         val localVariableConfig = deleteEquisoftAnalyzeAccessRequestConfig(accessId = accessId)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -142,20 +136,18 @@ class GatewaysApi(
     * @param accessId  
     * @return RequestConfig
     */
-    fun deleteEquisoftAnalyzeAccessRequestConfig(accessId: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun deleteEquisoftAnalyzeAccessRequestConfig(accessId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId}".replace("{"+"accessId"+"}", "$accessId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -174,7 +166,7 @@ class GatewaysApi(
     fun gatewayAdminLogin(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : AdminCredentialResponse {
         val localVariableConfig = gatewayAdminLoginRequestConfig(gatewayName = gatewayName, authorization = authorization, adminCredentialPayload = adminCredentialPayload)
 
-        val localVarResponse = request<AdminCredentialResponse>(
+        val localVarResponse = request<AdminCredentialPayload, AdminCredentialResponse>(
             localVariableConfig
         )
 
@@ -201,21 +193,19 @@ class GatewaysApi(
     * @param adminCredentialPayload  
     * @return RequestConfig
     */
-    fun gatewayAdminLoginRequestConfig(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = adminCredentialPayload
+    fun gatewayAdminLoginRequestConfig(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : RequestConfig<AdminCredentialPayload> {
+        val localVariableBody = adminCredentialPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/gateways/credentials-validation/{gatewayName}/admin-credentials/login".replace("{"+"gatewayName"+"}", "$gatewayName"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -231,7 +221,7 @@ class GatewaysApi(
     fun listAssetBookCredentials() : GatewaysListCredentialsResponse {
         val localVariableConfig = listAssetBookCredentialsRequestConfig()
 
-        val localVarResponse = request<GatewaysListCredentialsResponse>(
+        val localVarResponse = request<Unit, GatewaysListCredentialsResponse>(
             localVariableConfig
         )
 
@@ -255,20 +245,18 @@ class GatewaysApi(
     *
     * @return RequestConfig
     */
-    fun listAssetBookCredentialsRequestConfig() : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listAssetBookCredentialsRequestConfig() : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/assetbook/credentials",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -287,7 +275,7 @@ class GatewaysApi(
     fun listCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : CredentialsResponse {
         val localVariableConfig = listCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization)
 
-        val localVarResponse = request<CredentialsResponse>(
+        val localVarResponse = request<Unit, CredentialsResponse>(
             localVariableConfig
         )
 
@@ -314,21 +302,19 @@ class GatewaysApi(
     * @param authorization Authorization header using the Bearer scheme 
     * @return RequestConfig
     */
-    fun listCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status}".replace("{"+"gatewayId"+"}", "$gatewayId").replace("{"+"status"+"}", "$status"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -345,7 +331,7 @@ class GatewaysApi(
     fun listEquisoftAnalyzeAccesses(userUuid: kotlin.String?) : GatewaysaccessesListGatewayAccessesResponse {
         val localVariableConfig = listEquisoftAnalyzeAccessesRequestConfig(userUuid = userUuid)
 
-        val localVarResponse = request<GatewaysaccessesListGatewayAccessesResponse>(
+        val localVarResponse = request<Unit, GatewaysaccessesListGatewayAccessesResponse>(
             localVariableConfig
         )
 
@@ -370,8 +356,8 @@ class GatewaysApi(
     * @param userUuid  (optional)
     * @return RequestConfig
     */
-    fun listEquisoftAnalyzeAccessesRequestConfig(userUuid: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listEquisoftAnalyzeAccessesRequestConfig(userUuid: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (userUuid != null) {
@@ -380,15 +366,13 @@ class GatewaysApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -404,7 +388,7 @@ class GatewaysApi(
     fun listGatewayConfigurations(gatewayName: kotlin.String) : Unit {
         val localVariableConfig = listGatewayConfigurationsRequestConfig(gatewayName = gatewayName)
 
-        val localVarResponse = request<Any?>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
@@ -429,20 +413,18 @@ class GatewaysApi(
     * @param gatewayName  
     * @return RequestConfig
     */
-    fun listGatewayConfigurationsRequestConfig(gatewayName: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listGatewayConfigurationsRequestConfig(gatewayName: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/generic/{gatewayName}/configuration".replace("{"+"gatewayName"+"}", "$gatewayName"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -460,7 +442,7 @@ class GatewaysApi(
     fun listGenericCredentials(gatewayName: kotlin.String, includeSsn: kotlin.Boolean?) : GatewaysListCredentialsResponse {
         val localVariableConfig = listGenericCredentialsRequestConfig(gatewayName = gatewayName, includeSsn = includeSsn)
 
-        val localVarResponse = request<GatewaysListCredentialsResponse>(
+        val localVarResponse = request<Unit, GatewaysListCredentialsResponse>(
             localVariableConfig
         )
 
@@ -486,8 +468,8 @@ class GatewaysApi(
     * @param includeSsn Include the list of SSN for each credentials. Defaults to false (optional)
     * @return RequestConfig
     */
-    fun listGenericCredentialsRequestConfig(gatewayName: kotlin.String, includeSsn: kotlin.Boolean?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listGenericCredentialsRequestConfig(gatewayName: kotlin.String, includeSsn: kotlin.Boolean?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (includeSsn != null) {
@@ -496,15 +478,13 @@ class GatewaysApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/gateways/generic/{gatewayName}/credentials".replace("{"+"gatewayName"+"}", "$gatewayName"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -522,7 +502,7 @@ class GatewaysApi(
     fun patchEquisoftAnalyzeAccess(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : kotlin.Any {
         val localVariableConfig = patchEquisoftAnalyzeAccessRequestConfig(accessId = accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<GatewaysaccessesPatchEquisoftAnalyzeAccessPayload, kotlin.Any>(
             localVariableConfig
         )
 
@@ -548,20 +528,18 @@ class GatewaysApi(
     * @param gatewaysaccessesPatchEquisoftAnalyzeAccessPayload  
     * @return RequestConfig
     */
-    fun patchEquisoftAnalyzeAccessRequestConfig(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload
+    fun patchEquisoftAnalyzeAccessRequestConfig(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : RequestConfig<GatewaysaccessesPatchEquisoftAnalyzeAccessPayload> {
+        val localVariableBody = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/gateways/equisoftAnalyze/accesses/{accessId}".replace("{"+"accessId"+"}", "$accessId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -581,7 +559,7 @@ class GatewaysApi(
     fun updateCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : CredentialsResponse {
         val localVariableConfig = updateCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization, credentialIds = credentialIds)
 
-        val localVarResponse = request<CredentialsResponse>(
+        val localVarResponse = request<Unit, CredentialsResponse>(
             localVariableConfig
         )
 
@@ -609,8 +587,8 @@ class GatewaysApi(
     * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
     * @return RequestConfig
     */
-    fun updateCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun updateCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (credentialIds != null) {
@@ -620,15 +598,13 @@ class GatewaysApi(
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.PUT,
             path = "/crm/api/v1/gateways/credentials-validation/{gatewayId}/credentials/{status}".replace("{"+"gatewayId"+"}", "$gatewayId").replace("{"+"status"+"}", "$status"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

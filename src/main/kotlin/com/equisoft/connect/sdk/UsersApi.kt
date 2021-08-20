@@ -9,12 +9,10 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
+package com.equisoft.connect.sdk
 
-
-import com.equisoft.connect.sdk.models.DatabasesListDatabasesResponse
+import com.equisoft.connect.sdk.models.ContextuserContext
 import com.equisoft.connect.sdk.models.ErrorResponse
-import com.equisoft.connect.sdk.models.UsersListUsersResponse
 import com.equisoft.connect.sdk.models.UsersUser
 
 import com.equisoft.connect.sdk.infrastructure.ApiClient
@@ -29,13 +27,10 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class DatabasesApi(
+class UsersApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -44,10 +39,9 @@ class DatabasesApi(
     }
 
     /**
+    * Get informations about the current user
     * 
-    * 
-    * @param uuid  
-    * @param id  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return UsersUser
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
@@ -55,10 +49,10 @@ class DatabasesApi(
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getUser(uuid: kotlin.String, id: kotlin.Int) : UsersUser {
-        val localVariableConfig = getUserRequestConfig(uuid = uuid, id = id)
+    fun getCurrentUser(acceptLanguage: kotlin.String?) : UsersUser {
+        val localVariableConfig = getCurrentUserRequestConfig(acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<UsersUser>(
+        val localVarResponse = request<Unit, UsersUser>(
             localVariableConfig
         )
 
@@ -78,49 +72,45 @@ class DatabasesApi(
     }
 
     /**
-    * To obtain the request config of the operation getUser
+    * To obtain the request config of the operation getCurrentUser
     *
-    * @param uuid  
-    * @param id  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun getUserRequestConfig(uuid: kotlin.String, id: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getCurrentUserRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
-            path = "/crm/api/v1/databases/{uuid}/users/{id}".replace("{"+"uuid"+"}", "$uuid").replace("{"+"id"+"}", "$id"),
+            path = "/crm/api/v1/users/me",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
+    * Get user context metadata.
     * 
-    * 
-    * @param organizationUuid  (optional)
-    * @param databaseName  (optional)
-    * @return DatabasesListDatabasesResponse
+    * @return ContextuserContext
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listDatabases(organizationUuid: kotlin.String?, databaseName: kotlin.String?) : DatabasesListDatabasesResponse {
-        val localVariableConfig = listDatabasesRequestConfig(organizationUuid = organizationUuid, databaseName = databaseName)
+    fun getUserContext() : ContextuserContext {
+        val localVariableConfig = getUserContextRequestConfig()
 
-        val localVarResponse = request<DatabasesListDatabasesResponse>(
+        val localVarResponse = request<Unit, ContextuserContext>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as DatabasesListDatabasesResponse
+            ResponseType.Success -> (localVarResponse as Success<*>).data as ContextuserContext
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -135,89 +125,22 @@ class DatabasesApi(
     }
 
     /**
-    * To obtain the request config of the operation listDatabases
+    * To obtain the request config of the operation getUserContext
     *
-    * @param organizationUuid  (optional)
-    * @param databaseName  (optional)
     * @return RequestConfig
     */
-    fun listDatabasesRequestConfig(organizationUuid: kotlin.String?, databaseName: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                if (organizationUuid != null) {
-                    put("organizationUuid", listOf(organizationUuid.toString()))
-                }
-                if (databaseName != null) {
-                    put("databaseName", listOf(databaseName.toString()))
-                }
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/crm/api/v1/databases",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * 
-    * 
-    * @param uuid  
-    * @return UsersListUsersResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listUsers(uuid: kotlin.String) : UsersListUsersResponse {
-        val localVariableConfig = listUsersRequestConfig(uuid = uuid)
-
-        val localVarResponse = request<UsersListUsersResponse>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as UsersListUsersResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation listUsers
-    *
-    * @param uuid  
-    * @return RequestConfig
-    */
-    fun listUsersRequestConfig(uuid: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getUserContextRequestConfig() : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
-            path = "/crm/api/v1/databases/{uuid}/users".replace("{"+"uuid"+"}", "$uuid"),
+            path = "/crm/api/v1/context",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

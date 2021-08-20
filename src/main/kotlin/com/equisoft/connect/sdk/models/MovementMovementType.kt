@@ -19,6 +19,7 @@ import com.squareup.moshi.Json
 * Values: MOVE,COPY,REASSIGNMENT,CLIENTBASE_USING_FILE,CLIENTBASE_USING_DISTLIST
 */
 
+
 enum class MovementMovementType(val value: kotlin.String) {
 
 

@@ -9,8 +9,7 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
-
+package com.equisoft.connect.sdk
 
 import com.equisoft.connect.sdk.models.DsfCreateOrUpdateFinancialCenterResponse
 import com.equisoft.connect.sdk.models.DsfFinancialCenter
@@ -33,10 +32,7 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 class DSFApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -58,7 +54,7 @@ class DSFApi(
     fun createDsfFinancialCenter(dsfFinancialCenterPayload: DsfFinancialCenterPayload) : DsfCreateOrUpdateFinancialCenterResponse {
         val localVariableConfig = createDsfFinancialCenterRequestConfig(dsfFinancialCenterPayload = dsfFinancialCenterPayload)
 
-        val localVarResponse = request<DsfCreateOrUpdateFinancialCenterResponse>(
+        val localVarResponse = request<DsfFinancialCenterPayload, DsfCreateOrUpdateFinancialCenterResponse>(
             localVariableConfig
         )
 
@@ -83,20 +79,18 @@ class DSFApi(
     * @param dsfFinancialCenterPayload  
     * @return RequestConfig
     */
-    fun createDsfFinancialCenterRequestConfig(dsfFinancialCenterPayload: DsfFinancialCenterPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = dsfFinancialCenterPayload
+    fun createDsfFinancialCenterRequestConfig(dsfFinancialCenterPayload: DsfFinancialCenterPayload) : RequestConfig<DsfFinancialCenterPayload> {
+        val localVariableBody = dsfFinancialCenterPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/dsf/financialCenters",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -112,7 +106,7 @@ class DSFApi(
     fun deleteDsfFinancialCenter(financialCenterId: kotlin.Int) : Unit {
         val localVariableConfig = deleteDsfFinancialCenterRequestConfig(financialCenterId = financialCenterId)
 
-        val localVarResponse = request<Any?>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
@@ -137,20 +131,18 @@ class DSFApi(
     * @param financialCenterId  
     * @return RequestConfig
     */
-    fun deleteDsfFinancialCenterRequestConfig(financialCenterId: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun deleteDsfFinancialCenterRequestConfig(financialCenterId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/dsf/financialCenters/{financialCenterId}".replace("{"+"financialCenterId"+"}", "$financialCenterId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -167,7 +159,7 @@ class DSFApi(
     fun getDsfFinancialCenters(financialCenterId: kotlin.Int) : DsfFinancialCenter {
         val localVariableConfig = getDsfFinancialCentersRequestConfig(financialCenterId = financialCenterId)
 
-        val localVarResponse = request<DsfFinancialCenter>(
+        val localVarResponse = request<Unit, DsfFinancialCenter>(
             localVariableConfig
         )
 
@@ -192,20 +184,18 @@ class DSFApi(
     * @param financialCenterId  
     * @return RequestConfig
     */
-    fun getDsfFinancialCentersRequestConfig(financialCenterId: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getDsfFinancialCentersRequestConfig(financialCenterId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/dsf/financialCenters/{financialCenterId}".replace("{"+"financialCenterId"+"}", "$financialCenterId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -221,7 +211,7 @@ class DSFApi(
     fun listDsfFinancialCenters() : DsfListFinancialCenterResponse {
         val localVariableConfig = listDsfFinancialCentersRequestConfig()
 
-        val localVarResponse = request<DsfListFinancialCenterResponse>(
+        val localVarResponse = request<Unit, DsfListFinancialCenterResponse>(
             localVariableConfig
         )
 
@@ -245,20 +235,18 @@ class DSFApi(
     *
     * @return RequestConfig
     */
-    fun listDsfFinancialCentersRequestConfig() : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listDsfFinancialCentersRequestConfig() : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/dsf/financialCenters",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -276,7 +264,7 @@ class DSFApi(
     fun updateDsfFinancialCenter(financialCenterId: kotlin.Int, dsfFinancialCenterPayload: DsfFinancialCenterPayload) : DsfCreateOrUpdateFinancialCenterResponse {
         val localVariableConfig = updateDsfFinancialCenterRequestConfig(financialCenterId = financialCenterId, dsfFinancialCenterPayload = dsfFinancialCenterPayload)
 
-        val localVarResponse = request<DsfCreateOrUpdateFinancialCenterResponse>(
+        val localVarResponse = request<DsfFinancialCenterPayload, DsfCreateOrUpdateFinancialCenterResponse>(
             localVariableConfig
         )
 
@@ -302,20 +290,18 @@ class DSFApi(
     * @param dsfFinancialCenterPayload  
     * @return RequestConfig
     */
-    fun updateDsfFinancialCenterRequestConfig(financialCenterId: kotlin.Int, dsfFinancialCenterPayload: DsfFinancialCenterPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = dsfFinancialCenterPayload
+    fun updateDsfFinancialCenterRequestConfig(financialCenterId: kotlin.Int, dsfFinancialCenterPayload: DsfFinancialCenterPayload) : RequestConfig<DsfFinancialCenterPayload> {
+        val localVariableBody = dsfFinancialCenterPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/dsf/financialCenters/{financialCenterId}".replace("{"+"financialCenterId"+"}", "$financialCenterId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

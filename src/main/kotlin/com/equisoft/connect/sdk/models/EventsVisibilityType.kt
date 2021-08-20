@@ -19,6 +19,7 @@ import com.squareup.moshi.Json
 * Values: NORMAL,PRIVATE
 */
 
+
 enum class EventsVisibilityType(val value: kotlin.String) {
 
 

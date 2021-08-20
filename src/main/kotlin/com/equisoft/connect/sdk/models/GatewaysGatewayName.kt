@@ -19,6 +19,7 @@ import com.squareup.moshi.Json
 * Values: EQUISOFT_ANALYZE
 */
 
+
 enum class GatewaysGatewayName(val value: kotlin.String) {
 
 

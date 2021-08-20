@@ -9,8 +9,7 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
-
+package com.equisoft.connect.sdk
 
 import com.equisoft.connect.sdk.models.MxrecipientsPayload
 import com.equisoft.connect.sdk.models.MxvalidateRecipientsResponse
@@ -30,10 +29,7 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 class MxApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -55,7 +51,7 @@ class MxApi(
     fun validateRecipients(mxrecipientsPayload: MxrecipientsPayload) : MxvalidateRecipientsResponse {
         val localVariableConfig = validateRecipientsRequestConfig(mxrecipientsPayload = mxrecipientsPayload)
 
-        val localVarResponse = request<MxvalidateRecipientsResponse>(
+        val localVarResponse = request<MxrecipientsPayload, MxvalidateRecipientsResponse>(
             localVariableConfig
         )
 
@@ -80,20 +76,18 @@ class MxApi(
     * @param mxrecipientsPayload  
     * @return RequestConfig
     */
-    fun validateRecipientsRequestConfig(mxrecipientsPayload: MxrecipientsPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = mxrecipientsPayload
+    fun validateRecipientsRequestConfig(mxrecipientsPayload: MxrecipientsPayload) : RequestConfig<MxrecipientsPayload> {
+        val localVariableBody = mxrecipientsPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/app/mail/validateRecipients",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

@@ -16,17 +16,18 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: full,latestOnly
+* Values: FULL,LATEST_ONLY
 */
+
 
 enum class InternalNotesHistoryType(val value: kotlin.String) {
 
 
     @Json(name = "full")
-    full("full"),
+    FULL("full"),
 
     @Json(name = "latestOnly")
-    latestOnly("latestOnly");
+    LATEST_ONLY("latestOnly");
 
 
     /**

@@ -16,29 +16,30 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: dueDate,dueDateDesc,completedDate,completedDateDesc,updateTime,creationTime
+* Values: DUE_DATE,DUE_DATE_DESC,COMPLETED_DATE,COMPLETED_DATE_DESC,UPDATE_TIME,CREATION_TIME
 */
+
 
 enum class TasksOrderByType(val value: kotlin.String) {
 
 
     @Json(name = "dueDate")
-    dueDate("dueDate"),
+    DUE_DATE("dueDate"),
 
     @Json(name = "dueDateDesc")
-    dueDateDesc("dueDateDesc"),
+    DUE_DATE_DESC("dueDateDesc"),
 
     @Json(name = "completedDate")
-    completedDate("completedDate"),
+    COMPLETED_DATE("completedDate"),
 
     @Json(name = "completedDateDesc")
-    completedDateDesc("completedDateDesc"),
+    COMPLETED_DATE_DESC("completedDateDesc"),
 
     @Json(name = "updateTime")
-    updateTime("updateTime"),
+    UPDATE_TIME("updateTime"),
 
     @Json(name = "creationTime")
-    creationTime("creationTime");
+    CREATION_TIME("creationTime");
 
 
     /**

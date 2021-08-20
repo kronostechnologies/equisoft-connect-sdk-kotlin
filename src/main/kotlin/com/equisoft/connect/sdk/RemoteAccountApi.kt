@@ -9,12 +9,9 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
+package com.equisoft.connect.sdk
 
-
-import com.equisoft.connect.sdk.models.ContextuserContext
-import com.equisoft.connect.sdk.models.ErrorResponse
-import com.equisoft.connect.sdk.models.UsersUser
+import com.equisoft.connect.sdk.models.RemoteaccountAccountSyncResponse
 
 import com.equisoft.connect.sdk.infrastructure.ApiClient
 import com.equisoft.connect.sdk.infrastructure.ClientException
@@ -28,13 +25,10 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class UsersApi(
+class RemoteAccountApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -43,25 +37,29 @@ class UsersApi(
     }
 
     /**
-    * Get informations about the current user
+    * Synchronize calendars with remote account
     * 
-    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-    * @return UsersUser
+    * @param dateTimeStart  (optional)
+    * @param dateTimeEnd  (optional)
+    * @param webuserCalendarIds  (optional)
+    * @param remoteFolderIds  (optional)
+    * @param webuserIds  (optional)
+    * @return RemoteaccountAccountSyncResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getCurrentUser(acceptLanguage: kotlin.String?) : UsersUser {
-        val localVariableConfig = getCurrentUserRequestConfig(acceptLanguage = acceptLanguage)
+    fun synchronizeCalendars(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RemoteaccountAccountSyncResponse {
+        val localVariableConfig = synchronizeCalendarsRequestConfig(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
 
-        val localVarResponse = request<UsersUser>(
+        val localVarResponse = request<Map<String, Any?>, RemoteaccountAccountSyncResponse>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as UsersUser
+            ResponseType.Success -> (localVarResponse as Success<*>).data as RemoteaccountAccountSyncResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -76,47 +74,53 @@ class UsersApi(
     }
 
     /**
-    * To obtain the request config of the operation getCurrentUser
+    * To obtain the request config of the operation synchronizeCalendars
     *
-    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @param dateTimeStart  (optional)
+    * @param dateTimeEnd  (optional)
+    * @param webuserCalendarIds  (optional)
+    * @param remoteFolderIds  (optional)
+    * @param webuserIds  (optional)
     * @return RequestConfig
     */
-    fun getCurrentUserRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun synchronizeCalendarsRequestConfig(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Map<String, Any?>> {
+        val localVariableBody = mapOf("dateTimeStart" to dateTimeStart, "dateTimeEnd" to dateTimeEnd, "webuserCalendarIds" to webuserCalendarIds, "remoteFolderIds" to remoteFolderIds, "webuserIds" to webuserIds)
         val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
 
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/crm/api/v1/users/me",
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/crm/api/agenda/account/calendarSync",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
-    * Get user context metadata.
+    * Synchronize tasks with remote account
     * 
-    * @return ContextuserContext
+    * @param dateTimeStart  (optional)
+    * @param dateTimeEnd  (optional)
+    * @param webuserCalendarIds  (optional)
+    * @param remoteFolderIds  (optional)
+    * @param webuserIds  (optional)
+    * @return RemoteaccountAccountSyncResponse
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
     @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getUserContext() : ContextuserContext {
-        val localVariableConfig = getUserContextRequestConfig()
+    fun synchronizeTasks(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RemoteaccountAccountSyncResponse {
+        val localVariableConfig = synchronizeTasksRequestConfig(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
 
-        val localVarResponse = request<ContextuserContext>(
+        val localVarResponse = request<Map<String, Any?>, RemoteaccountAccountSyncResponse>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as ContextuserContext
+            ResponseType.Success -> (localVarResponse as Success<*>).data as RemoteaccountAccountSyncResponse
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -131,24 +135,27 @@ class UsersApi(
     }
 
     /**
-    * To obtain the request config of the operation getUserContext
+    * To obtain the request config of the operation synchronizeTasks
     *
+    * @param dateTimeStart  (optional)
+    * @param dateTimeEnd  (optional)
+    * @param webuserCalendarIds  (optional)
+    * @param remoteFolderIds  (optional)
+    * @param webuserIds  (optional)
     * @return RequestConfig
     */
-    fun getUserContextRequestConfig() : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun synchronizeTasksRequestConfig(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Map<String, Any?>> {
+        val localVariableBody = mapOf("dateTimeStart" to dateTimeStart, "dateTimeEnd" to dateTimeEnd, "webuserCalendarIds" to webuserCalendarIds, "remoteFolderIds" to remoteFolderIds, "webuserIds" to webuserIds)
         val localVariableQuery: MultiValueMap = mutableMapOf()
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
 
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/crm/api/v1/context",
+        return RequestConfig(
+            method = RequestMethod.POST,
+            path = "/crm/api/agenda/account/tasksSync",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

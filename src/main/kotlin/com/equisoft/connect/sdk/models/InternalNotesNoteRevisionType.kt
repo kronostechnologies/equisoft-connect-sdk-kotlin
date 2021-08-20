@@ -19,6 +19,7 @@ import com.squareup.moshi.Json
 * Values: CREATE,MODIFY,ARCHIVE,RESTORE
 */
 
+
 enum class InternalNotesNoteRevisionType(val value: kotlin.String) {
 
 

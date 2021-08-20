@@ -16,17 +16,18 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: primary,completed
+* Values: PRIMARY,COMPLETED
 */
+
 
 enum class CalendarDefaultCalendarId(val value: kotlin.String) {
 
 
     @Json(name = "primary")
-    primary("primary"),
+    PRIMARY("primary"),
 
     @Json(name = "completed")
-    completed("completed");
+    COMPLETED("completed");
 
 
     /**

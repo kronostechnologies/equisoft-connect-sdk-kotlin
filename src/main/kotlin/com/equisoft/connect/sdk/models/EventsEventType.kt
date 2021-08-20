@@ -19,6 +19,7 @@ import com.squareup.moshi.Json
 * Values: CALL,LETTER,MEETING,VACATION,FILE,NOTE
 */
 
+
 enum class EventsEventType(val value: kotlin.String) {
 
 

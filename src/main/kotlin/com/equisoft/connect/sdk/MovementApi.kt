@@ -9,8 +9,7 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
-
+package com.equisoft.connect.sdk
 
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.MovementAddMovementResponse
@@ -34,10 +33,7 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 class MovementApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -59,7 +55,7 @@ class MovementApi(
     fun addMovement(movementMovementPayload: MovementMovementPayload) : MovementAddMovementResponse {
         val localVariableConfig = addMovementRequestConfig(movementMovementPayload = movementMovementPayload)
 
-        val localVarResponse = request<MovementAddMovementResponse>(
+        val localVarResponse = request<MovementMovementPayload, MovementAddMovementResponse>(
             localVariableConfig
         )
 
@@ -84,20 +80,18 @@ class MovementApi(
     * @param movementMovementPayload  
     * @return RequestConfig
     */
-    fun addMovementRequestConfig(movementMovementPayload: MovementMovementPayload) : RequestConfig {
-        val localVariableBody: kotlin.Any? = movementMovementPayload
+    fun addMovementRequestConfig(movementMovementPayload: MovementMovementPayload) : RequestConfig<MovementMovementPayload> {
+        val localVariableBody = movementMovementPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/movements",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -114,7 +108,7 @@ class MovementApi(
     fun cancelMovement(movementId: kotlin.Int) : kotlin.Any {
         val localVariableConfig = cancelMovementRequestConfig(movementId = movementId)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -139,20 +133,18 @@ class MovementApi(
     * @param movementId  
     * @return RequestConfig
     */
-    fun cancelMovementRequestConfig(movementId: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun cancelMovementRequestConfig(movementId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/movements/{movementId}/cancel".replace("{"+"movementId"+"}", "$movementId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -169,7 +161,7 @@ class MovementApi(
     fun deleteMovement(movementId: kotlin.Int) : kotlin.Any {
         val localVariableConfig = deleteMovementRequestConfig(movementId = movementId)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -194,20 +186,18 @@ class MovementApi(
     * @param movementId  
     * @return RequestConfig
     */
-    fun deleteMovementRequestConfig(movementId: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun deleteMovementRequestConfig(movementId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/movements/{movementId}".replace("{"+"movementId"+"}", "$movementId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -224,7 +214,7 @@ class MovementApi(
     fun getMovementStatus(movementId: kotlin.Int) : MovementGetStatusResponse {
         val localVariableConfig = getMovementStatusRequestConfig(movementId = movementId)
 
-        val localVarResponse = request<MovementGetStatusResponse>(
+        val localVarResponse = request<Unit, MovementGetStatusResponse>(
             localVariableConfig
         )
 
@@ -249,20 +239,18 @@ class MovementApi(
     * @param movementId  
     * @return RequestConfig
     */
-    fun getMovementStatusRequestConfig(movementId: kotlin.Int) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getMovementStatusRequestConfig(movementId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/movements/{movementId}/status".replace("{"+"movementId"+"}", "$movementId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -278,7 +266,7 @@ class MovementApi(
     fun listMovements() : MovementListMovementResponse {
         val localVariableConfig = listMovementsRequestConfig()
 
-        val localVarResponse = request<MovementListMovementResponse>(
+        val localVarResponse = request<Unit, MovementListMovementResponse>(
             localVariableConfig
         )
 
@@ -302,20 +290,18 @@ class MovementApi(
     *
     * @return RequestConfig
     */
-    fun listMovementsRequestConfig() : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listMovementsRequestConfig() : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/movements",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

@@ -4,9 +4,9 @@
 ## Enum
 
 
-    * `full` (value: `"full"`)
+    * `FULL` (value: `"full"`)
 
-    * `latestOnly` (value: `"latestOnly"`)
+    * `LATEST_ONLY` (value: `"latestOnly"`)
 
 
 
