@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createDsfFinancialCenter**](DSFApi.md#createDsfFinancialCenter) | **POST** /crm/api/v1/dsf/financialCenters | 
 [**deleteDsfFinancialCenter**](DSFApi.md#deleteDsfFinancialCenter) | **DELETE** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
+[**getDsfFinancialCenters**](DSFApi.md#getDsfFinancialCenters) | **GET** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
 [**listDsfFinancialCenters**](DSFApi.md#listDsfFinancialCenters) | **GET** /crm/api/v1/dsf/financialCenters | 
 [**updateDsfFinancialCenter**](DSFApi.md#updateDsfFinancialCenter) | **POST** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
 
@@ -91,6 +92,53 @@ Name | Type | Description  | Notes
 ### Return type
 
 null (empty response body)
+
+### Authorization
+
+
+Configure OAuth2:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getDsfFinancialCenters"></a>
+# **getDsfFinancialCenters**
+> DsfFinancialCenter getDsfFinancialCenters(financialCenterId)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
+
+val apiInstance = DSFApi()
+val financialCenterId : kotlin.Int = 56 // kotlin.Int | 
+try {
+    val result : DsfFinancialCenter = apiInstance.getDsfFinancialCenters(financialCenterId)
+    println(result)
+} catch (e: ClientException) {
+    println("4xx response calling DSFApi#getDsfFinancialCenters")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DSFApi#getDsfFinancialCenters")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **financialCenterId** | **kotlin.Int**|  |
+
+### Return type
+
+[**DsfFinancialCenter**](DsfFinancialCenter.md)
 
 ### Authorization
 

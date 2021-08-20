@@ -13,6 +13,7 @@ package com.equisoft.connect.sdk.apis
 
 
 import com.equisoft.connect.sdk.models.DsfCreateOrUpdateFinancialCenterResponse
+import com.equisoft.connect.sdk.models.DsfFinancialCenter
 import com.equisoft.connect.sdk.models.DsfFinancialCenterPayload
 import com.equisoft.connect.sdk.models.DsfListFinancialCenterResponse
 import com.equisoft.connect.sdk.models.ErrorResponse
@@ -143,6 +144,61 @@ class DSFApi(
 
         val localVariableConfig = RequestConfig(
             method = RequestMethod.DELETE,
+            path = "/crm/api/v1/dsf/financialCenters/{financialCenterId}".replace("{"+"financialCenterId"+"}", "$financialCenterId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+
+        return localVariableConfig
+    }
+
+    /**
+    * 
+    * 
+    * @param financialCenterId  
+    * @return DsfFinancialCenter
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getDsfFinancialCenters(financialCenterId: kotlin.Int) : DsfFinancialCenter {
+        val localVariableConfig = getDsfFinancialCentersRequestConfig(financialCenterId = financialCenterId)
+
+        val localVarResponse = request<DsfFinancialCenter>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as DsfFinancialCenter
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation getDsfFinancialCenters
+    *
+    * @param financialCenterId  
+    * @return RequestConfig
+    */
+    fun getDsfFinancialCentersRequestConfig(financialCenterId: kotlin.Int) : RequestConfig {
+        val localVariableBody: kotlin.Any? = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        val localVariableConfig = RequestConfig(
+            method = RequestMethod.GET,
             path = "/crm/api/v1/dsf/financialCenters/{financialCenterId}".replace("{"+"financialCenterId"+"}", "$financialCenterId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
