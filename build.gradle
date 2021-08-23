@@ -1,3 +1,6 @@
+group 'com.equisoft.connect.sdk'
+version '0.0.0-SNAPSHOT'
+
 buildscript {
     ext.kotlin_version = '1.4.30'
 
@@ -9,19 +12,13 @@ buildscript {
     }
 }
 
-plugins {
-    id("maven-publish")
-}
-
-group 'com.equisoft.connect.sdk'
-version project.findProperty("application.version") ?:  "dev-SNAPSHOT"
-
-wrapper {
-    gradleVersion = '6.8.3'
-    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
-}
-
 apply plugin: 'kotlin'
+
+files(
+    "local.build.gradle",
+    "local.build.gradle.kts",
+).filter({ it.exists() } as Spec)
+    .forEach({ apply from: it })
 
 repositories {
     maven { url "https://repo1.maven.org/maven2" }
@@ -39,24 +36,7 @@ dependencies {
     testCompile "io.kotlintest:kotlintest-runner-junit5:3.4.2"
 }
 
-java {
-    targetCompatibility = JavaVersion.VERSION_13
-}
-
-publishing {
-    repositories {
-        maven {
-            name = "equisoft-connect-sdk"
-            url = uri("https://maven.pkg.github.com/kronostechnologies/equisoft-connect-sdk-kotlin")
-            credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-            }
-        }
-    }
-    publications {
-        gpr(MavenPublication) {
-            from(components.java)
-        }
-    }
+wrapper {
+    gradleVersion = '6.8.3'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
