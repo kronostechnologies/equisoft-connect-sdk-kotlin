@@ -9,12 +9,11 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
+package com.equisoft.connect.sdk
 
-
-import com.equisoft.connect.sdk.models.LegacyResponse
-import com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationListResponse
-import com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationResponse
+import com.equisoft.connect.sdk.models.ErrorResponse
+import com.equisoft.connect.sdk.models.LaserApplaserAppAnywhereError
+import com.equisoft.connect.sdk.models.LaserApplaserAppAnywhereResponse
 
 import com.equisoft.connect.sdk.infrastructure.ApiClient
 import com.equisoft.connect.sdk.infrastructure.ClientException
@@ -28,13 +27,10 @@ import com.equisoft.connect.sdk.infrastructure.ResponseType
 import com.equisoft.connect.sdk.infrastructure.Success
 import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
-class LegacyProvisioningApi(
+class IntegrationsApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -43,25 +39,24 @@ class LegacyProvisioningApi(
     }
 
     /**
-    * Get all informations about an organization.
+    * Download contact data for LaserApp Enterprise.
     * 
-    * @param orgId Organization Id 
-    * @return LegacyprovisioningGetOrganizationResponse
+    * @param contactId  
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getOrganization(orgId: kotlin.String) : LegacyprovisioningGetOrganizationResponse {
-        val localVariableConfig = getOrganizationRequestConfig(orgId = orgId)
+    fun downloadLaserAppEnterpriseContactData(contactId: kotlin.Int) : Unit {
+        val localVariableConfig = downloadLaserAppEnterpriseContactDataRequestConfig(contactId = contactId)
 
-        val localVarResponse = request<LegacyprovisioningGetOrganizationResponse>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyprovisioningGetOrganizationResponse
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -76,81 +71,76 @@ class LegacyProvisioningApi(
     }
 
     /**
-    * To obtain the request config of the operation getOrganization
+    * To obtain the request config of the operation downloadLaserAppEnterpriseContactData
     *
-    * @param orgId Organization Id 
+    * @param contactId  
     * @return RequestConfig
     */
-    fun getOrganizationRequestConfig(orgId: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
-            .apply {
-                put("orgId", listOf(orgId.toString()))
-            }
-        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-
-        val localVariableConfig = RequestConfig(
-            method = RequestMethod.GET,
-            path = "/apps/provisioning/kronos.provisioning.getOrganization",
-            query = localVariableQuery,
-            headers = localVariableHeaders,
-            body = localVariableBody
-        )
-
-        return localVariableConfig
-    }
-
-    /**
-    * List all organizations
-    * 
-    * @return LegacyprovisioningGetOrganizationListResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getOrganizationList() : LegacyprovisioningGetOrganizationListResponse {
-        val localVariableConfig = getOrganizationListRequestConfig()
-
-        val localVarResponse = request<LegacyprovisioningGetOrganizationListResponse>(
-            localVariableConfig
-        )
-
-        return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyprovisioningGetOrganizationListResponse
-            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
-            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
-            ResponseType.ClientError -> {
-                val localVarError = localVarResponse as ClientError<*>
-                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-            ResponseType.ServerError -> {
-                val localVarError = localVarResponse as ServerError<*>
-                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
-            }
-        }
-    }
-
-    /**
-    * To obtain the request config of the operation getOrganizationList
-    *
-    * @return RequestConfig
-    */
-    fun getOrganizationListRequestConfig() : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun downloadLaserAppEnterpriseContactDataRequestConfig(contactId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
-            path = "/apps/provisioning/kronos.provisioning.getOrganizationList",
+            path = "/crm/api/app/integrations/laserapp/enterprise/{contactId}".replace("{"+"contactId"+"}", "$contactId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
+    }
 
-        return localVariableConfig
+    /**
+    * Redirect contact to LaserApp Anywhere.
+    * 
+    * @param contactId  
+    * @return LaserApplaserAppAnywhereResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun redirectContactToLaserAppAnywhere(contactId: kotlin.Int) : LaserApplaserAppAnywhereResponse {
+        val localVariableConfig = redirectContactToLaserAppAnywhereRequestConfig(contactId = contactId)
+
+        val localVarResponse = request<Unit, LaserApplaserAppAnywhereResponse>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as LaserApplaserAppAnywhereResponse
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation redirectContactToLaserAppAnywhere
+    *
+    * @param contactId  
+    * @return RequestConfig
+    */
+    fun redirectContactToLaserAppAnywhereRequestConfig(contactId: kotlin.Int) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/crm/api/app/integrations/laserapp/anywhere/{contactId}".replace("{"+"contactId"+"}", "$contactId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
     }
 
 }

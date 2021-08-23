@@ -16,20 +16,21 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: startTime,updateTime,creationTime
+* Values: START_TIME,UPDATE_TIME,CREATION_TIME
 */
+
 
 enum class EventsOrderByType(val value: kotlin.String) {
 
 
     @Json(name = "startTime")
-    startTime("startTime"),
+    START_TIME("startTime"),
 
     @Json(name = "updateTime")
-    updateTime("updateTime"),
+    UPDATE_TIME("updateTime"),
 
     @Json(name = "creationTime")
-    creationTime("creationTime");
+    CREATION_TIME("creationTime");
 
 
     /**

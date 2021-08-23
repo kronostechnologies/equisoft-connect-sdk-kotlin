@@ -19,6 +19,7 @@ import com.squareup.moshi.Json
 * Values: COPY,TRANSFER
 */
 
+
 enum class MovementTransferOption(val value: kotlin.String) {
 
 

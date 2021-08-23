@@ -9,8 +9,7 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
-
+package com.equisoft.connect.sdk
 
 import com.equisoft.connect.sdk.models.CalendarsCalendar
 import com.equisoft.connect.sdk.models.CalendarsListCalendarResponse
@@ -46,10 +45,7 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 class EventsApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -73,7 +69,7 @@ class EventsApi(
     fun archiveEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
         val localVariableConfig = archiveEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -100,21 +96,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun archiveEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun archiveEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/notes/{noteId}/archive".replace("{"+"eventId"+"}", "$eventId").replace("{"+"noteId"+"}", "$noteId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -132,7 +126,7 @@ class EventsApi(
     fun createEvent(eventsCreateEventPayload: EventsCreateEventPayload, acceptLanguage: kotlin.String?) : EventsCreateEventResponse {
         val localVariableConfig = createEventRequestConfig(eventsCreateEventPayload = eventsCreateEventPayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<EventsCreateEventResponse>(
+        val localVarResponse = request<EventsCreateEventPayload, EventsCreateEventResponse>(
             localVariableConfig
         )
 
@@ -158,21 +152,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun createEventRequestConfig(eventsCreateEventPayload: EventsCreateEventPayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = eventsCreateEventPayload
+    fun createEventRequestConfig(eventsCreateEventPayload: EventsCreateEventPayload, acceptLanguage: kotlin.String?) : RequestConfig<EventsCreateEventPayload> {
+        val localVariableBody = eventsCreateEventPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -191,7 +183,7 @@ class EventsApi(
     fun createEventInternalNote(eventId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : InternalNotesCreateNoteResponse {
         val localVariableConfig = createEventInternalNoteRequestConfig(eventId = eventId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<InternalNotesCreateNoteResponse>(
+        val localVarResponse = request<InternalNotesCreateNotePayload, InternalNotesCreateNoteResponse>(
             localVariableConfig
         )
 
@@ -218,21 +210,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun createEventInternalNoteRequestConfig(eventId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = internalNotesCreateNotePayload
+    fun createEventInternalNoteRequestConfig(eventId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesCreateNotePayload> {
+        val localVariableBody = internalNotesCreateNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/notes".replace("{"+"eventId"+"}", "$eventId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -249,7 +239,7 @@ class EventsApi(
     fun deleteEvent(eventId: kotlin.String) : kotlin.Any {
         val localVariableConfig = deleteEventRequestConfig(eventId = eventId)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -274,20 +264,18 @@ class EventsApi(
     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
     * @return RequestConfig
     */
-    fun deleteEventRequestConfig(eventId: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun deleteEventRequestConfig(eventId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/events/{eventId}".replace("{"+"eventId"+"}", "$eventId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -305,7 +293,7 @@ class EventsApi(
     fun getCalendar(calendarId: kotlin.String, acceptLanguage: kotlin.String?) : CalendarsCalendar {
         val localVariableConfig = getCalendarRequestConfig(calendarId = calendarId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<CalendarsCalendar>(
+        val localVarResponse = request<Unit, CalendarsCalendar>(
             localVariableConfig
         )
 
@@ -331,21 +319,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun getCalendarRequestConfig(calendarId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getCalendarRequestConfig(calendarId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/calendars/{calendarId}".replace("{"+"calendarId"+"}", "$calendarId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -363,7 +349,7 @@ class EventsApi(
     fun getEvent(eventId: kotlin.String, acceptLanguage: kotlin.String?) : EventsEvent {
         val localVariableConfig = getEventRequestConfig(eventId = eventId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<EventsEvent>(
+        val localVarResponse = request<Unit, EventsEvent>(
             localVariableConfig
         )
 
@@ -389,21 +375,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun getEventRequestConfig(eventId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getEventRequestConfig(eventId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events/{eventId}".replace("{"+"eventId"+"}", "$eventId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -425,7 +409,7 @@ class EventsApi(
     fun getEventInstances(eventId: kotlin.String, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : EventsGetEventInstancesResponse {
         val localVariableConfig = getEventInstancesRequestConfig(eventId = eventId, minTime = minTime, maxTime = maxTime, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<EventsGetEventInstancesResponse>(
+        val localVarResponse = request<Unit, EventsGetEventInstancesResponse>(
             localVariableConfig
         )
 
@@ -455,8 +439,8 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun getEventInstancesRequestConfig(eventId: kotlin.String, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getEventInstancesRequestConfig(eventId: kotlin.String, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (minTime != null) {
@@ -475,15 +459,13 @@ class EventsApi(
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events/{eventId}/instances".replace("{"+"eventId"+"}", "$eventId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -502,7 +484,7 @@ class EventsApi(
     fun getEventInternalNoteList(eventId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : InternalNotesNoteList {
         val localVariableConfig = getEventInternalNoteListRequestConfig(eventId = eventId, history = history, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<InternalNotesNoteList>(
+        val localVarResponse = request<Unit, InternalNotesNoteList>(
             localVariableConfig
         )
 
@@ -529,8 +511,8 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun getEventInternalNoteListRequestConfig(eventId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getEventInternalNoteListRequestConfig(eventId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (history != null) {
@@ -540,15 +522,13 @@ class EventsApi(
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events/{eventId}/notes".replace("{"+"eventId"+"}", "$eventId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -565,7 +545,7 @@ class EventsApi(
     fun listCalendars(acceptLanguage: kotlin.String?) : CalendarsListCalendarResponse {
         val localVariableConfig = listCalendarsRequestConfig(acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<CalendarsListCalendarResponse>(
+        val localVarResponse = request<Unit, CalendarsListCalendarResponse>(
             localVariableConfig
         )
 
@@ -590,21 +570,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun listCalendarsRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listCalendarsRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/calendars",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -631,7 +609,7 @@ class EventsApi(
     fun listEvents(calendarId: kotlin.String?, ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, singleEvents: kotlin.Boolean?, isCompleted: kotlin.Boolean?, orderBy: EventsOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : EventsListEventResponse {
         val localVariableConfig = listEventsRequestConfig(calendarId = calendarId, ownerId = ownerId, contactIds = contactIds, minTime = minTime, maxTime = maxTime, singleEvents = singleEvents, isCompleted = isCompleted, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<EventsListEventResponse>(
+        val localVarResponse = request<Unit, EventsListEventResponse>(
             localVariableConfig
         )
 
@@ -666,8 +644,8 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun listEventsRequestConfig(calendarId: kotlin.String?, ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, singleEvents: kotlin.Boolean?, isCompleted: kotlin.Boolean?, orderBy: EventsOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listEventsRequestConfig(calendarId: kotlin.String?, ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, singleEvents: kotlin.Boolean?, isCompleted: kotlin.Boolean?, orderBy: EventsOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (calendarId != null) {
@@ -704,15 +682,13 @@ class EventsApi(
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/events",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -731,7 +707,7 @@ class EventsApi(
     fun patchEvent(eventId: kotlin.String, eventsPatchEventPayload: EventsPatchEventPayload, acceptLanguage: kotlin.String?) : EventsPatchEventResponse {
         val localVariableConfig = patchEventRequestConfig(eventId = eventId, eventsPatchEventPayload = eventsPatchEventPayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<EventsPatchEventResponse>(
+        val localVarResponse = request<EventsPatchEventPayload, EventsPatchEventResponse>(
             localVariableConfig
         )
 
@@ -758,21 +734,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun patchEventRequestConfig(eventId: kotlin.String, eventsPatchEventPayload: EventsPatchEventPayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = eventsPatchEventPayload
+    fun patchEventRequestConfig(eventId: kotlin.String, eventsPatchEventPayload: EventsPatchEventPayload, acceptLanguage: kotlin.String?) : RequestConfig<EventsPatchEventPayload> {
+        val localVariableBody = eventsPatchEventPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/events/{eventId}".replace("{"+"eventId"+"}", "$eventId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -792,7 +766,7 @@ class EventsApi(
     fun patchEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : InternalNotesPatchNoteResponse {
         val localVariableConfig = patchEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<InternalNotesPatchNoteResponse>(
+        val localVarResponse = request<InternalNotesPatchNotePayload, InternalNotesPatchNoteResponse>(
             localVariableConfig
         )
 
@@ -820,21 +794,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun patchEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = internalNotesPatchNotePayload
+    fun patchEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesPatchNotePayload> {
+        val localVariableBody = internalNotesPatchNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/events/{eventId}/notes/{noteId}".replace("{"+"eventId"+"}", "$eventId").replace("{"+"noteId"+"}", "$noteId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -853,7 +825,7 @@ class EventsApi(
     fun restoreEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
         val localVariableConfig = restoreEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -880,21 +852,19 @@ class EventsApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun restoreEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun restoreEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/notes/{noteId}/restore".replace("{"+"eventId"+"}", "$eventId").replace("{"+"noteId"+"}", "$noteId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -911,7 +881,7 @@ class EventsApi(
     fun transferEventToCompleted(eventId: kotlin.String) : EventsTransferToCompletedResponse {
         val localVariableConfig = transferEventToCompletedRequestConfig(eventId = eventId)
 
-        val localVarResponse = request<EventsTransferToCompletedResponse>(
+        val localVarResponse = request<Unit, EventsTransferToCompletedResponse>(
             localVariableConfig
         )
 
@@ -936,20 +906,18 @@ class EventsApi(
     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
     * @return RequestConfig
     */
-    fun transferEventToCompletedRequestConfig(eventId: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun transferEventToCompletedRequestConfig(eventId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/events/{eventId}/transferToCompleted".replace("{"+"eventId"+"}", "$eventId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

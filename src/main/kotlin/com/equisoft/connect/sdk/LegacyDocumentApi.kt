@@ -9,8 +9,7 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
-
+package com.equisoft.connect.sdk
 
 import com.equisoft.connect.sdk.models.LegacyAddUpdateResponse
 import com.equisoft.connect.sdk.models.LegacyResponse
@@ -35,10 +34,7 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 class LegacyDocumentApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -60,7 +56,7 @@ class LegacyDocumentApi(
     fun addDocument(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : LegacyAddUpdateResponse {
         val localVariableConfig = addDocumentRequestConfig(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
 
-        val localVarResponse = request<LegacyAddUpdateResponse>(
+        val localVarResponse = request<LegacydocumentDocumentPayloadRequest, LegacyAddUpdateResponse>(
             localVariableConfig
         )
 
@@ -85,20 +81,18 @@ class LegacyDocumentApi(
     * @param legacydocumentDocumentPayloadRequest  
     * @return RequestConfig
     */
-    fun addDocumentRequestConfig(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = legacydocumentDocumentPayloadRequest
+    fun addDocumentRequestConfig(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : RequestConfig<LegacydocumentDocumentPayloadRequest> {
+        val localVariableBody = legacydocumentDocumentPayloadRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/apps/api/kronos.document.add",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -115,7 +109,7 @@ class LegacyDocumentApi(
     fun deleteDocument(id: kotlin.String) : LegacyResponse {
         val localVariableConfig = deleteDocumentRequestConfig(id = id)
 
-        val localVarResponse = request<LegacyResponse>(
+        val localVarResponse = request<Unit, LegacyResponse>(
             localVariableConfig
         )
 
@@ -140,23 +134,21 @@ class LegacyDocumentApi(
     * @param id Document Id 
     * @return RequestConfig
     */
-    fun deleteDocumentRequestConfig(id: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun deleteDocumentRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/apps/api/kronos.document.delete",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -173,7 +165,7 @@ class LegacyDocumentApi(
     fun deleteDocumentFile(id: kotlin.String) : LegacyResponse {
         val localVariableConfig = deleteDocumentFileRequestConfig(id = id)
 
-        val localVarResponse = request<LegacyResponse>(
+        val localVarResponse = request<Unit, LegacyResponse>(
             localVariableConfig
         )
 
@@ -198,23 +190,21 @@ class LegacyDocumentApi(
     * @param id Document File Id 
     * @return RequestConfig
     */
-    fun deleteDocumentFileRequestConfig(id: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun deleteDocumentFileRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/apps/api/kronos.document.deleteFile",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -231,7 +221,7 @@ class LegacyDocumentApi(
     fun downloadDocumentFile(id: kotlin.String) : LegacydocumentDownloadFileResponse {
         val localVariableConfig = downloadDocumentFileRequestConfig(id = id)
 
-        val localVarResponse = request<LegacydocumentDownloadFileResponse>(
+        val localVarResponse = request<Unit, LegacydocumentDownloadFileResponse>(
             localVariableConfig
         )
 
@@ -256,23 +246,21 @@ class LegacyDocumentApi(
     * @param id Document File Id 
     * @return RequestConfig
     */
-    fun downloadDocumentFileRequestConfig(id: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun downloadDocumentFileRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/apps/api/kronos.document.downloadFile",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -289,7 +277,7 @@ class LegacyDocumentApi(
     fun getDocument(id: kotlin.String) : LegacydocumentGetResponse {
         val localVariableConfig = getDocumentRequestConfig(id = id)
 
-        val localVarResponse = request<LegacydocumentGetResponse>(
+        val localVarResponse = request<Unit, LegacydocumentGetResponse>(
             localVariableConfig
         )
 
@@ -314,23 +302,21 @@ class LegacyDocumentApi(
     * @param id Document Id 
     * @return RequestConfig
     */
-    fun getDocumentRequestConfig(id: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getDocumentRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/apps/api/kronos.document.get",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -346,7 +332,7 @@ class LegacyDocumentApi(
     fun getDocumentList() : LegacydocumentGetListResponse {
         val localVariableConfig = getDocumentListRequestConfig()
 
-        val localVarResponse = request<LegacydocumentGetListResponse>(
+        val localVarResponse = request<Unit, LegacydocumentGetListResponse>(
             localVariableConfig
         )
 
@@ -370,20 +356,18 @@ class LegacyDocumentApi(
     *
     * @return RequestConfig
     */
-    fun getDocumentListRequestConfig() : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getDocumentListRequestConfig() : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/apps/api/kronos.document.getList",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -400,7 +384,7 @@ class LegacyDocumentApi(
     fun updateDocument(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : LegacyAddUpdateResponse {
         val localVariableConfig = updateDocumentRequestConfig(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
 
-        val localVarResponse = request<LegacyAddUpdateResponse>(
+        val localVarResponse = request<LegacydocumentDocumentPayloadRequest, LegacyAddUpdateResponse>(
             localVariableConfig
         )
 
@@ -425,20 +409,18 @@ class LegacyDocumentApi(
     * @param legacydocumentDocumentPayloadRequest  
     * @return RequestConfig
     */
-    fun updateDocumentRequestConfig(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = legacydocumentDocumentPayloadRequest
+    fun updateDocumentRequestConfig(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : RequestConfig<LegacydocumentDocumentPayloadRequest> {
+        val localVariableBody = legacydocumentDocumentPayloadRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/apps/api/kronos.document.update",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -456,7 +438,7 @@ class LegacyDocumentApi(
     fun uploadDocumentFile(id: kotlin.String, legacydocumentUploadDocumentFileRequest: LegacydocumentUploadDocumentFileRequest) : LegacyAddUpdateResponse {
         val localVariableConfig = uploadDocumentFileRequestConfig(id = id, legacydocumentUploadDocumentFileRequest = legacydocumentUploadDocumentFileRequest)
 
-        val localVarResponse = request<LegacyAddUpdateResponse>(
+        val localVarResponse = request<LegacydocumentUploadDocumentFileRequest, LegacyAddUpdateResponse>(
             localVariableConfig
         )
 
@@ -482,23 +464,21 @@ class LegacyDocumentApi(
     * @param legacydocumentUploadDocumentFileRequest  
     * @return RequestConfig
     */
-    fun uploadDocumentFileRequestConfig(id: kotlin.String, legacydocumentUploadDocumentFileRequest: LegacydocumentUploadDocumentFileRequest) : RequestConfig {
-        val localVariableBody: kotlin.Any? = legacydocumentUploadDocumentFileRequest
+    fun uploadDocumentFileRequestConfig(id: kotlin.String, legacydocumentUploadDocumentFileRequest: LegacydocumentUploadDocumentFileRequest) : RequestConfig<LegacydocumentUploadDocumentFileRequest> {
+        val localVariableBody = legacydocumentUploadDocumentFileRequest
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/apps/api/kronos.document.uploadFile",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

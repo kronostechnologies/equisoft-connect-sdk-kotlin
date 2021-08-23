@@ -4,9 +4,9 @@
 ## Enum
 
 
-    * `withDueDate` (value: `"withDueDate"`)
+    * `WITH_DUE_DATE` (value: `"withDueDate"`)
 
-    * `withoutDueDate` (value: `"withoutDueDate"`)
+    * `WITHOUT_DUE_DATE` (value: `"withoutDueDate"`)
 
 
 

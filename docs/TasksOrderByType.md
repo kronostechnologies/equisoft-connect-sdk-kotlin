@@ -4,17 +4,17 @@
 ## Enum
 
 
-    * `dueDate` (value: `"dueDate"`)
+    * `DUE_DATE` (value: `"dueDate"`)
 
-    * `dueDateDesc` (value: `"dueDateDesc"`)
+    * `DUE_DATE_DESC` (value: `"dueDateDesc"`)
 
-    * `completedDate` (value: `"completedDate"`)
+    * `COMPLETED_DATE` (value: `"completedDate"`)
 
-    * `completedDateDesc` (value: `"completedDateDesc"`)
+    * `COMPLETED_DATE_DESC` (value: `"completedDateDesc"`)
 
-    * `updateTime` (value: `"updateTime"`)
+    * `UPDATE_TIME` (value: `"updateTime"`)
 
-    * `creationTime` (value: `"creationTime"`)
+    * `CREATION_TIME` (value: `"creationTime"`)
 
 
 

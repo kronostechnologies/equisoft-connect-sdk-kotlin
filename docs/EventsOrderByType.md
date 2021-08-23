@@ -4,11 +4,11 @@
 ## Enum
 
 
-    * `startTime` (value: `"startTime"`)
+    * `START_TIME` (value: `"startTime"`)
 
-    * `updateTime` (value: `"updateTime"`)
+    * `UPDATE_TIME` (value: `"updateTime"`)
 
-    * `creationTime` (value: `"creationTime"`)
+    * `CREATION_TIME` (value: `"creationTime"`)
 
 
 

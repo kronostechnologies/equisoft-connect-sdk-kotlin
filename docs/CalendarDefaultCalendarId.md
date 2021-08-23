@@ -4,9 +4,9 @@
 ## Enum
 
 
-    * `primary` (value: `"primary"`)
+    * `PRIMARY` (value: `"primary"`)
 
-    * `completed` (value: `"completed"`)
+    * `COMPLETED` (value: `"completed"`)
 
 
 

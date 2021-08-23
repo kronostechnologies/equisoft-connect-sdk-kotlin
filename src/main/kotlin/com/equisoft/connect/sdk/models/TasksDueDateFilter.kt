@@ -16,17 +16,18 @@ import com.squareup.moshi.Json
 
 /**
 * 
-* Values: withDueDate,withoutDueDate
+* Values: WITH_DUE_DATE,WITHOUT_DUE_DATE
 */
+
 
 enum class TasksDueDateFilter(val value: kotlin.String) {
 
 
     @Json(name = "withDueDate")
-    withDueDate("withDueDate"),
+    WITH_DUE_DATE("withDueDate"),
 
     @Json(name = "withoutDueDate")
-    withoutDueDate("withoutDueDate");
+    WITHOUT_DUE_DATE("withoutDueDate");
 
 
     /**

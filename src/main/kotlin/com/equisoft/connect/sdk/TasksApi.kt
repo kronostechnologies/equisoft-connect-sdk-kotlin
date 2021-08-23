@@ -9,8 +9,7 @@
 * https://openapi-generator.tech
 * Do not edit the class manually.
 */
-package com.equisoft.connect.sdk.apis
-
+package com.equisoft.connect.sdk
 
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.InternalNotesCreateNotePayload
@@ -44,10 +43,7 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 class TasksApi(
     basePath: kotlin.String = defaultBasePath,
     accessToken: String? = null
-) : ApiClient(
-    basePath,
-    accessToken
-) {
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
@@ -71,7 +67,7 @@ class TasksApi(
     fun archiveTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
         val localVariableConfig = archiveTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -98,21 +94,19 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun archiveTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun archiveTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/notes/{noteId}/archive".replace("{"+"taskId"+"}", "$taskId").replace("{"+"noteId"+"}", "$noteId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -130,7 +124,7 @@ class TasksApi(
     fun createTask(tasksCreateTaskPayload: TasksCreateTaskPayload, acceptLanguage: kotlin.String?) : TasksCreateTaskResponse {
         val localVariableConfig = createTaskRequestConfig(tasksCreateTaskPayload = tasksCreateTaskPayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<TasksCreateTaskResponse>(
+        val localVarResponse = request<TasksCreateTaskPayload, TasksCreateTaskResponse>(
             localVariableConfig
         )
 
@@ -156,21 +150,19 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun createTaskRequestConfig(tasksCreateTaskPayload: TasksCreateTaskPayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = tasksCreateTaskPayload
+    fun createTaskRequestConfig(tasksCreateTaskPayload: TasksCreateTaskPayload, acceptLanguage: kotlin.String?) : RequestConfig<TasksCreateTaskPayload> {
+        val localVariableBody = tasksCreateTaskPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -189,7 +181,7 @@ class TasksApi(
     fun createTaskInternalNote(taskId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : InternalNotesCreateNoteResponse {
         val localVariableConfig = createTaskInternalNoteRequestConfig(taskId = taskId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<InternalNotesCreateNoteResponse>(
+        val localVarResponse = request<InternalNotesCreateNotePayload, InternalNotesCreateNoteResponse>(
             localVariableConfig
         )
 
@@ -216,21 +208,19 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun createTaskInternalNoteRequestConfig(taskId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = internalNotesCreateNotePayload
+    fun createTaskInternalNoteRequestConfig(taskId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesCreateNotePayload> {
+        val localVariableBody = internalNotesCreateNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/notes".replace("{"+"taskId"+"}", "$taskId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -247,7 +237,7 @@ class TasksApi(
     fun deleteTask(taskId: kotlin.String) : kotlin.Any {
         val localVariableConfig = deleteTaskRequestConfig(taskId = taskId)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -272,20 +262,18 @@ class TasksApi(
     * @param taskId  
     * @return RequestConfig
     */
-    fun deleteTaskRequestConfig(taskId: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun deleteTaskRequestConfig(taskId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.DELETE,
             path = "/crm/api/v1/tasks/{taskId}".replace("{"+"taskId"+"}", "$taskId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -303,7 +291,7 @@ class TasksApi(
     fun getTask(taskId: kotlin.String, acceptLanguage: kotlin.String?) : TasksTask {
         val localVariableConfig = getTaskRequestConfig(taskId = taskId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<TasksTask>(
+        val localVarResponse = request<Unit, TasksTask>(
             localVariableConfig
         )
 
@@ -329,21 +317,19 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun getTaskRequestConfig(taskId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getTaskRequestConfig(taskId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/tasks/{taskId}".replace("{"+"taskId"+"}", "$taskId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -362,7 +348,7 @@ class TasksApi(
     fun getTaskInternalNoteList(taskId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : InternalNotesNoteList {
         val localVariableConfig = getTaskInternalNoteListRequestConfig(taskId = taskId, history = history, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<InternalNotesNoteList>(
+        val localVarResponse = request<Unit, InternalNotesNoteList>(
             localVariableConfig
         )
 
@@ -389,8 +375,8 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun getTaskInternalNoteListRequestConfig(taskId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun getTaskInternalNoteListRequestConfig(taskId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (history != null) {
@@ -400,15 +386,13 @@ class TasksApi(
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/tasks/{taskId}/notes".replace("{"+"taskId"+"}", "$taskId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -434,7 +418,7 @@ class TasksApi(
     fun listTasks(ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minDueDate: java.time.LocalDate?, maxDueDate: java.time.LocalDate?, isCompleted: kotlin.Boolean?, dueDateFilter: TasksDueDateFilter?, orderBy: TasksOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : TasksListTaskResponse {
         val localVariableConfig = listTasksRequestConfig(ownerId = ownerId, contactIds = contactIds, minDueDate = minDueDate, maxDueDate = maxDueDate, isCompleted = isCompleted, dueDateFilter = dueDateFilter, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<TasksListTaskResponse>(
+        val localVarResponse = request<Unit, TasksListTaskResponse>(
             localVariableConfig
         )
 
@@ -468,8 +452,8 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun listTasksRequestConfig(ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minDueDate: java.time.LocalDate?, maxDueDate: java.time.LocalDate?, isCompleted: kotlin.Boolean?, dueDateFilter: TasksDueDateFilter?, orderBy: TasksOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun listTasksRequestConfig(ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minDueDate: java.time.LocalDate?, maxDueDate: java.time.LocalDate?, isCompleted: kotlin.Boolean?, dueDateFilter: TasksDueDateFilter?, orderBy: TasksOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (ownerId != null) {
@@ -503,15 +487,13 @@ class TasksApi(
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/tasks",
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -530,7 +512,7 @@ class TasksApi(
     fun patchTask(taskId: kotlin.String, tasksPatchTaskPayload: TasksPatchTaskPayload, acceptLanguage: kotlin.String?) : TasksPatchTaskResponse {
         val localVariableConfig = patchTaskRequestConfig(taskId = taskId, tasksPatchTaskPayload = tasksPatchTaskPayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<TasksPatchTaskResponse>(
+        val localVarResponse = request<TasksPatchTaskPayload, TasksPatchTaskResponse>(
             localVariableConfig
         )
 
@@ -557,21 +539,19 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun patchTaskRequestConfig(taskId: kotlin.String, tasksPatchTaskPayload: TasksPatchTaskPayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = tasksPatchTaskPayload
+    fun patchTaskRequestConfig(taskId: kotlin.String, tasksPatchTaskPayload: TasksPatchTaskPayload, acceptLanguage: kotlin.String?) : RequestConfig<TasksPatchTaskPayload> {
+        val localVariableBody = tasksPatchTaskPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/tasks/{taskId}".replace("{"+"taskId"+"}", "$taskId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -591,7 +571,7 @@ class TasksApi(
     fun patchTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : InternalNotesPatchNoteResponse {
         val localVariableConfig = patchTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<InternalNotesPatchNoteResponse>(
+        val localVarResponse = request<InternalNotesPatchNotePayload, InternalNotesPatchNoteResponse>(
             localVariableConfig
         )
 
@@ -619,21 +599,19 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun patchTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = internalNotesPatchNotePayload
+    fun patchTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesPatchNotePayload> {
+        val localVariableBody = internalNotesPatchNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.PATCH,
             path = "/crm/api/v1/tasks/{taskId}/notes/{noteId}".replace("{"+"taskId"+"}", "$taskId").replace("{"+"noteId"+"}", "$noteId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -652,7 +630,7 @@ class TasksApi(
     fun restoreTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
         val localVariableConfig = restoreTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<kotlin.Any>(
+        val localVarResponse = request<Unit, kotlin.Any>(
             localVariableConfig
         )
 
@@ -679,21 +657,19 @@ class TasksApi(
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
     * @return RequestConfig
     */
-    fun restoreTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun restoreTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/notes/{noteId}/restore".replace("{"+"taskId"+"}", "$taskId").replace("{"+"noteId"+"}", "$noteId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
     /**
@@ -710,7 +686,7 @@ class TasksApi(
     fun transferTaskToCompleted(taskId: kotlin.String) : TasksTransferToCompletedResponse {
         val localVariableConfig = transferTaskToCompletedRequestConfig(taskId = taskId)
 
-        val localVarResponse = request<TasksTransferToCompletedResponse>(
+        val localVarResponse = request<Unit, TasksTransferToCompletedResponse>(
             localVariableConfig
         )
 
@@ -735,20 +711,18 @@ class TasksApi(
     * @param taskId Task unique identifier. 
     * @return RequestConfig
     */
-    fun transferTaskToCompletedRequestConfig(taskId: kotlin.String) : RequestConfig {
-        val localVariableBody: kotlin.Any? = null
+    fun transferTaskToCompletedRequestConfig(taskId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
 
-        val localVariableConfig = RequestConfig(
+        return RequestConfig(
             method = RequestMethod.POST,
             path = "/crm/api/v1/tasks/{taskId}/transferToCompleted".replace("{"+"taskId"+"}", "$taskId"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody
         )
-
-        return localVariableConfig
     }
 
 }

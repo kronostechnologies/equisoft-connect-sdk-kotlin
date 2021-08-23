@@ -19,6 +19,7 @@ import com.squareup.moshi.Json
 * Values: TODO,CANCELLED,IGNORED,FAILURE,SUCCESS
 */
 
+
 enum class MovementMovementStatus(val value: kotlin.String) {
 
 
