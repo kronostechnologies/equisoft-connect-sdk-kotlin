@@ -29,26 +29,26 @@ import com.squareup.moshi.Json
 data class UsersUser (
     /* The user's unique identifier (ID). */
     @Json(name = "id")
-    val id: kotlin.Int? = null,
+    val id: kotlin.Int,
     /* The user's full display name. */
     @Json(name = "displayName")
-    val displayName: kotlin.String? = null,
+    val displayName: kotlin.String,
     /* The user's eMail address. */
     @Json(name = "email")
-    val email: kotlin.String? = null,
+    val email: kotlin.String,
     /* The user's first name. */
     @Json(name = "firstName")
-    val firstName: kotlin.String? = null,
+    val firstName: kotlin.String,
     /* The user's last name. */
     @Json(name = "lastName")
-    val lastName: kotlin.String? = null,
+    val lastName: kotlin.String,
     /* The user's preferred locale. */
     @Json(name = "locale")
-    val locale: kotlin.String? = null,
+    val locale: kotlin.String,
     /* The user's role. */
     @Json(name = "role")
-    val role: kotlin.String? = null,
+    val role: kotlin.String,
     @Json(name = "maxConcurrentAccess")
-    val maxConcurrentAccess: kotlin.Int? = null
+    val maxConcurrentAccess: kotlin.Int
 )
 
