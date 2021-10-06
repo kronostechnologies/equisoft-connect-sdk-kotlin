@@ -1,5 +1,5 @@
 group 'com.equisoft.connect.sdk'
-version '10.7.1'
+version '10.7.2-SNAPSHOT'
 
 buildscript {
     ext.kotlin_version = '1.5.10'
