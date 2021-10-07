@@ -35,6 +35,7 @@ All URIs are relative to *http://localhost*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*ContactsApi* | [**getByUuid**](docs/ContactsApi.md#getbyuuid) | **GET** /crm/api/v1/contacts/{contactUuid} | Return the detail of a contact.
 *DSFApi* | [**createDsfFinancialCenter**](docs/DSFApi.md#createdsffinancialcenter) | **POST** /crm/api/v1/dsf/financialCenters | 
 *DSFApi* | [**deleteDsfFinancialCenter**](docs/DSFApi.md#deletedsffinancialcenter) | **DELETE** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
 *DSFApi* | [**getDsfFinancialCenters**](docs/DSFApi.md#getdsffinancialcenters) | **GET** /crm/api/v1/dsf/financialCenters/{financialCenterId} | 
@@ -111,6 +112,16 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.CalendarDefaultCalendarId](docs/CalendarDefaultCalendarId.md)
  - [com.equisoft.connect.sdk.models.CalendarsCalendar](docs/CalendarsCalendar.md)
  - [com.equisoft.connect.sdk.models.CalendarsListCalendarResponse](docs/CalendarsListCalendarResponse.md)
+ - [com.equisoft.connect.sdk.models.ContactContactAdditionalInformation](docs/ContactContactAdditionalInformation.md)
+ - [com.equisoft.connect.sdk.models.ContactContactAddress](docs/ContactContactAddress.md)
+ - [com.equisoft.connect.sdk.models.ContactContactEmail](docs/ContactContactEmail.md)
+ - [com.equisoft.connect.sdk.models.ContactContactIdentification](docs/ContactContactIdentification.md)
+ - [com.equisoft.connect.sdk.models.ContactContactMaritalStatus](docs/ContactContactMaritalStatus.md)
+ - [com.equisoft.connect.sdk.models.ContactContactOccupation](docs/ContactContactOccupation.md)
+ - [com.equisoft.connect.sdk.models.ContactContactPhone](docs/ContactContactPhone.md)
+ - [com.equisoft.connect.sdk.models.ContactContactSegmentation](docs/ContactContactSegmentation.md)
+ - [com.equisoft.connect.sdk.models.ContactContactWebsite](docs/ContactContactWebsite.md)
+ - [com.equisoft.connect.sdk.models.ContactsContact](docs/ContactsContact.md)
  - [com.equisoft.connect.sdk.models.Contextactor](docs/Contextactor.md)
  - [com.equisoft.connect.sdk.models.ContextequisoftConnect](docs/ContextequisoftConnect.md)
  - [com.equisoft.connect.sdk.models.ContextequisoftConnectUser](docs/ContextequisoftConnectUser.md)
