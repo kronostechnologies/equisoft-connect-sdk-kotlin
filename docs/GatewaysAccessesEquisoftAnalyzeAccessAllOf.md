@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **clientKey** | **kotlin.String** |  | 
-**version** | [**inline**](#VersionEnum) |  | 
+**version** | [**inline**](#Version) |  | 
 
 
-<a name="VersionEnum"></a>
+<a name="Version"></a>
 ## Enum: version
 Name | Value
 ---- | -----

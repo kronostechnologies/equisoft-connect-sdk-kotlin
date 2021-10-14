@@ -4,13 +4,13 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**inline**](#TypeEnum) |  | 
+**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
 **destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
 **users** | [**kotlin.collections.List&lt;MovementUser&gt;**](MovementUser.md) |  | 
 
 
-<a name="TypeEnum"></a>
+<a name="Type"></a>
 ## Enum: type
 Name | Value
 ---- | -----

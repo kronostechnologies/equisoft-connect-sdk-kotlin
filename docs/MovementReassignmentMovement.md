@@ -4,14 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**inline**](#TypeEnum) |  | 
+**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
 **sourceUser** | [**MovementUser**](MovementUser.md) |  | 
 **destinationUser** | [**MovementUser**](MovementUser.md) |  | 
 **accessCode** | [**MovementGatewayAccessCode**](MovementGatewayAccessCode.md) |  | 
 
 
-<a name="TypeEnum"></a>
+<a name="Type"></a>
 ## Enum: type
 Name | Value
 ---- | -----

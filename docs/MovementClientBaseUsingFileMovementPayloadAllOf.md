@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**inline**](#TypeEnum) |  | 
+**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | **kotlin.String** |  | 
 **sourceUser** | **kotlin.String** |  | 
 **destinationDatabase** | **kotlin.String** |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **dataphileFile** | **kotlin.String** |  |  [optional]
 
 
-<a name="TypeEnum"></a>
+<a name="Type"></a>
 ## Enum: type
 Name | Value
 ---- | -----

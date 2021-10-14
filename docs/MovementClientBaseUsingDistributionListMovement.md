@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**inline**](#TypeEnum) |  | 
+**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
 **sourceUser** | [**MovementUser**](MovementUser.md) |  | 
 **destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **datagatewayAccessMappings** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** |  |  [optional]
 
 
-<a name="TypeEnum"></a>
+<a name="Type"></a>
 ## Enum: type
 Name | Value
 ---- | -----
