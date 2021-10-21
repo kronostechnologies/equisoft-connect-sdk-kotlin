@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **type** | [**FieldValue**](FieldValue.md) |  |  [optional]
 **email** | **kotlin.String** |  |  [optional]
 **notes** | **kotlin.String** |  |  [optional]
+**locked** | **kotlin.Boolean** |  |  [optional]
 
 
 

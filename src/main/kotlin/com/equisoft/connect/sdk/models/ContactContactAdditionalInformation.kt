@@ -20,6 +20,7 @@
 
 package com.equisoft.connect.sdk.models
 
+import com.equisoft.connect.sdk.models.FieldValue
 
 import com.squareup.moshi.Json
 
@@ -31,6 +32,11 @@ import com.squareup.moshi.Json
  * @param isSmoker 
  * @param smokerEndDate 
  * @param birthDate 
+ * @param facebookLink 
+ * @param twitterLink 
+ * @param linkedInLink 
+ * @param language 
+ * @param pictureId 
  */
 
 data class ContactContactAdditionalInformation (
@@ -48,7 +54,22 @@ data class ContactContactAdditionalInformation (
     val smokerEndDate: java.time.LocalDate? = null,
 
     @Json(name = "birthDate")
-    val birthDate: java.time.LocalDate? = null
+    val birthDate: java.time.LocalDate? = null,
+
+    @Json(name = "facebookLink")
+    val facebookLink: kotlin.String? = null,
+
+    @Json(name = "twitterLink")
+    val twitterLink: kotlin.String? = null,
+
+    @Json(name = "linkedInLink")
+    val linkedInLink: kotlin.String? = null,
+
+    @Json(name = "language")
+    val language: FieldValue? = null,
+
+    @Json(name = "pictureId")
+    val pictureId: kotlin.Int? = null
 
 )
 

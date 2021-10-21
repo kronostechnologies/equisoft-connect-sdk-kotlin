@@ -29,6 +29,7 @@ import com.squareup.moshi.Json
  * @param id 
  * @param url 
  * @param isMain 
+ * @param locked 
  */
 
 data class ContactContactWebsite (
@@ -40,7 +41,10 @@ data class ContactContactWebsite (
     val url: kotlin.String? = null,
 
     @Json(name = "isMain")
-    val isMain: kotlin.Boolean? = null
+    val isMain: kotlin.Boolean? = null,
+
+    @Json(name = "locked")
+    val locked: kotlin.Boolean? = null
 
 )
 

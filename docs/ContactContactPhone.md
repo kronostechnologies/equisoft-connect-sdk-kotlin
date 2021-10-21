@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **extension** | **kotlin.String** |  |  [optional]
 **longDistance** | **kotlin.Boolean** |  |  [optional]
 **notes** | **kotlin.String** |  |  [optional]
+**locked** | **kotlin.Boolean** |  |  [optional]
 
 
 

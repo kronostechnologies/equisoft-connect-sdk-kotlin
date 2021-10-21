@@ -9,6 +9,11 @@ Name | Type | Description | Notes
 **isSmoker** | **kotlin.Boolean** |  |  [optional]
 **smokerEndDate** | [**java.time.LocalDate**](java.time.LocalDate.md) |  |  [optional]
 **birthDate** | [**java.time.LocalDate**](java.time.LocalDate.md) |  |  [optional]
+**facebookLink** | **kotlin.String** |  |  [optional]
+**twitterLink** | **kotlin.String** |  |  [optional]
+**linkedInLink** | **kotlin.String** |  |  [optional]
+**language** | [**FieldValue**](FieldValue.md) |  |  [optional]
+**pictureId** | **kotlin.Int** |  |  [optional]
 
 
 

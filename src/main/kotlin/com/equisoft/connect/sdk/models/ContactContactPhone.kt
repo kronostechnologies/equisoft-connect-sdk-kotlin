@@ -34,6 +34,7 @@ import com.squareup.moshi.Json
  * @param extension 
  * @param longDistance 
  * @param notes 
+ * @param locked 
  */
 
 data class ContactContactPhone (
@@ -57,7 +58,10 @@ data class ContactContactPhone (
     val longDistance: kotlin.Boolean? = null,
 
     @Json(name = "notes")
-    val notes: kotlin.String? = null
+    val notes: kotlin.String? = null,
+
+    @Json(name = "locked")
+    val locked: kotlin.Boolean? = null
 
 )
 

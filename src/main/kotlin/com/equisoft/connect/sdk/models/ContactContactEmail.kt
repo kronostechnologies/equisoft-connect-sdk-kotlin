@@ -32,6 +32,7 @@ import com.squareup.moshi.Json
  * @param type 
  * @param email 
  * @param notes 
+ * @param locked 
  */
 
 data class ContactContactEmail (
@@ -49,7 +50,10 @@ data class ContactContactEmail (
     val email: kotlin.String? = null,
 
     @Json(name = "notes")
-    val notes: kotlin.String? = null
+    val notes: kotlin.String? = null,
+
+    @Json(name = "locked")
+    val locked: kotlin.Boolean? = null
 
 )
 

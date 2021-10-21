@@ -31,6 +31,7 @@ import com.squareup.moshi.Json
  * @param employer 
  * @param startDate 
  * @param endDate 
+ * @param annualIncome 
  */
 
 data class ContactContactOccupation (
@@ -48,7 +49,10 @@ data class ContactContactOccupation (
     val startDate: java.time.LocalDate? = null,
 
     @Json(name = "endDate")
-    val endDate: java.time.LocalDate? = null
+    val endDate: java.time.LocalDate? = null,
+
+    @Json(name = "annualIncome")
+    val annualIncome: kotlin.Float? = null
 
 )
 

@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **postalCode** | **kotlin.String** |  |  [optional]
 **dateSince** | [**java.time.LocalDate**](java.time.LocalDate.md) |  |  [optional]
 **city** | **kotlin.String** |  |  [optional]
+**locked** | **kotlin.Boolean** |  |  [optional]
 
 
 

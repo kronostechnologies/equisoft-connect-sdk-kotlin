@@ -38,6 +38,7 @@ import com.squareup.moshi.Json
  * @param postalCode 
  * @param dateSince 
  * @param city 
+ * @param locked 
  */
 
 data class ContactContactAddress (
@@ -73,7 +74,10 @@ data class ContactContactAddress (
     val dateSince: java.time.LocalDate? = null,
 
     @Json(name = "city")
-    val city: kotlin.String? = null
+    val city: kotlin.String? = null,
+
+    @Json(name = "locked")
+    val locked: kotlin.Boolean? = null
 
 )
 

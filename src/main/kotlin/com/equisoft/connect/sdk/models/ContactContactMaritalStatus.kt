@@ -31,6 +31,7 @@ import com.squareup.moshi.Json
  * @param startDate 
  * @param endDate 
  * @param status 
+ * @param marriageContract 
  */
 
 data class ContactContactMaritalStatus (
@@ -45,7 +46,10 @@ data class ContactContactMaritalStatus (
     val endDate: java.time.LocalDate? = null,
 
     @Json(name = "status")
-    val status: FieldValue? = null
+    val status: FieldValue? = null,
+
+    @Json(name = "marriageContract")
+    val marriageContract: FieldValue? = null
 
 )
 

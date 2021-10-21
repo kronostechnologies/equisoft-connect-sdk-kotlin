@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **employer** | **kotlin.String** |  |  [optional]
 **startDate** | [**java.time.LocalDate**](java.time.LocalDate.md) |  |  [optional]
 **endDate** | [**java.time.LocalDate**](java.time.LocalDate.md) |  |  [optional]
+**annualIncome** | **kotlin.Float** |  |  [optional]
 
 
 
