@@ -43,7 +43,7 @@ import com.squareup.moshi.Json
  * @param internalNotes Internal notes on the Event. Not synced on remote sources.
  * @param location Location of the event in free-text form.
  * @param category 
- * @param subCategory 
+ * @param subCategory Event sub category
  * @param recurrenceRule The recurrence rule for this event. The recurrence is a string conform to RFC 5545 (see RRULE http://tools.ietf.org/html/rfc5545#section-3.8.5.3).
  * @param recurringEventId For an instance of recurring event, ID of the master event.
  * @param originalStartDate For an instance of recurring event, original start date of the event according to the recurrence rule.
@@ -110,8 +110,9 @@ data class EventsEvent (
     @Json(name = "category")
     val category: FieldValue? = null,
 
+    /* Event sub category */
     @Json(name = "subCategory")
-    val subCategory: FieldValue? = null,
+    val subCategory: kotlin.Any? = null,
 
     /* The recurrence rule for this event. The recurrence is a string conform to RFC 5545 (see RRULE http://tools.ietf.org/html/rfc5545#section-3.8.5.3). */
     @Json(name = "recurrenceRule")

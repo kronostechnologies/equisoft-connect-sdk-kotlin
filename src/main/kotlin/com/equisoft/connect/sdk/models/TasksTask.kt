@@ -38,7 +38,7 @@ import com.squareup.moshi.Json
  * @param description Public description of the Event.
  * @param internalNotes Internal notes on the Event. Not synced on remote sources.
  * @param category 
- * @param subCategory 
+ * @param subCategory Event sub category
  * @param priority Importance/Priority of an event or task. 5 is the most important.
  * @param visibility Confidentiality level of the Event (private or not). [NORMAL, PRIVATE]
  * @param creationTime Creation time. As defined by date-time - RFC3339
@@ -87,8 +87,9 @@ data class TasksTask (
     @Json(name = "category")
     val category: FieldValue? = null,
 
+    /* Event sub category */
     @Json(name = "subCategory")
-    val subCategory: FieldValue? = null,
+    val subCategory: kotlin.Any? = null,
 
     /* Importance/Priority of an event or task. 5 is the most important. */
     @Json(name = "priority")

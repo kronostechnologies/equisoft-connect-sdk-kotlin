@@ -18,7 +18,7 @@ Name | Type | Description | Notes
 **internalNotes** | **kotlin.String** | Internal notes on the Event. Not synced on remote sources. |  [optional]
 **location** | **kotlin.String** | Location of the event in free-text form. |  [optional]
 **category** | [**FieldValue**](FieldValue.md) |  |  [optional]
-**subCategory** | [**FieldValue**](FieldValue.md) |  |  [optional]
+**subCategory** | [**kotlin.Any**](.md) | Event sub category |  [optional]
 **recurrenceRule** | **kotlin.String** | The recurrence rule for this event. The recurrence is a string conform to RFC 5545 (see RRULE http://tools.ietf.org/html/rfc5545#section-3.8.5.3). |  [optional]
 **recurringEventId** | **kotlin.String** | For an instance of recurring event, ID of the master event. |  [optional]
 **originalStartDate** | **kotlin.String** | For an instance of recurring event, original start date of the event according to the recurrence rule. |  [optional]

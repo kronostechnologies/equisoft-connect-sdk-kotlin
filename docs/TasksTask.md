@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **description** | **kotlin.String** | Public description of the Event. |  [optional]
 **internalNotes** | **kotlin.String** | Internal notes on the Event. Not synced on remote sources. |  [optional]
 **category** | [**FieldValue**](FieldValue.md) |  |  [optional]
-**subCategory** | [**FieldValue**](FieldValue.md) |  |  [optional]
+**subCategory** | [**kotlin.Any**](.md) | Event sub category |  [optional]
 **priority** | **kotlin.Int** | Importance/Priority of an event or task. 5 is the most important. |  [optional]
 **visibility** | **kotlin.String** | Confidentiality level of the Event (private or not). [NORMAL, PRIVATE] |  [optional]
 **creationTime** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) | Creation time. As defined by date-time - RFC3339 |  [optional]
