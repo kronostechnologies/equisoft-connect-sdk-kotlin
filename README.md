@@ -266,6 +266,7 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.TasksTask](docs/TasksTask.md)
  - [com.equisoft.connect.sdk.models.TasksTransferToCompletedResponse](docs/TasksTransferToCompletedResponse.md)
  - [com.equisoft.connect.sdk.models.TasksVisibilityType](docs/TasksVisibilityType.md)
+ - [com.equisoft.connect.sdk.models.Translation](docs/Translation.md)
  - [com.equisoft.connect.sdk.models.UsersListUsersResponse](docs/UsersListUsersResponse.md)
  - [com.equisoft.connect.sdk.models.UsersUser](docs/UsersUser.md)
 
