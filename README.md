@@ -78,6 +78,8 @@ Class | Method | HTTP request | Description
 *LegacyDocumentApi* | [**getDocumentList**](docs/LegacyDocumentApi.md#getdocumentlist) | **GET** /apps/api/kronos.document.getList | Get a list of all documents. This will return basic information about the document.
 *LegacyDocumentApi* | [**updateDocument**](docs/LegacyDocumentApi.md#updatedocument) | **POST** /apps/api/kronos.document.update | Update a document.
 *LegacyDocumentApi* | [**uploadDocumentFile**](docs/LegacyDocumentApi.md#uploaddocumentfile) | **POST** /apps/api/kronos.document.uploadFile | Upload a new file in a document
+*LegacyFinanceApi* | [**getAccountStatement**](docs/LegacyFinanceApi.md#getaccountstatement) | **GET** /apps/api/kronos.finance.getAccountStatement | Get Account Statement information for a contact.
+*LegacyFinanceApi* | [**getLiabilities**](docs/LegacyFinanceApi.md#getliabilities) | **GET** /apps/api/kronos.finance.getLiabilities | Get Liabilities information for a contact.
 *LegacyProvisioningApi* | [**getOrganization**](docs/LegacyProvisioningApi.md#getorganization) | **GET** /apps/provisioning/kronos.provisioning.getOrganization | Get all informations about an organization.
 *LegacyProvisioningApi* | [**getOrganizationList**](docs/LegacyProvisioningApi.md#getorganizationlist) | **GET** /apps/provisioning/kronos.provisioning.getOrganizationList | List all organizations
 *MovementApi* | [**addMovement**](docs/MovementApi.md#addmovement) | **POST** /crm/api/v1/movements | 
@@ -187,6 +189,8 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.LegacyDocumentDownloadFileResponseAllOf](docs/LegacyDocumentDownloadFileResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyDocumentGetListResponseAllOf](docs/LegacyDocumentGetListResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyDocumentGetResponseAllOf](docs/LegacyDocumentGetResponseAllOf.md)
+ - [com.equisoft.connect.sdk.models.LegacyFinanceGetAccountStatementResponseAllOf](docs/LegacyFinanceGetAccountStatementResponseAllOf.md)
+ - [com.equisoft.connect.sdk.models.LegacyFinanceGetLiabilitiesResponseAllOf](docs/LegacyFinanceGetLiabilitiesResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyProvisioningGetOrganizationListResponseAllOf](docs/LegacyProvisioningGetOrganizationListResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyProvisioningGetOrganizationResponseAllOf](docs/LegacyProvisioningGetOrganizationResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyResponse](docs/LegacyResponse.md)
@@ -207,6 +211,20 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.LegacydocumentGetListResponse](docs/LegacydocumentGetListResponse.md)
  - [com.equisoft.connect.sdk.models.LegacydocumentGetResponse](docs/LegacydocumentGetResponse.md)
  - [com.equisoft.connect.sdk.models.LegacydocumentUploadDocumentFileRequest](docs/LegacydocumentUploadDocumentFileRequest.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinanceAccountStatement](docs/LegacyfinanceAccountStatement.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinanceAsset](docs/LegacyfinanceAsset.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinanceGetLiabilitiesResponse](docs/LegacyfinanceGetLiabilitiesResponse.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinanceLiability](docs/LegacyfinanceLiability.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePlan](docs/LegacyfinancePlan.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePlanBeneficiary](docs/LegacyfinancePlanBeneficiary.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePlanInTrust](docs/LegacyfinancePlanInTrust.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePlanSummary](docs/LegacyfinancePlanSummary.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePolicy](docs/LegacyfinancePolicy.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePolicyCoverage](docs/LegacyfinancePolicyCoverage.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePolicyCoverageInsured](docs/LegacyfinancePolicyCoverageInsured.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancePolicyCoverageOption](docs/LegacyfinancePolicyCoverageOption.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinanceTransaction](docs/LegacyfinanceTransaction.md)
+ - [com.equisoft.connect.sdk.models.LegacyfinancegetAccountStatementResponse](docs/LegacyfinancegetAccountStatementResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationListResponse](docs/LegacyprovisioningGetOrganizationListResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationResponse](docs/LegacyprovisioningGetOrganizationResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyprovisioningGroupItem](docs/LegacyprovisioningGroupItem.md)
