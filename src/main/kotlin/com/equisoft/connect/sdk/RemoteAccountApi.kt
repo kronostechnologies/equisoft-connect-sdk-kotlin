@@ -20,6 +20,8 @@
 
 package com.equisoft.connect.sdk
 
+import com.equisoft.connect.sdk.models.AccessRights
+import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.RemoteaccountAccountSyncResponse
 
 import com.equisoft.connect.sdk.infrastructure.ApiClient
@@ -43,6 +45,59 @@ class RemoteAccountApi(
         val defaultBasePath: String by lazy {
             System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
         }
+    }
+
+    /**
+    * Return the mail account access rights granted to the currently connected user account.
+    * 
+    * @param remoteAccountId Remote account id. 
+    * @return AccessRights
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getMailAccountAccessRights(remoteAccountId: kotlin.String) : AccessRights {
+        val localVariableConfig = getMailAccountAccessRightsRequestConfig(remoteAccountId = remoteAccountId)
+
+        val localVarResponse = request<Unit, AccessRights>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as AccessRights
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation getMailAccountAccessRights
+    *
+    * @param remoteAccountId Remote account id. 
+    * @return RequestConfig
+    */
+    fun getMailAccountAccessRightsRequestConfig(remoteAccountId: kotlin.String) : RequestConfig<Unit> {
+        val localVariableBody = null
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.GET,
+            path = "/crm/api/v1/mailAccounts/{remoteAccountId}/accessRights".replace("{"+"remoteAccountId"+"}", "$remoteAccountId"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
     }
 
     /**
