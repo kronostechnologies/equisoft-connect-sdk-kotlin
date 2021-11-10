@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | **kotlin.String** |  |  [optional]
+**title** | [**FieldValue**](FieldValue.md) |  |  [optional]
 **gender** | **kotlin.String** |  |  [optional]
 **firstName** | **kotlin.String** |  |  [optional]
 **middleName** | **kotlin.String** |  |  [optional]

@@ -20,30 +20,21 @@
 
 package com.equisoft.connect.sdk.models
 
+import com.equisoft.connect.sdk.models.LegacyfinanceAccountStatement
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param read User can read the record.
- * @param write User can perform modifications request on the record.
- * @param delete User can delete the record.
+ * @param accountStatement Array of contact
  */
 
-data class AccessRights (
+data class LegacyFinanceGetAccountStatementResponseAllOf (
 
-    /* User can read the record. */
-    @Json(name = "read")
-    val read: kotlin.Boolean,
-
-    /* User can perform modifications request on the record. */
-    @Json(name = "write")
-    val write: kotlin.Boolean,
-
-    /* User can delete the record. */
-    @Json(name = "delete")
-    val delete: kotlin.Boolean
+    /* Array of contact */
+    @Json(name = "accountStatement")
+    val accountStatement: kotlin.collections.List<LegacyfinanceAccountStatement>
 
 )
 

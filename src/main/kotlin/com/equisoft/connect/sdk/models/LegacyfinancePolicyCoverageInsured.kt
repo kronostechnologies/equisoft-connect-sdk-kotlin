@@ -26,24 +26,21 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param read User can read the record.
- * @param write User can perform modifications request on the record.
- * @param delete User can delete the record.
+ * @param name 
+ * @param insuranceClass 
+ * @param smoker 
  */
 
-data class AccessRights (
+data class LegacyfinancePolicyCoverageInsured (
 
-    /* User can read the record. */
-    @Json(name = "read")
-    val read: kotlin.Boolean,
+    @Json(name = "name")
+    val name: kotlin.String? = null,
 
-    /* User can perform modifications request on the record. */
-    @Json(name = "write")
-    val write: kotlin.Boolean,
+    @Json(name = "insuranceClass")
+    val insuranceClass: kotlin.String? = null,
 
-    /* User can delete the record. */
-    @Json(name = "delete")
-    val delete: kotlin.Boolean
+    @Json(name = "smoker")
+    val smoker: kotlin.String? = null
 
 )
 
