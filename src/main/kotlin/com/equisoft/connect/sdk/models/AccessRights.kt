@@ -26,16 +26,11 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param read User can read the record.
  * @param write User can perform modifications request on the record.
  * @param delete User can delete the record.
  */
 
 data class AccessRights (
-
-    /* User can read the record. */
-    @Json(name = "read")
-    val read: kotlin.Boolean,
 
     /* User can perform modifications request on the record. */
     @Json(name = "write")

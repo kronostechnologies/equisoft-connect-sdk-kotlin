@@ -20,7 +20,6 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.FieldValue
 
 import com.squareup.moshi.Json
 
@@ -41,7 +40,7 @@ import com.squareup.moshi.Json
 data class ContactContactIdentification (
 
     @Json(name = "title")
-    val title: FieldValue? = null,
+    val title: kotlin.String? = null,
 
     @Json(name = "gender")
     val gender: kotlin.String? = null,

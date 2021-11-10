@@ -20,7 +20,6 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.Translation
 
 import com.squareup.moshi.Json
 
@@ -29,8 +28,6 @@ import com.squareup.moshi.Json
  *
  * @param id Unique numerical identifier of the field value.
  * @param label Value label in the current language.
- * @param translations Value labels in available languages.
- * @param systemName 
  */
 
 data class FieldValue (
@@ -41,14 +38,7 @@ data class FieldValue (
 
     /* Value label in the current language. */
     @Json(name = "label")
-    val label: kotlin.String,
-
-    /* Value labels in available languages. */
-    @Json(name = "translations")
-    val translations: kotlin.collections.List<Translation>? = null,
-
-    @Json(name = "systemName")
-    val systemName: kotlin.String? = null
+    val label: kotlin.String
 
 )
 

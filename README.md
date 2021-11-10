@@ -78,8 +78,6 @@ Class | Method | HTTP request | Description
 *LegacyDocumentApi* | [**getDocumentList**](docs/LegacyDocumentApi.md#getdocumentlist) | **GET** /apps/api/kronos.document.getList | Get a list of all documents. This will return basic information about the document.
 *LegacyDocumentApi* | [**updateDocument**](docs/LegacyDocumentApi.md#updatedocument) | **POST** /apps/api/kronos.document.update | Update a document.
 *LegacyDocumentApi* | [**uploadDocumentFile**](docs/LegacyDocumentApi.md#uploaddocumentfile) | **POST** /apps/api/kronos.document.uploadFile | Upload a new file in a document
-*LegacyFinanceApi* | [**getAccountStatement**](docs/LegacyFinanceApi.md#getaccountstatement) | **GET** /apps/api/kronos.finance.getAccountStatement | Get Account Statement information for a contact.
-*LegacyFinanceApi* | [**getLiabilities**](docs/LegacyFinanceApi.md#getliabilities) | **GET** /apps/api/kronos.finance.getLiabilities | Get Liabilities information for a contact.
 *LegacyProvisioningApi* | [**getOrganization**](docs/LegacyProvisioningApi.md#getorganization) | **GET** /apps/provisioning/kronos.provisioning.getOrganization | Get all informations about an organization.
 *LegacyProvisioningApi* | [**getOrganizationList**](docs/LegacyProvisioningApi.md#getorganizationlist) | **GET** /apps/provisioning/kronos.provisioning.getOrganizationList | List all organizations
 *MovementApi* | [**addMovement**](docs/MovementApi.md#addmovement) | **POST** /crm/api/v1/movements | 
@@ -88,7 +86,6 @@ Class | Method | HTTP request | Description
 *MovementApi* | [**getMovementStatus**](docs/MovementApi.md#getmovementstatus) | **GET** /crm/api/v1/movements/{movementId}/status | 
 *MovementApi* | [**listMovements**](docs/MovementApi.md#listmovements) | **GET** /crm/api/v1/movements | 
 *MxApi* | [**validateRecipients**](docs/MxApi.md#validaterecipients) | **POST** /crm/api/app/mail/validateRecipients | Validate recipients
-*RemoteAccountApi* | [**getMailAccountAccessRights**](docs/RemoteAccountApi.md#getmailaccountaccessrights) | **GET** /crm/api/v1/mailAccounts/{remoteAccountId}/accessRights | Return the mail account access rights granted to the currently connected user account.
 *RemoteAccountApi* | [**synchronizeCalendars**](docs/RemoteAccountApi.md#synchronizecalendars) | **POST** /crm/api/agenda/account/calendarSync | Synchronize calendars with remote account
 *RemoteAccountApi* | [**synchronizeTasks**](docs/RemoteAccountApi.md#synchronizetasks) | **POST** /crm/api/agenda/account/tasksSync | Synchronize tasks with remote account
 *TasksApi* | [**archiveTaskInternalNote**](docs/TasksApi.md#archivetaskinternalnote) | **POST** /crm/api/v1/tasks/{taskId}/notes/{noteId}/archive | Archive an internal note for a task.
@@ -190,8 +187,6 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.LegacyDocumentDownloadFileResponseAllOf](docs/LegacyDocumentDownloadFileResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyDocumentGetListResponseAllOf](docs/LegacyDocumentGetListResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyDocumentGetResponseAllOf](docs/LegacyDocumentGetResponseAllOf.md)
- - [com.equisoft.connect.sdk.models.LegacyFinanceGetAccountStatementResponseAllOf](docs/LegacyFinanceGetAccountStatementResponseAllOf.md)
- - [com.equisoft.connect.sdk.models.LegacyFinanceGetLiabilitiesResponseAllOf](docs/LegacyFinanceGetLiabilitiesResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyProvisioningGetOrganizationListResponseAllOf](docs/LegacyProvisioningGetOrganizationListResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyProvisioningGetOrganizationResponseAllOf](docs/LegacyProvisioningGetOrganizationResponseAllOf.md)
  - [com.equisoft.connect.sdk.models.LegacyResponse](docs/LegacyResponse.md)
@@ -212,20 +207,6 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.LegacydocumentGetListResponse](docs/LegacydocumentGetListResponse.md)
  - [com.equisoft.connect.sdk.models.LegacydocumentGetResponse](docs/LegacydocumentGetResponse.md)
  - [com.equisoft.connect.sdk.models.LegacydocumentUploadDocumentFileRequest](docs/LegacydocumentUploadDocumentFileRequest.md)
- - [com.equisoft.connect.sdk.models.LegacyfinanceAccountStatement](docs/LegacyfinanceAccountStatement.md)
- - [com.equisoft.connect.sdk.models.LegacyfinanceAsset](docs/LegacyfinanceAsset.md)
- - [com.equisoft.connect.sdk.models.LegacyfinanceGetLiabilitiesResponse](docs/LegacyfinanceGetLiabilitiesResponse.md)
- - [com.equisoft.connect.sdk.models.LegacyfinanceLiability](docs/LegacyfinanceLiability.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePlan](docs/LegacyfinancePlan.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePlanBeneficiary](docs/LegacyfinancePlanBeneficiary.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePlanInTrust](docs/LegacyfinancePlanInTrust.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePlanSummary](docs/LegacyfinancePlanSummary.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePolicy](docs/LegacyfinancePolicy.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePolicyCoverage](docs/LegacyfinancePolicyCoverage.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePolicyCoverageInsured](docs/LegacyfinancePolicyCoverageInsured.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancePolicyCoverageOption](docs/LegacyfinancePolicyCoverageOption.md)
- - [com.equisoft.connect.sdk.models.LegacyfinanceTransaction](docs/LegacyfinanceTransaction.md)
- - [com.equisoft.connect.sdk.models.LegacyfinancegetAccountStatementResponse](docs/LegacyfinancegetAccountStatementResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationListResponse](docs/LegacyprovisioningGetOrganizationListResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyprovisioningGetOrganizationResponse](docs/LegacyprovisioningGetOrganizationResponse.md)
  - [com.equisoft.connect.sdk.models.LegacyprovisioningGroupItem](docs/LegacyprovisioningGroupItem.md)
@@ -285,7 +266,6 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.TasksTask](docs/TasksTask.md)
  - [com.equisoft.connect.sdk.models.TasksTransferToCompletedResponse](docs/TasksTransferToCompletedResponse.md)
  - [com.equisoft.connect.sdk.models.TasksVisibilityType](docs/TasksVisibilityType.md)
- - [com.equisoft.connect.sdk.models.Translation](docs/Translation.md)
  - [com.equisoft.connect.sdk.models.UsersListUsersResponse](docs/UsersListUsersResponse.md)
  - [com.equisoft.connect.sdk.models.UsersUser](docs/UsersUser.md)
 
