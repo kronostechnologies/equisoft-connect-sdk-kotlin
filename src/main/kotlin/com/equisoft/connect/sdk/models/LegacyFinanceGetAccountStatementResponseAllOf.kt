@@ -27,14 +27,13 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param accountStatement Array of contact
+ * @param accountStatement 
  */
 
 data class LegacyFinanceGetAccountStatementResponseAllOf (
 
-    /* Array of contact */
     @Json(name = "accountStatement")
-    val accountStatement: kotlin.collections.List<LegacyfinanceAccountStatement>
+    val accountStatement: LegacyfinanceAccountStatement
 
 )
 
