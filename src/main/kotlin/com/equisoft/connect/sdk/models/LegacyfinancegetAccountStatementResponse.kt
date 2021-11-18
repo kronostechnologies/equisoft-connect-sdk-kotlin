@@ -29,7 +29,7 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param accountStatement 
+ * @param accountStatement Array of contact
  * @param stat Status of the request that has been made. Can be 'ok' or 'fail'
  * @param errorCode If the request has failed, this element will contain the error code related to the problem encountered.
  * @param errorMsg If the request has failed, this element will contain the error message related to the problem encountered.
@@ -37,8 +37,9 @@ import com.squareup.moshi.Json
 
 data class LegacyfinancegetAccountStatementResponse (
 
+    /* Array of contact */
     @Json(name = "accountStatement")
-    val accountStatement: LegacyfinanceAccountStatement,
+    val accountStatement: kotlin.collections.List<LegacyfinanceAccountStatement>,
 
     /* Status of the request that has been made. Can be 'ok' or 'fail' */
     @Json(name = "stat")

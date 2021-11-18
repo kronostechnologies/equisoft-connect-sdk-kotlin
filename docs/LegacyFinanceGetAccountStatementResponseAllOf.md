@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accountStatement** | [**LegacyfinanceAccountStatement**](LegacyfinanceAccountStatement.md) |  | 
+**accountStatement** | [**kotlin.collections.List&lt;LegacyfinanceAccountStatement&gt;**](LegacyfinanceAccountStatement.md) | Array of contact | 
 
 
 
