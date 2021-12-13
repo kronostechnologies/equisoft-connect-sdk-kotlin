@@ -8,7 +8,6 @@ Name | Type | Description | Notes
 **password** | **kotlin.String** | | null | 
 **repcode** | **kotlin.String** |  |  [optional]
 **isADealerCode** | **kotlin.Boolean** |  |  [optional]
-**dealerSystemName** | **kotlin.String** |  |  [optional]
 
 
 
