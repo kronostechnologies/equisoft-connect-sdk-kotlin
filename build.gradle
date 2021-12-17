@@ -1,5 +1,5 @@
 group 'com.equisoft.connect.sdk'
-version '10.12.5'
+version '10.12.6-SNAPSHOT'
 
 wrapper {
     gradleVersion = '6.8.3'
