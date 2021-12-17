@@ -168,6 +168,8 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.GatewaysaccessesListGatewayAccessesResponse](docs/GatewaysaccessesListGatewayAccessesResponse.md)
  - [com.equisoft.connect.sdk.models.GatewaysaccessesPatchEquisoftAnalyzeAccessPayload](docs/GatewaysaccessesPatchEquisoftAnalyzeAccessPayload.md)
  - [com.equisoft.connect.sdk.models.GatewaysaccessesUser](docs/GatewaysaccessesUser.md)
+ - [com.equisoft.connect.sdk.models.GatewaysfullfinanceScrapeJob](docs/GatewaysfullfinanceScrapeJob.md)
+ - [com.equisoft.connect.sdk.models.GatewaysfullfinanceScrapeJobStatus](docs/GatewaysfullfinanceScrapeJobStatus.md)
  - [com.equisoft.connect.sdk.models.Handlersoauth2assetbookAssetBookTokenPostBody](docs/Handlersoauth2assetbookAssetBookTokenPostBody.md)
  - [com.equisoft.connect.sdk.models.InternalNotesAuthor](docs/InternalNotesAuthor.md)
  - [com.equisoft.connect.sdk.models.InternalNotesCreateNotePayload](docs/InternalNotesCreateNotePayload.md)
