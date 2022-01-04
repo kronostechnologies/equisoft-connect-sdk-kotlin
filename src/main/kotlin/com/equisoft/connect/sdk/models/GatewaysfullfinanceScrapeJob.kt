@@ -20,37 +20,32 @@
 
 package com.equisoft.connect.sdk.models
 
+import com.equisoft.connect.sdk.models.GatewaysfullfinanceScrapeJobStatus
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param username | null
- * @param password | null
- * @param repcode 
- * @param isADealerCode 
- * @param dealerSystemName 
+ * @param id 
+ * @param creationDate 
+ * @param status 
+ * @param completionDate 
  */
 
-data class GatewaysCredentials (
+data class GatewaysfullfinanceScrapeJob (
 
-    /* | null */
-    @Json(name = "username")
-    val username: kotlin.String,
+    @Json(name = "id")
+    val id: kotlin.String,
 
-    /* | null */
-    @Json(name = "password")
-    val password: kotlin.String,
+    @Json(name = "creationDate")
+    val creationDate: java.time.LocalDate,
 
-    @Json(name = "repcode")
-    val repcode: kotlin.String? = null,
+    @Json(name = "status")
+    val status: GatewaysfullfinanceScrapeJobStatus,
 
-    @Json(name = "isADealerCode")
-    val isADealerCode: kotlin.Boolean? = null,
-
-    @Json(name = "dealerSystemName")
-    val dealerSystemName: kotlin.String? = null
+    @Json(name = "completionDate")
+    val completionDate: java.time.LocalDate? = null
 
 )
 
