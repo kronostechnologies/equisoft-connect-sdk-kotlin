@@ -16,6 +16,10 @@ Name | Type | Description | Notes
 **corporationName** | **kotlin.String** | first line of corporation name (Organization) |  [optional]
 **corporationNameLine2** | **kotlin.String** | second line of corporation name (Organization) |  [optional]
 **rank** | **kotlin.String** | rank of the contact. (Industrial Alliance only) |  [optional]
+**facebookLink** | **kotlin.String** |  |  [optional]
+**twitterLink** | **kotlin.String** |  |  [optional]
+**linkedinLink** | **kotlin.String** |  |  [optional]
+**avatar** | **kotlin.Int** |  |  [optional]
 
 
 
