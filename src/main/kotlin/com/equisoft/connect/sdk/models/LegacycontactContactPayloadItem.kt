@@ -40,10 +40,6 @@ import com.squareup.moshi.Json
  * @param corporationName first line of corporation name (Organization)
  * @param corporationNameLine2 second line of corporation name (Organization)
  * @param rank rank of the contact. (Industrial Alliance only)
- * @param facebookLink 
- * @param twitterLink 
- * @param linkedinLink 
- * @param avatar 
  * @param externalKey external key
  * @param externalKeyType External key type
  * @param gender Gender of the contact. Either MALE or FEMALE
@@ -140,18 +136,6 @@ data class LegacycontactContactPayloadItem (
     /* rank of the contact. (Industrial Alliance only) */
     @Json(name = "rank")
     val rank: kotlin.String? = null,
-
-    @Json(name = "facebookLink")
-    val facebookLink: kotlin.String? = null,
-
-    @Json(name = "twitterLink")
-    val twitterLink: kotlin.String? = null,
-
-    @Json(name = "linkedinLink")
-    val linkedinLink: kotlin.String? = null,
-
-    @Json(name = "avatar")
-    val avatar: kotlin.Int? = null,
 
     /* external key */
     @Json(name = "externalKey")
