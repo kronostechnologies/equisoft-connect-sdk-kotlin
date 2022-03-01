@@ -14,10 +14,10 @@ Name | Type | Description | Notes
 **description** | **kotlin.String** | Public description of the Event. |  [optional]
 **internalNotes** | **kotlin.String** | Internal notes on the Event. Not synced on remote sources. |  [optional]
 **location** | **kotlin.String** | Location of the event in free-text form. |  [optional]
-**type** | **kotlin.String** | Event type (CALL, LETTER, MEETING, VACATION, FILE, NOTE) |  [optional]
+**type** | [**kotlin.Any**](.md) | Event type |  [optional]
 **categoryId** | **kotlin.Int** | ID of the field value to use as category. |  [optional]
 **subCategoryId** | **kotlin.Int** | ID of the field value to use as sub-category. |  [optional]
-**priority** | **kotlin.Int** | Importance/Priority of an event or task. 5 is the most important. |  [optional]
+**priority** | [**kotlin.Any**](.md) | Importance/Priority of an event or task. 5 is the most important. |  [optional]
 **visibility** | **kotlin.String** | Confidentiality level of the Event (private or not). [NORMAL, PRIVATE] |  [optional]
 **contactIds** | **kotlin.collections.List&lt;kotlin.Int&gt;** | Allow to link the event to one or many contacts. |  [optional]
 

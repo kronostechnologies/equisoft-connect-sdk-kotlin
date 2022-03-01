@@ -35,7 +35,7 @@ import com.squareup.moshi.Json
  * @param description Public description of the Event.
  * @param internalNotes Internal notes on the Event. Not synced on remote sources.
  * @param location Location of the event in free-text form.
- * @param type Event type (CALL, LETTER, MEETING, VACATION, FILE, NOTE)
+ * @param type Event type
  * @param categoryId ID of the field value to use as category.
  * @param subCategoryId ID of the field value to use as sub-category.
  * @param priority Importance/Priority of an event or task. 5 is the most important.
@@ -75,9 +75,9 @@ data class EventsPatchEventPayload (
     @Json(name = "location")
     val location: kotlin.String? = null,
 
-    /* Event type (CALL, LETTER, MEETING, VACATION, FILE, NOTE) */
+    /* Event type */
     @Json(name = "type")
-    val type: kotlin.String? = null,
+    val type: kotlin.Any? = null,
 
     /* ID of the field value to use as category. */
     @Json(name = "categoryId")
@@ -89,7 +89,7 @@ data class EventsPatchEventPayload (
 
     /* Importance/Priority of an event or task. 5 is the most important. */
     @Json(name = "priority")
-    val priority: kotlin.Int? = null,
+    val priority: kotlin.Any? = null,
 
     /* Confidentiality level of the Event (private or not). [NORMAL, PRIVATE] */
     @Json(name = "visibility")

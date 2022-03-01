@@ -85,7 +85,7 @@ data class TasksCreateTaskPayload (
 
     /* Importance/Priority of an event or task. 5 is the most important. */
     @Json(name = "priority")
-    val priority: kotlin.Int? = null,
+    val priority: kotlin.Any? = null,
 
     /* Confidentiality level of the Event (private or not). [NORMAL, PRIVATE] */
     @Json(name = "visibility")
