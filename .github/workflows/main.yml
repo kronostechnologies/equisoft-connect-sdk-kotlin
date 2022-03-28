@@ -75,7 +75,7 @@ jobs:
 
       # Setup asdf-vm
       - name: Cache asdf tooling
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           key: asdf-${{ runner.os }}-${{ hashFiles('.tool-versions') }}
           restore-keys: asdf-${{ runner.os }}-
