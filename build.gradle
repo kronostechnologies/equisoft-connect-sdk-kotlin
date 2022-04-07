@@ -1,8 +1,8 @@
 group 'com.equisoft.connect.sdk'
-version '10.18.3-SNAPSHOT'
+version '10.18.3'
 
 wrapper {
-    gradleVersion = '7.4.2'
+    gradleVersion = '6.8.3'
     distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
 }
 
