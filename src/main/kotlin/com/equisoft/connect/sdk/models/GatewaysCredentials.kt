@@ -28,7 +28,7 @@ import com.squareup.moshi.Json
  *
  * @param username | null
  * @param password | null
- * @param repcode 
+ * @param repcode | null
  * @param isADealerCode 
  * @param dealerSystemName 
  */
@@ -43,6 +43,7 @@ data class GatewaysCredentials (
     @Json(name = "password")
     val password: kotlin.String,
 
+    /* | null */
     @Json(name = "repcode")
     val repcode: kotlin.String? = null,
 
