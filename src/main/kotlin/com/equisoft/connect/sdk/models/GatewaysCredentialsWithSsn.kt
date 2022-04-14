@@ -30,7 +30,7 @@ import com.squareup.moshi.Json
  *
  * @param username | null
  * @param password | null
- * @param repcode | null
+ * @param repcode 
  * @param isADealerCode 
  * @param dealerSystemName 
  * @param ssnList The list will contain formatted SSNs, i.e. \"123 456 789\"
@@ -46,7 +46,6 @@ data class GatewaysCredentialsWithSsn (
     @Json(name = "password")
     val password: kotlin.String,
 
-    /* | null */
     @Json(name = "repcode")
     val repcode: kotlin.String? = null,
 
