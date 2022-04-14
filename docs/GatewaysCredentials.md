@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **username** | **kotlin.String** | | null | 
 **password** | **kotlin.String** | | null | 
-**repcode** | **kotlin.String** |  |  [optional]
+**repcode** | **kotlin.String** | | null |  [optional]
 **isADealerCode** | **kotlin.Boolean** |  |  [optional]
 **dealerSystemName** | **kotlin.String** |  |  [optional]
 
