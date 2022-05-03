@@ -33,7 +33,7 @@ import com.squareup.moshi.Json
 data class LegacyFinanceGetAccountStatementResponseAllOf (
 
     @Json(name = "accountStatement")
-    val accountStatement: LegacyfinanceAccountStatement
+    val accountStatement: LegacyfinanceAccountStatement? = null
 
 )
 

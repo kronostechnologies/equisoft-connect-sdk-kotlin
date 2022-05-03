@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**inline**](#Type) |  | 
-**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
-**destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
-**users** | [**kotlin.collections.List&lt;MovementUser&gt;**](MovementUser.md) |  | 
+**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  |  [optional]
+**destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  |  [optional]
+**users** | [**kotlin.collections.List&lt;MovementUser&gt;**](MovementUser.md) |  |  [optional]
+**type** | [**inline**](#Type) |  |  [optional]
 
 
 <a name="Type"></a>

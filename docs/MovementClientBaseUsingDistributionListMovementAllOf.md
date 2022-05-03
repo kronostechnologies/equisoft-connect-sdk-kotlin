@@ -4,14 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**inline**](#Type) |  | 
-**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
-**sourceUser** | [**MovementUser**](MovementUser.md) |  | 
-**destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
-**destinationUser** | [**MovementUser**](MovementUser.md) |  | 
-**transferOption** | **kotlin.String** |  | 
+**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  |  [optional]
+**sourceUser** | [**MovementUser**](MovementUser.md) |  |  [optional]
 **sourceDistributionList** | [**MovementDistributionList**](MovementDistributionList.md) |  |  [optional]
+**destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  |  [optional]
+**destinationUser** | [**MovementUser**](MovementUser.md) |  |  [optional]
 **datagatewayAccessMappings** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** |  |  [optional]
+**transferOption** | **kotlin.String** |  |  [optional]
+**type** | [**inline**](#Type) |  |  [optional]
 
 
 <a name="Type"></a>

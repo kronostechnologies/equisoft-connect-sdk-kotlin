@@ -4,9 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | **kotlin.String** |  | 
 **destinationDatabase** | **kotlin.String** |  | 
+**type** | [**inline**](#Type) |  | 
 **userTuples** | [**kotlin.collections.List&lt;MovementUserTuplePayload&gt;**](MovementUserTuplePayload.md) |  |  [optional]
 
 

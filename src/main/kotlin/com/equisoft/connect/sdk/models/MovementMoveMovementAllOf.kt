@@ -28,25 +28,25 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param type 
  * @param sourceDatabase 
  * @param destinationDatabase 
  * @param users 
+ * @param type 
  */
 
 data class MovementMoveMovementAllOf (
 
-    @Json(name = "type")
-    val type: MovementMoveMovementAllOf.Type = Type.MOVE,
-
     @Json(name = "sourceDatabase")
-    val sourceDatabase: MovementDatabase,
+    val sourceDatabase: MovementDatabase? = null,
 
     @Json(name = "destinationDatabase")
-    val destinationDatabase: MovementDatabase,
+    val destinationDatabase: MovementDatabase? = null,
 
     @Json(name = "users")
-    val users: kotlin.collections.List<MovementUser>
+    val users: kotlin.collections.List<MovementUser>? = null,
+
+    @Json(name = "type")
+    val type: MovementMoveMovementAllOf.Type? = null
 
 ) {
 

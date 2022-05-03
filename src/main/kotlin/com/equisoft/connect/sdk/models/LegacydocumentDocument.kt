@@ -27,14 +27,8 @@ import com.equisoft.connect.sdk.models.LegacydocumentFile
 import com.squareup.moshi.Json
 
 /**
- * 
+ * Payload needed by the kronos.document.add method {@example addDocumentUpload.xml} payload example
  *
- * @param files Files contained inside the document
- * @param contacts List of linked contacts
- * @param createdBy email of user who created the document
- * @param createdOn date of creation of the document
- * @param modifiedBy email of user who last modified the document
- * @param modifiedOn date of the last modification of the document
  * @param externalKey external key of the document
  * @param dateStart date start of the document
  * @param dateEnd date end of the document
@@ -46,33 +40,15 @@ import com.squareup.moshi.Json
  * @param type type of the document
  * @param subType subtype of the document
  * @param name name of the document
+ * @param files Files contained inside the document
+ * @param contacts List of linked contacts
+ * @param createdBy email of user who created the document
+ * @param createdOn date of creation of the document
+ * @param modifiedBy email of user who last modified the document
+ * @param modifiedOn date of the last modification of the document
  */
 
 data class LegacydocumentDocument (
-
-    /* Files contained inside the document */
-    @Json(name = "files")
-    val files: kotlin.collections.List<LegacydocumentFile>? = null,
-
-    /* List of linked contacts */
-    @Json(name = "contacts")
-    val contacts: kotlin.collections.List<LegacycontactContact>? = null,
-
-    /* email of user who created the document */
-    @Json(name = "createdBy")
-    val createdBy: kotlin.String? = null,
-
-    /* date of creation of the document */
-    @Json(name = "createdOn")
-    val createdOn: kotlin.String? = null,
-
-    /* email of user who last modified the document */
-    @Json(name = "modifiedBy")
-    val modifiedBy: kotlin.String? = null,
-
-    /* date of the last modification of the document */
-    @Json(name = "modifiedOn")
-    val modifiedOn: kotlin.String? = null,
 
     /* external key of the document */
     @Json(name = "externalKey")
@@ -116,7 +92,31 @@ data class LegacydocumentDocument (
 
     /* name of the document */
     @Json(name = "name")
-    val name: kotlin.String? = null
+    val name: kotlin.String? = null,
+
+    /* Files contained inside the document */
+    @Json(name = "files")
+    val files: kotlin.collections.List<LegacydocumentFile>? = null,
+
+    /* List of linked contacts */
+    @Json(name = "contacts")
+    val contacts: kotlin.collections.List<LegacycontactContact>? = null,
+
+    /* email of user who created the document */
+    @Json(name = "createdBy")
+    val createdBy: kotlin.String? = null,
+
+    /* date of creation of the document */
+    @Json(name = "createdOn")
+    val createdOn: kotlin.String? = null,
+
+    /* email of user who last modified the document */
+    @Json(name = "modifiedBy")
+    val modifiedBy: kotlin.String? = null,
+
+    /* date of the last modification of the document */
+    @Json(name = "modifiedOn")
+    val modifiedOn: kotlin.String? = null
 
 )
 

@@ -29,25 +29,25 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param id 
- * @param users 
  * @param clientKey 
  * @param version 
+ * @param id 
+ * @param users 
  */
 
 data class GatewaysaccessesEquisoftAnalyzeAccess (
-
-    @Json(name = "id")
-    override val id: kotlin.Int,
-
-    @Json(name = "users")
-    override val users: kotlin.collections.List<GatewaysaccessesUser>,
 
     @Json(name = "clientKey")
     val clientKey: kotlin.String,
 
     @Json(name = "version")
-    val version: GatewaysaccessesEquisoftAnalyzeAccess.Version = Version.NATIVE
+    val version: GatewaysaccessesEquisoftAnalyzeAccess.Version = Version.NATIVE,
+
+    @Json(name = "id")
+    override val id: kotlin.Int,
+
+    @Json(name = "users")
+    override val users: kotlin.collections.List<GatewaysaccessesUser>
 
 ) : GatewaysaccessesAccess {
 

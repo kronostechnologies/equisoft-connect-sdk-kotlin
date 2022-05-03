@@ -34,7 +34,7 @@ data class LegacyAddUpdateResponseAllOf (
 
     /* List all items status for the Add or Update operation */
     @Json(name = "items")
-    val items: kotlin.collections.List<LegacyAddUpdateItem>
+    val items: kotlin.collections.List<LegacyAddUpdateItem>? = null
 
 )
 
