@@ -157,7 +157,7 @@ Configure OAuth2:
 
 <a name="updateUser"></a>
 # **updateUser**
-> updateUser(uuid, id, usersUpdateUserPayload)
+> kotlin.Any updateUser(uuid, id, usersUpdateUserPayload)
 
 
 
@@ -172,7 +172,8 @@ val uuid : kotlin.String = uuid_example // kotlin.String |
 val id : kotlin.Int = 56 // kotlin.Int | 
 val usersUpdateUserPayload : UsersUpdateUserPayload =  // UsersUpdateUserPayload | 
 try {
-    apiInstance.updateUser(uuid, id, usersUpdateUserPayload)
+    val result : kotlin.Any = apiInstance.updateUser(uuid, id, usersUpdateUserPayload)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling DatabasesApi#updateUser")
     e.printStackTrace()
@@ -192,7 +193,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 
