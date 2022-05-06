@@ -28,6 +28,22 @@ import com.squareup.moshi.Json
 /**
  * 
  *
+ * @param id Unique id
+ * @param uuid Contact UUID
+ * @param typeContact type of the contact
+ * @param indOrg type INDIVIDUAL OR ORGANIZATION
+ * @param displayName display name of the contact
+ * @param firstName first name of the contact
+ * @param nickname nickname of the contact
+ * @param middleName middle name of the contact
+ * @param lastName last name of the contact
+ * @param corporationName first line of corporation name (Organization)
+ * @param corporationNameLine2 second line of corporation name (Organization)
+ * @param rank rank of the contact. (Industrial Alliance only)
+ * @param facebookLink 
+ * @param twitterLink 
+ * @param linkedinLink 
+ * @param avatar 
  * @param externalKey external key
  * @param externalKeyType External key type
  * @param gender Gender of the contact. Either MALE or FEMALE
@@ -73,25 +89,69 @@ import com.squareup.moshi.Json
  * @param orgProvNo 
  * @param orgStateId 
  * @param orgEin 
- * @param id Unique id
- * @param uuid Contact UUID
- * @param typeContact type of the contact
- * @param indOrg type INDIVIDUAL OR ORGANIZATION
- * @param displayName display name of the contact
- * @param firstName first name of the contact
- * @param nickname nickname of the contact
- * @param middleName middle name of the contact
- * @param lastName last name of the contact
- * @param corporationName first line of corporation name (Organization)
- * @param corporationNameLine2 second line of corporation name (Organization)
- * @param rank rank of the contact. (Industrial Alliance only)
- * @param facebookLink 
- * @param twitterLink 
- * @param linkedinLink 
- * @param avatar 
  */
 
 data class LegacycontactContactPayloadItem (
+
+    /* Unique id */
+    @Json(name = "id")
+    val id: kotlin.String? = null,
+
+    /* Contact UUID */
+    @Json(name = "uuid")
+    val uuid: kotlin.String? = null,
+
+    /* type of the contact */
+    @Json(name = "typeContact")
+    val typeContact: kotlin.String? = null,
+
+    /* type INDIVIDUAL OR ORGANIZATION */
+    @Json(name = "indOrg")
+    val indOrg: kotlin.String? = null,
+
+    /* display name of the contact */
+    @Json(name = "displayName")
+    val displayName: kotlin.String? = null,
+
+    /* first name of the contact */
+    @Json(name = "firstName")
+    val firstName: kotlin.String? = null,
+
+    /* nickname of the contact */
+    @Json(name = "nickname")
+    val nickname: kotlin.String? = null,
+
+    /* middle name of the contact */
+    @Json(name = "middleName")
+    val middleName: kotlin.String? = null,
+
+    /* last name of the contact */
+    @Json(name = "lastName")
+    val lastName: kotlin.String? = null,
+
+    /* first line of corporation name (Organization) */
+    @Json(name = "corporationName")
+    val corporationName: kotlin.String? = null,
+
+    /* second line of corporation name (Organization) */
+    @Json(name = "corporationNameLine2")
+    val corporationNameLine2: kotlin.String? = null,
+
+    /* rank of the contact. (Industrial Alliance only) */
+    @Json(name = "rank")
+    val rank: kotlin.String? = null,
+
+    @Json(name = "facebookLink")
+    val facebookLink: kotlin.String? = null,
+
+    @Json(name = "twitterLink")
+    val twitterLink: kotlin.String? = null,
+
+    @Json(name = "linkedinLink")
+    val linkedinLink: kotlin.String? = null,
+
+    @Json(name = "avatar")
+    val avatar: kotlin.Int? = null,
 
     /* external key */
     @Json(name = "externalKey")
@@ -263,67 +323,7 @@ data class LegacycontactContactPayloadItem (
     val orgStateId: kotlin.String? = null,
 
     @Json(name = "orgEin")
-    val orgEin: kotlin.String? = null,
-
-    /* Unique id */
-    @Json(name = "id")
-    val id: kotlin.String? = null,
-
-    /* Contact UUID */
-    @Json(name = "uuid")
-    val uuid: kotlin.String? = null,
-
-    /* type of the contact */
-    @Json(name = "typeContact")
-    val typeContact: kotlin.String? = null,
-
-    /* type INDIVIDUAL OR ORGANIZATION */
-    @Json(name = "indOrg")
-    val indOrg: kotlin.String? = null,
-
-    /* display name of the contact */
-    @Json(name = "displayName")
-    val displayName: kotlin.String? = null,
-
-    /* first name of the contact */
-    @Json(name = "firstName")
-    val firstName: kotlin.String? = null,
-
-    /* nickname of the contact */
-    @Json(name = "nickname")
-    val nickname: kotlin.String? = null,
-
-    /* middle name of the contact */
-    @Json(name = "middleName")
-    val middleName: kotlin.String? = null,
-
-    /* last name of the contact */
-    @Json(name = "lastName")
-    val lastName: kotlin.String? = null,
-
-    /* first line of corporation name (Organization) */
-    @Json(name = "corporationName")
-    val corporationName: kotlin.String? = null,
-
-    /* second line of corporation name (Organization) */
-    @Json(name = "corporationNameLine2")
-    val corporationNameLine2: kotlin.String? = null,
-
-    /* rank of the contact. (Industrial Alliance only) */
-    @Json(name = "rank")
-    val rank: kotlin.String? = null,
-
-    @Json(name = "facebookLink")
-    val facebookLink: kotlin.String? = null,
-
-    @Json(name = "twitterLink")
-    val twitterLink: kotlin.String? = null,
-
-    @Json(name = "linkedinLink")
-    val linkedinLink: kotlin.String? = null,
-
-    @Json(name = "avatar")
-    val avatar: kotlin.Int? = null
+    val orgEin: kotlin.String? = null
 
 )
 

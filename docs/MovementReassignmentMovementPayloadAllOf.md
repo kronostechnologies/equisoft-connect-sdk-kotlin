@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sourceDatabase** | **kotlin.String** |  |  [optional]
-**sourceUser** | **kotlin.String** |  |  [optional]
-**destinationUser** | **kotlin.String** |  |  [optional]
-**accessCode** | **kotlin.String** |  |  [optional]
-**type** | [**inline**](#Type) |  |  [optional]
+**type** | [**inline**](#Type) |  | 
+**sourceDatabase** | **kotlin.String** |  | 
+**sourceUser** | **kotlin.String** |  | 
+**destinationUser** | **kotlin.String** |  | 
+**accessCode** | **kotlin.String** |  | 
 
 
 <a name="Type"></a>

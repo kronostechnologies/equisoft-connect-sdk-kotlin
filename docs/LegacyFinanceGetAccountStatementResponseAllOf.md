@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**accountStatement** | [**LegacyfinanceAccountStatement**](LegacyfinanceAccountStatement.md) |  |  [optional]
+**accountStatement** | [**LegacyfinanceAccountStatement**](LegacyfinanceAccountStatement.md) |  | 
 
 
 

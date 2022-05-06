@@ -4,8 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**clientKey** | **kotlin.String** |  |  [optional]
-**version** | [**inline**](#Version) |  |  [optional]
+**clientKey** | **kotlin.String** |  | 
+**version** | [**inline**](#Version) |  | 
 
 
 <a name="Version"></a>

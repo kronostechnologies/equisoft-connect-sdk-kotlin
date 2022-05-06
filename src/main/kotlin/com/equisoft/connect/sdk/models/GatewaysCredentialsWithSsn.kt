@@ -30,10 +30,10 @@ import com.squareup.moshi.Json
  *
  * @param username | null
  * @param password | null
- * @param ssnList The list will contain formatted SSNs, i.e. \"123 456 789\"
  * @param repcode | null
  * @param isADealerCode 
  * @param dealerSystemName 
+ * @param ssnList The list will contain formatted SSNs, i.e. \"123 456 789\"
  */
 
 data class GatewaysCredentialsWithSsn (
@@ -46,10 +46,6 @@ data class GatewaysCredentialsWithSsn (
     @Json(name = "password")
     val password: kotlin.String,
 
-    /* The list will contain formatted SSNs, i.e. \"123 456 789\" */
-    @Json(name = "ssnList")
-    val ssnList: kotlin.collections.List<kotlin.String>? = null,
-
     /* | null */
     @Json(name = "repcode")
     val repcode: kotlin.String? = null,
@@ -58,7 +54,11 @@ data class GatewaysCredentialsWithSsn (
     val isADealerCode: kotlin.Boolean? = null,
 
     @Json(name = "dealerSystemName")
-    val dealerSystemName: kotlin.String? = null
+    val dealerSystemName: kotlin.String? = null,
+
+    /* The list will contain formatted SSNs, i.e. \"123 456 789\" */
+    @Json(name = "ssnList")
+    val ssnList: kotlin.collections.List<kotlin.String>? = null
 
 )
 

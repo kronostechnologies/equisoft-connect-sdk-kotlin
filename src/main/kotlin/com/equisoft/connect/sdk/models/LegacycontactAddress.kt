@@ -42,7 +42,7 @@ import com.squareup.moshi.Json
  * @param extType Industrielle Alliance Only
  * @param extNumber Industrielle Alliance Only
  * @param notes 
- * @param locked address is locked or not (true or false)
+ * @param locked true or false
  */
 
 data class LegacycontactAddress (
@@ -110,7 +110,7 @@ data class LegacycontactAddress (
     @Json(name = "notes")
     val notes: kotlin.String? = null,
 
-    /* address is locked or not (true or false) */
+    /* true or false */
     @Json(name = "locked")
     val locked: kotlin.String? = null
 

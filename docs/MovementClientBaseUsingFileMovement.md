@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
 **sourceUser** | [**MovementUser**](MovementUser.md) |  | 
 **destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
 **destinationUser** | [**MovementUser**](MovementUser.md) |  | 
-**type** | [**inline**](#Type) |  | 
 **capsil** | **kotlin.Boolean** |  |  [optional]
 **univeris** | **kotlin.Boolean** |  |  [optional]
 **dataphile** | **kotlin.Boolean** |  |  [optional]

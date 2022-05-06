@@ -27,6 +27,8 @@ import com.squareup.moshi.Json
  * 
  *
  * @param subject Subject/Title of the Event.
+ * @param ownerIds Ids of the owner users of the task.
+ * @param isCompleted Is the task completed.
  * @param dueDate Date the task is expected to be done. As defined by full-date - RFC3339
  * @param initialDate Date the task was initially started. As defined by full-date - RFC3339
  * @param completedDate Date the task was completed / done. As defined by full-date - RFC3339
@@ -37,8 +39,6 @@ import com.squareup.moshi.Json
  * @param priority Importance/Priority of an event or task. 5 is the most important.
  * @param visibility Confidentiality level of the Event (private or not). [NORMAL, PRIVATE]
  * @param contactIds Allow to link the task to one or many contacts.
- * @param ownerIds Ids of the owner users of the task.
- * @param isCompleted Is the task completed.
  */
 
 data class TasksCreateTaskPayload (
@@ -46,6 +46,14 @@ data class TasksCreateTaskPayload (
     /* Subject/Title of the Event. */
     @Json(name = "subject")
     val subject: kotlin.String,
+
+    /* Ids of the owner users of the task. */
+    @Json(name = "ownerIds")
+    val ownerIds: kotlin.collections.List<kotlin.Int>? = null,
+
+    /* Is the task completed. */
+    @Json(name = "isCompleted")
+    val isCompleted: kotlin.Boolean? = null,
 
     /* Date the task is expected to be done. As defined by full-date - RFC3339 */
     @Json(name = "dueDate")
@@ -85,15 +93,7 @@ data class TasksCreateTaskPayload (
 
     /* Allow to link the task to one or many contacts. */
     @Json(name = "contactIds")
-    val contactIds: kotlin.collections.List<kotlin.Int>? = null,
-
-    /* Ids of the owner users of the task. */
-    @Json(name = "ownerIds")
-    val ownerIds: kotlin.collections.List<kotlin.Int>? = null,
-
-    /* Is the task completed. */
-    @Json(name = "isCompleted")
-    val isCompleted: kotlin.Boolean? = null
+    val contactIds: kotlin.collections.List<kotlin.Int>? = null
 
 )
 

@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**organization** | [**LegacyprovisioningOrganizationItem**](LegacyprovisioningOrganizationItem.md) |  |  [optional]
+**organization** | [**LegacyprovisioningOrganizationItem**](LegacyprovisioningOrganizationItem.md) |  | 
 
 
 
