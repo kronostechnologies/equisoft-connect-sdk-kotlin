@@ -23,6 +23,7 @@ package com.equisoft.connect.sdk
 import com.equisoft.connect.sdk.models.DatabasesListDatabasesResponse
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.UsersListUsersResponse
+import com.equisoft.connect.sdk.models.UsersUpdateUserPayload
 import com.equisoft.connect.sdk.models.UsersUser
 
 import com.equisoft.connect.sdk.infrastructure.ApiClient
@@ -213,6 +214,63 @@ class DatabasesApi(
         return RequestConfig(
             method = RequestMethod.GET,
             path = "/crm/api/v1/databases/{uuid}/users".replace("{"+"uuid"+"}", "$uuid"),
+            query = localVariableQuery,
+            headers = localVariableHeaders,
+            body = localVariableBody
+        )
+    }
+
+    /**
+    * 
+    * 
+    * @param uuid  
+    * @param id  
+    * @param usersUpdateUserPayload  
+    * @return kotlin.Any
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun updateUser(uuid: kotlin.String, id: kotlin.Int, usersUpdateUserPayload: UsersUpdateUserPayload) : kotlin.Any {
+        val localVariableConfig = updateUserRequestConfig(uuid = uuid, id = id, usersUpdateUserPayload = usersUpdateUserPayload)
+
+        val localVarResponse = request<UsersUpdateUserPayload, kotlin.Any>(
+            localVariableConfig
+        )
+
+        return when (localVarResponse.responseType) {
+            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
+            ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
+            ResponseType.ClientError -> {
+                val localVarError = localVarResponse as ClientError<*>
+                throw ClientException("Client error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+            ResponseType.ServerError -> {
+                val localVarError = localVarResponse as ServerError<*>
+                throw ServerException("Server error : ${localVarError.statusCode} ${localVarError.message.orEmpty()}", localVarError.statusCode, localVarResponse)
+            }
+        }
+    }
+
+    /**
+    * To obtain the request config of the operation updateUser
+    *
+    * @param uuid  
+    * @param id  
+    * @param usersUpdateUserPayload  
+    * @return RequestConfig
+    */
+    fun updateUserRequestConfig(uuid: kotlin.String, id: kotlin.Int, usersUpdateUserPayload: UsersUpdateUserPayload) : RequestConfig<UsersUpdateUserPayload> {
+        val localVariableBody = usersUpdateUserPayload
+        val localVariableQuery: MultiValueMap = mutableMapOf()
+        val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+
+        return RequestConfig(
+            method = RequestMethod.PATCH,
+            path = "/crm/api/v1/databases/{uuid}/users/{id}".replace("{"+"uuid"+"}", "$uuid").replace("{"+"id"+"}", "$id"),
             query = localVariableQuery,
             headers = localVariableHeaders,
             body = localVariableBody

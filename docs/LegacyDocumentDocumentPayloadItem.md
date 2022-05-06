@@ -4,8 +4,6 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**files** | [**kotlin.collections.List&lt;LegacydocumentBase64FilePayloadItem&gt;**](LegacydocumentBase64FilePayloadItem.md) | Files contained inside the document |  [optional]
-**contacts** | [**kotlin.collections.List&lt;LegacycontactContactPayloadItem&gt;**](LegacycontactContactPayloadItem.md) | List of linked contacts |  [optional]
 **externalKey** | **kotlin.String** | external key of the document |  [optional]
 **dateStart** | **kotlin.String** | date start of the document |  [optional]
 **dateEnd** | **kotlin.String** | date end of the document |  [optional]
@@ -17,6 +15,8 @@ Name | Type | Description | Notes
 **type** | **kotlin.String** | type of the document |  [optional]
 **subType** | **kotlin.String** | subtype of the document |  [optional]
 **name** | **kotlin.String** | name of the document |  [optional]
+**files** | [**kotlin.collections.List&lt;LegacydocumentBase64FilePayloadItem&gt;**](LegacydocumentBase64FilePayloadItem.md) | Files contained inside the document |  [optional]
+**contacts** | [**kotlin.collections.List&lt;LegacycontactContactPayloadItem&gt;**](LegacycontactContactPayloadItem.md) | List of linked contacts |  [optional]
 
 
 
