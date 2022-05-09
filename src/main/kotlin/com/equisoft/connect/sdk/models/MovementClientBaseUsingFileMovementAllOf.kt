@@ -28,6 +28,7 @@ import com.squareup.moshi.Json
 /**
  * 
  *
+ * @param type 
  * @param sourceDatabase 
  * @param sourceUser 
  * @param destinationDatabase 
@@ -35,22 +36,24 @@ import com.squareup.moshi.Json
  * @param capsil 
  * @param univeris 
  * @param dataphile 
- * @param type 
  */
 
 data class MovementClientBaseUsingFileMovementAllOf (
 
+    @Json(name = "type")
+    val type: MovementClientBaseUsingFileMovementAllOf.Type = Type.CLIENTBASE_USING_FILE,
+
     @Json(name = "sourceDatabase")
-    val sourceDatabase: MovementDatabase? = null,
+    val sourceDatabase: MovementDatabase,
 
     @Json(name = "sourceUser")
-    val sourceUser: MovementUser? = null,
+    val sourceUser: MovementUser,
 
     @Json(name = "destinationDatabase")
-    val destinationDatabase: MovementDatabase? = null,
+    val destinationDatabase: MovementDatabase,
 
     @Json(name = "destinationUser")
-    val destinationUser: MovementUser? = null,
+    val destinationUser: MovementUser,
 
     @Json(name = "capsil")
     val capsil: kotlin.Boolean? = null,
@@ -59,10 +62,7 @@ data class MovementClientBaseUsingFileMovementAllOf (
     val univeris: kotlin.Boolean? = null,
 
     @Json(name = "dataphile")
-    val dataphile: kotlin.Boolean? = null,
-
-    @Json(name = "type")
-    val type: MovementClientBaseUsingFileMovementAllOf.Type? = null
+    val dataphile: kotlin.Boolean? = null
 
 ) {
 

@@ -30,6 +30,8 @@ import com.squareup.moshi.Json
  * @param subject Subject/Title of the Event.
  * @param start 
  * @param allDay Indicate if the event is an all-day event or a timed event.
+ * @param calendarId Calendar the Event will be created for. A numerical ID returned by listCalendars. The string `primary` for the current connected user primary ('TODO') calendar. The string `completed` for the current connected user completed ('DONE') calendar. The `calendarId` parameter can't be used with the `ownerId` parameter.
+ * @param ownerIds For local legacy events, `ownerIds` can be used instead of calendarId to create an Event for many user at once. Cannot be used with `calendarId`. Cannot be used for users with remote calendar (Exchange, Office365, Outlook.com).
  * @param end 
  * @param initialDate Date the Event was initially scheduled. As defined by full-date - RFC3339
  * @param description Public description of the Event.
@@ -41,8 +43,6 @@ import com.squareup.moshi.Json
  * @param priority Importance/Priority of an event or task. 5 is the most important.
  * @param visibility Confidentiality level of the Event (private or not). [NORMAL, PRIVATE]
  * @param contactIds Allow to link the event to one or many contacts.
- * @param calendarId Calendar the Event will be created for. A numerical ID returned by listCalendars. The string `primary` for the current connected user primary ('TODO') calendar. The string `completed` for the current connected user completed ('DONE') calendar. The `calendarId` parameter can't be used with the `ownerId` parameter.
- * @param ownerIds For local legacy events, `ownerIds` can be used instead of calendarId to create an Event for many user at once. Cannot be used with `calendarId`. Cannot be used for users with remote calendar (Exchange, Office365, Outlook.com).
  */
 
 data class EventsCreateEventPayload (
@@ -57,6 +57,14 @@ data class EventsCreateEventPayload (
     /* Indicate if the event is an all-day event or a timed event. */
     @Json(name = "allDay")
     val allDay: kotlin.Boolean,
+
+    /* Calendar the Event will be created for. A numerical ID returned by listCalendars. The string `primary` for the current connected user primary ('TODO') calendar. The string `completed` for the current connected user completed ('DONE') calendar. The `calendarId` parameter can't be used with the `ownerId` parameter. */
+    @Json(name = "calendarId")
+    val calendarId: kotlin.String? = null,
+
+    /* For local legacy events, `ownerIds` can be used instead of calendarId to create an Event for many user at once. Cannot be used with `calendarId`. Cannot be used for users with remote calendar (Exchange, Office365, Outlook.com). */
+    @Json(name = "ownerIds")
+    val ownerIds: kotlin.collections.List<kotlin.Int>? = null,
 
     @Json(name = "end")
     val end: DateOrDateTime? = null,
@@ -99,15 +107,7 @@ data class EventsCreateEventPayload (
 
     /* Allow to link the event to one or many contacts. */
     @Json(name = "contactIds")
-    val contactIds: kotlin.collections.List<kotlin.Int>? = null,
-
-    /* Calendar the Event will be created for. A numerical ID returned by listCalendars. The string `primary` for the current connected user primary ('TODO') calendar. The string `completed` for the current connected user completed ('DONE') calendar. The `calendarId` parameter can't be used with the `ownerId` parameter. */
-    @Json(name = "calendarId")
-    val calendarId: kotlin.String? = null,
-
-    /* For local legacy events, `ownerIds` can be used instead of calendarId to create an Event for many user at once. Cannot be used with `calendarId`. Cannot be used for users with remote calendar (Exchange, Office365, Outlook.com). */
-    @Json(name = "ownerIds")
-    val ownerIds: kotlin.collections.List<kotlin.Int>? = null
+    val contactIds: kotlin.collections.List<kotlin.Int>? = null
 
 )
 

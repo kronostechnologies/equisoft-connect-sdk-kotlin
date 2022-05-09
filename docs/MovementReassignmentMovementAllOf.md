@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  |  [optional]
-**sourceUser** | [**MovementUser**](MovementUser.md) |  |  [optional]
-**destinationUser** | [**MovementUser**](MovementUser.md) |  |  [optional]
-**accessCode** | [**MovementGatewayAccessCode**](MovementGatewayAccessCode.md) |  |  [optional]
-**type** | [**inline**](#Type) |  |  [optional]
+**type** | [**inline**](#Type) |  | 
+**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
+**sourceUser** | [**MovementUser**](MovementUser.md) |  | 
+**destinationUser** | [**MovementUser**](MovementUser.md) |  | 
+**accessCode** | [**MovementGatewayAccessCode**](MovementGatewayAccessCode.md) |  | 
 
 
 <a name="Type"></a>

@@ -34,7 +34,7 @@ data class LegacyDocumentDownloadFileResponseAllOf (
 
     /* Array of documents */
     @Json(name = "files")
-    val files: kotlin.collections.List<LegacydocumentBase64FilePayloadItem>? = null
+    val files: kotlin.collections.List<LegacydocumentBase64FilePayloadItem>
 
 )
 

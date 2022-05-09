@@ -4,14 +4,14 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  |  [optional]
-**sourceUser** | [**MovementUser**](MovementUser.md) |  |  [optional]
-**destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  |  [optional]
-**destinationUser** | [**MovementUser**](MovementUser.md) |  |  [optional]
+**type** | [**inline**](#Type) |  | 
+**sourceDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
+**sourceUser** | [**MovementUser**](MovementUser.md) |  | 
+**destinationDatabase** | [**MovementDatabase**](MovementDatabase.md) |  | 
+**destinationUser** | [**MovementUser**](MovementUser.md) |  | 
 **capsil** | **kotlin.Boolean** |  |  [optional]
 **univeris** | **kotlin.Boolean** |  |  [optional]
 **dataphile** | **kotlin.Boolean** |  |  [optional]
-**type** | [**inline**](#Type) |  |  [optional]
 
 
 <a name="Type"></a>

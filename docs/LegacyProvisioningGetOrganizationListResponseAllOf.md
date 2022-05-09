@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**organizations** | [**kotlin.collections.List&lt;LegacyprovisioningOrganizationItem&gt;**](LegacyprovisioningOrganizationItem.md) | List of organization |  [optional]
+**organizations** | [**kotlin.collections.List&lt;LegacyprovisioningOrganizationItem&gt;**](LegacyprovisioningOrganizationItem.md) | List of organization | 
 
 
 

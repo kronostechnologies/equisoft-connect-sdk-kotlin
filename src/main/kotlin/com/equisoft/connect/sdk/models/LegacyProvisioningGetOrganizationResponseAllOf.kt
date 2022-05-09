@@ -33,7 +33,7 @@ import com.squareup.moshi.Json
 data class LegacyProvisioningGetOrganizationResponseAllOf (
 
     @Json(name = "organization")
-    val organization: LegacyprovisioningOrganizationItem? = null
+    val organization: LegacyprovisioningOrganizationItem
 
 )
 
