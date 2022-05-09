@@ -28,10 +28,10 @@ import com.squareup.moshi.Json
  * 
  *
  * @param id id of the document
- * @param files Files contained inside the document
  * @param type type of the document
  * @param subType subtype of the document
  * @param name name of the document
+ * @param files Files contained inside the document
  */
 
 data class LegacydocumentDocumentListItem (
@@ -39,10 +39,6 @@ data class LegacydocumentDocumentListItem (
     /* id of the document */
     @Json(name = "id")
     val id: kotlin.String? = null,
-
-    /* Files contained inside the document */
-    @Json(name = "files")
-    val files: kotlin.collections.List<LegacydocumentFile>? = null,
 
     /* type of the document */
     @Json(name = "type")
@@ -54,7 +50,11 @@ data class LegacydocumentDocumentListItem (
 
     /* name of the document */
     @Json(name = "name")
-    val name: kotlin.String? = null
+    val name: kotlin.String? = null,
+
+    /* Files contained inside the document */
+    @Json(name = "files")
+    val files: kotlin.collections.List<LegacydocumentFile>? = null
 
 )
 

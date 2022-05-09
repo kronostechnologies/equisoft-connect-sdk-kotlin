@@ -26,41 +26,41 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param type 
  * @param sourceDatabase 
  * @param sourceUser 
+ * @param sourceDistributionList 
  * @param destinationDatabase 
  * @param destinationUser 
- * @param transferOption 
- * @param sourceDistributionList 
  * @param datagatewayAccessMappings 
+ * @param transferOption 
+ * @param type 
  */
 
 data class MovementClientBaseUsingDistributionListMovementPayloadAllOf (
 
-    @Json(name = "type")
-    val type: MovementClientBaseUsingDistributionListMovementPayloadAllOf.Type = Type.CLIENTBASE_USING_DISTLIST,
-
     @Json(name = "sourceDatabase")
-    val sourceDatabase: kotlin.String,
+    val sourceDatabase: kotlin.String? = null,
 
     @Json(name = "sourceUser")
-    val sourceUser: kotlin.String,
-
-    @Json(name = "destinationDatabase")
-    val destinationDatabase: kotlin.String,
-
-    @Json(name = "destinationUser")
-    val destinationUser: kotlin.String,
-
-    @Json(name = "transferOption")
-    val transferOption: kotlin.String,
+    val sourceUser: kotlin.String? = null,
 
     @Json(name = "sourceDistributionList")
     val sourceDistributionList: kotlin.String? = null,
 
+    @Json(name = "destinationDatabase")
+    val destinationDatabase: kotlin.String? = null,
+
+    @Json(name = "destinationUser")
+    val destinationUser: kotlin.String? = null,
+
     @Json(name = "datagatewayAccessMappings")
-    val datagatewayAccessMappings: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
+    val datagatewayAccessMappings: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
+
+    @Json(name = "transferOption")
+    val transferOption: kotlin.String? = null,
+
+    @Json(name = "type")
+    val type: MovementClientBaseUsingDistributionListMovementPayloadAllOf.Type? = null
 
 ) {
 

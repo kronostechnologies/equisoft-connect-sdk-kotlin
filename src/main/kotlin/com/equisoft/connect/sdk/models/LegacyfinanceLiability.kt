@@ -24,7 +24,7 @@ package com.equisoft.connect.sdk.models
 import com.squareup.moshi.Json
 
 /**
- * 
+ * Response datatype returned by the kronos.finance.getAccountStatement method
  *
  * @param id 
  * @param product 

@@ -28,15 +28,23 @@ import com.squareup.moshi.Json
 /**
  * 
  *
+ * @param externalKey The file external key
+ * @param base64EncodedData file data encoded in base 64
  * @param id id of the file
  * @param fileName File name
  * @param mimeType Mime Type of the file
  * @param sizeBytes Size of the file(in bytes)
- * @param externalKey The file external key
- * @param base64EncodedData file data encoded in base 64
  */
 
 data class LegacydocumentBase64FilePayloadItem (
+
+    /* The file external key */
+    @Json(name = "externalKey")
+    val externalKey: kotlin.String? = null,
+
+    /* file data encoded in base 64 */
+    @Json(name = "base64EncodedData")
+    val base64EncodedData: kotlin.String? = null,
 
     /* id of the file */
     @Json(name = "id")
@@ -52,15 +60,7 @@ data class LegacydocumentBase64FilePayloadItem (
 
     /* Size of the file(in bytes) */
     @Json(name = "sizeBytes")
-    val sizeBytes: kotlin.String? = null,
-
-    /* The file external key */
-    @Json(name = "externalKey")
-    val externalKey: kotlin.String? = null,
-
-    /* file data encoded in base 64 */
-    @Json(name = "base64EncodedData")
-    val base64EncodedData: kotlin.String? = null
+    val sizeBytes: kotlin.String? = null
 
 )
 

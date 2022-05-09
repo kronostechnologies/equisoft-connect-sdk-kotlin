@@ -194,6 +194,8 @@ docs/TasksVisibilityType.md
 docs/Translation.md
 docs/UsersApi.md
 docs/UsersListUsersResponse.md
+docs/UsersRole.md
+docs/UsersUpdateUserPayload.md
 docs/UsersUser.md
 gradle/wrapper/gradle-wrapper.jar
 gradle/wrapper/gradle-wrapper.properties
@@ -410,4 +412,6 @@ src/main/kotlin/com/equisoft/connect/sdk/models/TasksTransferToCompletedResponse
 src/main/kotlin/com/equisoft/connect/sdk/models/TasksVisibilityType.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/Translation.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/UsersListUsersResponse.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/UsersRole.kt
+src/main/kotlin/com/equisoft/connect/sdk/models/UsersUpdateUserPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/UsersUser.kt
