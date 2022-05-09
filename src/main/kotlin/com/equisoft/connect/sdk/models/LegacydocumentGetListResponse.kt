@@ -27,7 +27,7 @@ import com.equisoft.connect.sdk.models.LegacydocumentDocumentListItem
 import com.squareup.moshi.Json
 
 /**
- * 
+ * Response datatype returned by the kronos.document.getList method  Response example: {@example getListDocumentResponse.xml}
  *
  * @param documents Array of documents
  * @param stat Status of the request that has been made. Can be 'ok' or 'fail'

@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 **extType** | **kotlin.String** | Industrielle Alliance Only |  [optional]
 **extNumber** | **kotlin.String** | Industrielle Alliance Only |  [optional]
 **notes** | **kotlin.String** |  |  [optional]
-**locked** | **kotlin.String** | true or false |  [optional]
+**locked** | **kotlin.String** | address is locked or not (true or false) |  [optional]
 
 
 

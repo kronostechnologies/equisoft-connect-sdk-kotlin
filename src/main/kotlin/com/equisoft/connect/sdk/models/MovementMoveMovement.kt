@@ -30,10 +30,10 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param type 
  * @param sourceDatabase 
  * @param destinationDatabase 
  * @param users 
+ * @param type 
  * @param id 
  * @param status 
  * @param availableAction 
@@ -47,9 +47,6 @@ import com.squareup.moshi.Json
 
 data class MovementMoveMovement (
 
-    @Json(name = "type")
-    val type: MovementMoveMovement.Type = Type.MOVE,
-
     @Json(name = "sourceDatabase")
     val sourceDatabase: MovementDatabase,
 
@@ -58,6 +55,9 @@ data class MovementMoveMovement (
 
     @Json(name = "users")
     val users: kotlin.collections.List<MovementUser>,
+
+    @Json(name = "type")
+    val type: MovementMoveMovement.Type = Type.MOVE,
 
     @Json(name = "id")
     override val id: kotlin.Int? = null,

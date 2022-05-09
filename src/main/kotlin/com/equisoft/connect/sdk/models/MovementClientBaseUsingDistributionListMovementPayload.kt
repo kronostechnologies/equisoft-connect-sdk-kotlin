@@ -28,22 +28,19 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param type 
  * @param sourceDatabase 
  * @param sourceUser 
  * @param destinationDatabase 
  * @param destinationUser 
  * @param transferOption 
- * @param date 
- * @param now 
+ * @param type 
  * @param sourceDistributionList 
  * @param datagatewayAccessMappings 
+ * @param date 
+ * @param now 
  */
 
 data class MovementClientBaseUsingDistributionListMovementPayload (
-
-    @Json(name = "type")
-    val type: MovementClientBaseUsingDistributionListMovementPayload.Type = Type.CLIENTBASE_USING_DISTLIST,
 
     @Json(name = "sourceDatabase")
     val sourceDatabase: kotlin.String,
@@ -60,17 +57,20 @@ data class MovementClientBaseUsingDistributionListMovementPayload (
     @Json(name = "transferOption")
     val transferOption: kotlin.String,
 
-    @Json(name = "date")
-    override val date: kotlin.String? = null,
-
-    @Json(name = "now")
-    override val now: kotlin.Boolean? = null,
+    @Json(name = "type")
+    val type: MovementClientBaseUsingDistributionListMovementPayload.Type = Type.CLIENTBASE_USING_DISTLIST,
 
     @Json(name = "sourceDistributionList")
     val sourceDistributionList: kotlin.String? = null,
 
     @Json(name = "datagatewayAccessMappings")
-    val datagatewayAccessMappings: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
+    val datagatewayAccessMappings: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
+
+    @Json(name = "date")
+    override val date: kotlin.String? = null,
+
+    @Json(name = "now")
+    override val now: kotlin.Boolean? = null
 
 ) : MovementMovementPayload {
 
