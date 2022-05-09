@@ -34,7 +34,7 @@ data class LegacyProvisioningGetOrganizationListResponseAllOf (
 
     /* List of organization */
     @Json(name = "organizations")
-    val organizations: kotlin.collections.List<LegacyprovisioningOrganizationItem>? = null
+    val organizations: kotlin.collections.List<LegacyprovisioningOrganizationItem>
 
 )
 

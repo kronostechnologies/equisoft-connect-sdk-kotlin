@@ -5,6 +5,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **subject** | **kotlin.String** | Subject/Title of the Event. | 
+**ownerIds** | **kotlin.collections.List&lt;kotlin.Int&gt;** | Ids of the owner users of the task. |  [optional]
+**isCompleted** | **kotlin.Boolean** | Is the task completed. |  [optional]
 **dueDate** | **kotlin.String** | Date the task is expected to be done. As defined by full-date - RFC3339 |  [optional]
 **initialDate** | **kotlin.String** | Date the task was initially started. As defined by full-date - RFC3339 |  [optional]
 **completedDate** | **kotlin.String** | Date the task was completed / done. As defined by full-date - RFC3339 |  [optional]
@@ -15,8 +17,6 @@ Name | Type | Description | Notes
 **priority** | [**kotlin.Any**](.md) | Importance/Priority of an event or task. 5 is the most important. |  [optional]
 **visibility** | **kotlin.String** | Confidentiality level of the Event (private or not). [NORMAL, PRIVATE] |  [optional]
 **contactIds** | **kotlin.collections.List&lt;kotlin.Int&gt;** | Allow to link the task to one or many contacts. |  [optional]
-**ownerIds** | **kotlin.collections.List&lt;kotlin.Int&gt;** | Ids of the owner users of the task. |  [optional]
-**isCompleted** | **kotlin.Boolean** | Is the task completed. |  [optional]
 
 
 

@@ -34,7 +34,7 @@ data class LegacyDocumentGetListResponseAllOf (
 
     /* Array of documents */
     @Json(name = "documents")
-    val documents: kotlin.collections.List<LegacydocumentDocumentListItem>? = null
+    val documents: kotlin.collections.List<LegacydocumentDocumentListItem>
 
 )
 

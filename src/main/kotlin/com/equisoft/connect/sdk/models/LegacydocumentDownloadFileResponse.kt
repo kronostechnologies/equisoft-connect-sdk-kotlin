@@ -27,7 +27,7 @@ import com.equisoft.connect.sdk.models.LegacydocumentBase64FilePayloadItem
 import com.squareup.moshi.Json
 
 /**
- * Response datatype returned by the kronos.document.downloadFile method {@example downloadFileResponse.xml} response example
+ * 
  *
  * @param files Array of documents
  * @param stat Status of the request that has been made. Can be 'ok' or 'fail'
