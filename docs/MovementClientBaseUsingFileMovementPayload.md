@@ -4,11 +4,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | **kotlin.String** |  | 
 **sourceUser** | **kotlin.String** |  | 
 **destinationDatabase** | **kotlin.String** |  | 
 **destinationUser** | **kotlin.String** |  | 
-**type** | [**inline**](#Type) |  | 
 **capsilFile** | **kotlin.String** |  |  [optional]
 **univerisFile** | **kotlin.String** |  |  [optional]
 **dataphileFile** | **kotlin.String** |  |  [optional]

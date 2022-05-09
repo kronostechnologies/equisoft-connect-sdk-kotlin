@@ -4,10 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**sourceDatabase** | **kotlin.String** |  |  [optional]
-**destinationDatabase** | **kotlin.String** |  |  [optional]
-**users** | **kotlin.collections.List&lt;kotlin.String&gt;** |  |  [optional]
-**type** | [**inline**](#Type) |  |  [optional]
+**type** | [**inline**](#Type) |  | 
+**sourceDatabase** | **kotlin.String** |  | 
+**destinationDatabase** | **kotlin.String** |  | 
+**users** | **kotlin.collections.List&lt;kotlin.String&gt;** |  | 
 
 
 <a name="Type"></a>

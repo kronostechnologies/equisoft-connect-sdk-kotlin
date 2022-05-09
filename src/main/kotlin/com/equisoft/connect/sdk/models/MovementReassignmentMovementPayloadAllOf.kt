@@ -26,29 +26,29 @@ import com.squareup.moshi.Json
 /**
  * 
  *
+ * @param type 
  * @param sourceDatabase 
  * @param sourceUser 
  * @param destinationUser 
  * @param accessCode 
- * @param type 
  */
 
 data class MovementReassignmentMovementPayloadAllOf (
 
+    @Json(name = "type")
+    val type: MovementReassignmentMovementPayloadAllOf.Type = Type.REASSIGNMENT,
+
     @Json(name = "sourceDatabase")
-    val sourceDatabase: kotlin.String? = null,
+    val sourceDatabase: kotlin.String,
 
     @Json(name = "sourceUser")
-    val sourceUser: kotlin.String? = null,
+    val sourceUser: kotlin.String,
 
     @Json(name = "destinationUser")
-    val destinationUser: kotlin.String? = null,
+    val destinationUser: kotlin.String,
 
     @Json(name = "accessCode")
-    val accessCode: kotlin.String? = null,
-
-    @Json(name = "type")
-    val type: MovementReassignmentMovementPayloadAllOf.Type? = null
+    val accessCode: kotlin.String
 
 ) {
 
