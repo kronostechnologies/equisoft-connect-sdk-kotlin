@@ -27,7 +27,7 @@ import com.equisoft.connect.sdk.models.LegacyfinanceAccountStatement
 import com.squareup.moshi.Json
 
 /**
- * 
+ * Response datatype returned by the kronos.finance.getAccountStatement method
  *
  * @param accountStatement 
  * @param stat Status of the request that has been made. Can be 'ok' or 'fail'

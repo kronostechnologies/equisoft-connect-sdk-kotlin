@@ -20,21 +20,19 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.LegacyAddUpdateItem
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param items List all items status for the Add or Update operation
+ * @param role 
  */
 
-data class LegacyAddUpdateResponseAllOf (
+data class UsersUpdateUserPayload (
 
-    /* List all items status for the Add or Update operation */
-    @Json(name = "items")
-    val items: kotlin.collections.List<LegacyAddUpdateItem>? = null
+    @Json(name = "role")
+    val role: kotlin.String
 
 )
 

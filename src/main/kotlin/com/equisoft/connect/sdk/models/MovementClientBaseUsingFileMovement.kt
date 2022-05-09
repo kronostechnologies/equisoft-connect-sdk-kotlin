@@ -30,11 +30,14 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param type 
  * @param sourceDatabase 
  * @param sourceUser 
  * @param destinationDatabase 
  * @param destinationUser 
+ * @param type 
+ * @param capsil 
+ * @param univeris 
+ * @param dataphile 
  * @param id 
  * @param status 
  * @param availableAction 
@@ -44,15 +47,9 @@ import com.squareup.moshi.Json
  * @param addedBy 
  * @param cancelledDate 
  * @param cancelledBy 
- * @param capsil 
- * @param univeris 
- * @param dataphile 
  */
 
 data class MovementClientBaseUsingFileMovement (
-
-    @Json(name = "type")
-    val type: MovementClientBaseUsingFileMovement.Type = Type.CLIENTBASE_USING_FILE,
 
     @Json(name = "sourceDatabase")
     val sourceDatabase: MovementDatabase,
@@ -65,6 +62,18 @@ data class MovementClientBaseUsingFileMovement (
 
     @Json(name = "destinationUser")
     val destinationUser: MovementUser,
+
+    @Json(name = "type")
+    val type: MovementClientBaseUsingFileMovement.Type = Type.CLIENTBASE_USING_FILE,
+
+    @Json(name = "capsil")
+    val capsil: kotlin.Boolean? = null,
+
+    @Json(name = "univeris")
+    val univeris: kotlin.Boolean? = null,
+
+    @Json(name = "dataphile")
+    val dataphile: kotlin.Boolean? = null,
 
     @Json(name = "id")
     override val id: kotlin.Int? = null,
@@ -91,16 +100,7 @@ data class MovementClientBaseUsingFileMovement (
     override val cancelledDate: kotlin.String? = null,
 
     @Json(name = "cancelledBy")
-    override val cancelledBy: MovementUser? = null,
-
-    @Json(name = "capsil")
-    val capsil: kotlin.Boolean? = null,
-
-    @Json(name = "univeris")
-    val univeris: kotlin.Boolean? = null,
-
-    @Json(name = "dataphile")
-    val dataphile: kotlin.Boolean? = null
+    override val cancelledBy: MovementUser? = null
 
 ) : MovementMovement {
 

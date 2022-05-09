@@ -31,12 +31,14 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param type 
  * @param sourceDatabase 
  * @param sourceUser 
  * @param destinationDatabase 
  * @param destinationUser 
  * @param transferOption 
+ * @param type 
+ * @param sourceDistributionList 
+ * @param datagatewayAccessMappings 
  * @param id 
  * @param status 
  * @param availableAction 
@@ -46,14 +48,9 @@ import com.squareup.moshi.Json
  * @param addedBy 
  * @param cancelledDate 
  * @param cancelledBy 
- * @param sourceDistributionList 
- * @param datagatewayAccessMappings 
  */
 
 data class MovementClientBaseUsingDistributionListMovement (
-
-    @Json(name = "type")
-    val type: MovementClientBaseUsingDistributionListMovement.Type = Type.CLIENTBASE_USING_DISTLIST,
 
     @Json(name = "sourceDatabase")
     val sourceDatabase: MovementDatabase,
@@ -69,6 +66,15 @@ data class MovementClientBaseUsingDistributionListMovement (
 
     @Json(name = "transferOption")
     val transferOption: kotlin.String,
+
+    @Json(name = "type")
+    val type: MovementClientBaseUsingDistributionListMovement.Type = Type.CLIENTBASE_USING_DISTLIST,
+
+    @Json(name = "sourceDistributionList")
+    val sourceDistributionList: MovementDistributionList? = null,
+
+    @Json(name = "datagatewayAccessMappings")
+    val datagatewayAccessMappings: kotlin.collections.Map<kotlin.String, kotlin.String>? = null,
 
     @Json(name = "id")
     override val id: kotlin.Int? = null,
@@ -95,13 +101,7 @@ data class MovementClientBaseUsingDistributionListMovement (
     override val cancelledDate: kotlin.String? = null,
 
     @Json(name = "cancelledBy")
-    override val cancelledBy: MovementUser? = null,
-
-    @Json(name = "sourceDistributionList")
-    val sourceDistributionList: MovementDistributionList? = null,
-
-    @Json(name = "datagatewayAccessMappings")
-    val datagatewayAccessMappings: kotlin.collections.Map<kotlin.String, kotlin.String>? = null
+    override val cancelledBy: MovementUser? = null
 
 ) : MovementMovement {
 

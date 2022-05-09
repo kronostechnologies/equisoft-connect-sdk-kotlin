@@ -27,12 +27,11 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param invalidRecipients invalidRecipients
+ * @param invalidRecipients 
  */
 
 data class MxvalidateRecipientsResponse (
 
-    /* invalidRecipients */
     @Json(name = "invalidRecipients")
     val invalidRecipients: kotlin.collections.List<Mxrecipient>
 

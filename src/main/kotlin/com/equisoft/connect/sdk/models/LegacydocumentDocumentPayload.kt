@@ -25,7 +25,7 @@ import com.equisoft.connect.sdk.models.LegacydocumentDocumentPayloadItem
 import com.squareup.moshi.Json
 
 /**
- * 
+ * Payload needed by the kronos.document.add method {@example addDocumentUpload.xml} payload example
  *
  * @param documents List of document
  */

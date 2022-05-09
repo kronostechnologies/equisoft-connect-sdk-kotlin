@@ -33,7 +33,7 @@ import com.squareup.moshi.Json
 data class LegacyFinanceGetLiabilitiesResponseAllOf (
 
     @Json(name = "liabilities")
-    val liabilities: kotlin.collections.List<LegacyfinanceLiability>
+    val liabilities: kotlin.collections.List<LegacyfinanceLiability>? = null
 
 )
 
