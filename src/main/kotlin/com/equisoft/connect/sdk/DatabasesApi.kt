@@ -226,22 +226,21 @@ class DatabasesApi(
     * @param uuid  
     * @param id  
     * @param usersUpdateUserPayload  
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun updateUser(uuid: kotlin.String, id: kotlin.Int, usersUpdateUserPayload: UsersUpdateUserPayload) : kotlin.Any {
+    fun updateUser(uuid: kotlin.String, id: kotlin.Int, usersUpdateUserPayload: UsersUpdateUserPayload) : Unit {
         val localVariableConfig = updateUserRequestConfig(uuid = uuid, id = id, usersUpdateUserPayload = usersUpdateUserPayload)
 
-        val localVarResponse = request<UsersUpdateUserPayload, kotlin.Any>(
+        val localVarResponse = request<UsersUpdateUserPayload, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
