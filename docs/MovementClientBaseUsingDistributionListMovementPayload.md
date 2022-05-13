@@ -4,12 +4,12 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**type** | [**inline**](#Type) |  | 
 **sourceDatabase** | **kotlin.String** |  | 
 **sourceUser** | **kotlin.String** |  | 
 **destinationDatabase** | **kotlin.String** |  | 
 **destinationUser** | **kotlin.String** |  | 
 **transferOption** | **kotlin.String** |  | 
-**type** | [**inline**](#Type) |  | 
 **sourceDistributionList** | **kotlin.String** |  |  [optional]
 **datagatewayAccessMappings** | **kotlin.collections.Map&lt;kotlin.String, kotlin.String&gt;** |  |  [optional]
 

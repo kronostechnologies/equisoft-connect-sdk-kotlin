@@ -27,8 +27,10 @@ import com.equisoft.connect.sdk.models.LegacydocumentBase64FilePayloadItem
 import com.squareup.moshi.Json
 
 /**
- * Payload needed by the kronos.document.add method {@example addDocumentUpload.xml} payload example
+ * 
  *
+ * @param files Files contained inside the document
+ * @param contacts List of linked contacts
  * @param externalKey external key of the document
  * @param dateStart date start of the document
  * @param dateEnd date end of the document
@@ -40,11 +42,17 @@ import com.squareup.moshi.Json
  * @param type type of the document
  * @param subType subtype of the document
  * @param name name of the document
- * @param files Files contained inside the document
- * @param contacts List of linked contacts
  */
 
 data class LegacydocumentDocumentPayloadItem (
+
+    /* Files contained inside the document */
+    @Json(name = "files")
+    val files: kotlin.collections.List<LegacydocumentBase64FilePayloadItem>? = null,
+
+    /* List of linked contacts */
+    @Json(name = "contacts")
+    val contacts: kotlin.collections.List<LegacycontactContactPayloadItem>? = null,
 
     /* external key of the document */
     @Json(name = "externalKey")
@@ -88,15 +96,7 @@ data class LegacydocumentDocumentPayloadItem (
 
     /* name of the document */
     @Json(name = "name")
-    val name: kotlin.String? = null,
-
-    /* Files contained inside the document */
-    @Json(name = "files")
-    val files: kotlin.collections.List<LegacydocumentBase64FilePayloadItem>? = null,
-
-    /* List of linked contacts */
-    @Json(name = "contacts")
-    val contacts: kotlin.collections.List<LegacycontactContactPayloadItem>? = null
+    val name: kotlin.String? = null
 
 )
 

@@ -27,7 +27,7 @@ import com.equisoft.connect.sdk.models.LegacyResponse
 import com.squareup.moshi.Json
 
 /**
- * Response datatype returned by add or update methods
+ * 
  *
  * @param items List all items status for the Add or Update operation
  * @param stat Status of the request that has been made. Can be 'ok' or 'fail'

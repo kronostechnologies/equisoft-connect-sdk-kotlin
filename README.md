@@ -44,7 +44,6 @@ Class | Method | HTTP request | Description
 *DatabasesApi* | [**getUser**](docs/DatabasesApi.md#getuser) | **GET** /crm/api/v1/databases/{uuid}/users/{id} | 
 *DatabasesApi* | [**listDatabases**](docs/DatabasesApi.md#listdatabases) | **GET** /crm/api/v1/databases | 
 *DatabasesApi* | [**listUsers**](docs/DatabasesApi.md#listusers) | **GET** /crm/api/v1/databases/{uuid}/users | 
-*DatabasesApi* | [**updateUser**](docs/DatabasesApi.md#updateuser) | **PATCH** /crm/api/v1/databases/{uuid}/users/{id} | 
 *EventsApi* | [**archiveEventInternalNote**](docs/EventsApi.md#archiveeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes/{noteId}/archive | Archive an internal note for and event.
 *EventsApi* | [**createEvent**](docs/EventsApi.md#createevent) | **POST** /crm/api/v1/events | Create an event.
 *EventsApi* | [**createEventInternalNote**](docs/EventsApi.md#createeventinternalnote) | **POST** /crm/api/v1/events/{eventId}/notes | Add an internal note to and event.
@@ -290,8 +289,6 @@ Class | Method | HTTP request | Description
  - [com.equisoft.connect.sdk.models.TasksVisibilityType](docs/TasksVisibilityType.md)
  - [com.equisoft.connect.sdk.models.Translation](docs/Translation.md)
  - [com.equisoft.connect.sdk.models.UsersListUsersResponse](docs/UsersListUsersResponse.md)
- - [com.equisoft.connect.sdk.models.UsersRole](docs/UsersRole.md)
- - [com.equisoft.connect.sdk.models.UsersUpdateUserPayload](docs/UsersUpdateUserPayload.md)
  - [com.equisoft.connect.sdk.models.UsersUser](docs/UsersUser.md)
 
 
