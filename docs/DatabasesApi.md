@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**getUser**](DatabasesApi.md#getUser) | **GET** /crm/api/v1/databases/{uuid}/users/{id} | 
 [**listDatabases**](DatabasesApi.md#listDatabases) | **GET** /crm/api/v1/databases | 
 [**listUsers**](DatabasesApi.md#listUsers) | **GET** /crm/api/v1/databases/{uuid}/users | 
+[**updateUser**](DatabasesApi.md#updateUser) | **PATCH** /crm/api/v1/databases/{uuid}/users/{id} | 
 
 
 <a name="getUser"></a>
@@ -152,5 +153,55 @@ Configure OAuth2:
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="updateUser"></a>
+# **updateUser**
+> updateUser(uuid, id, usersUpdateUserPayload)
+
+
+
+### Example
+```kotlin
+// Import classes:
+//import com.equisoft.connect.sdk.infrastructure.*
+//import com.equisoft.connect.sdk.models.*
+
+val apiInstance = DatabasesApi()
+val uuid : kotlin.String = uuid_example // kotlin.String | 
+val id : kotlin.Int = 56 // kotlin.Int | 
+val usersUpdateUserPayload : UsersUpdateUserPayload =  // UsersUpdateUserPayload | 
+try {
+    apiInstance.updateUser(uuid, id, usersUpdateUserPayload)
+} catch (e: ClientException) {
+    println("4xx response calling DatabasesApi#updateUser")
+    e.printStackTrace()
+} catch (e: ServerException) {
+    println("5xx response calling DatabasesApi#updateUser")
+    e.printStackTrace()
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uuid** | **kotlin.String**|  |
+ **id** | **kotlin.Int**|  |
+ **usersUpdateUserPayload** | [**UsersUpdateUserPayload**](UsersUpdateUserPayload.md)|  |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+
+Configure OAuth2:
+    ApiClient.accessToken = ""
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: application/json
 

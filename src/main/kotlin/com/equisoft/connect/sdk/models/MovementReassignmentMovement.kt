@@ -31,11 +31,11 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param type 
  * @param sourceDatabase 
  * @param sourceUser 
  * @param destinationUser 
  * @param accessCode 
+ * @param type 
  * @param id 
  * @param status 
  * @param availableAction 
@@ -49,9 +49,6 @@ import com.squareup.moshi.Json
 
 data class MovementReassignmentMovement (
 
-    @Json(name = "type")
-    val type: MovementReassignmentMovement.Type = Type.REASSIGNMENT,
-
     @Json(name = "sourceDatabase")
     val sourceDatabase: MovementDatabase,
 
@@ -63,6 +60,9 @@ data class MovementReassignmentMovement (
 
     @Json(name = "accessCode")
     val accessCode: MovementGatewayAccessCode,
+
+    @Json(name = "type")
+    val type: MovementReassignmentMovement.Type = Type.REASSIGNMENT,
 
     @Json(name = "id")
     override val id: kotlin.Int? = null,

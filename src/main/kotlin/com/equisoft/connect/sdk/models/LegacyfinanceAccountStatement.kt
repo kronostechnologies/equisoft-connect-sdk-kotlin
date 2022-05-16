@@ -26,7 +26,7 @@ import com.equisoft.connect.sdk.models.LegacyfinancePolicy
 import com.squareup.moshi.Json
 
 /**
- * 
+ * Response datatype returned by the kronos.finance.getAccountStatement method
  *
  * @param plans Array of plan
  * @param policies Array of policy

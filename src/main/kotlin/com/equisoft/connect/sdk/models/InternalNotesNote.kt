@@ -44,16 +44,16 @@ data class InternalNotesNote (
     val id: kotlin.Int?,
 
     @Json(name = "author")
-    val author: kotlin.collections.List<InternalNotesAuthor>?,
+    val author: InternalNotesAuthor?,
 
     @Json(name = "firstRevisionCreatedAt")
     val firstRevisionCreatedAt: java.time.OffsetDateTime?,
 
     @Json(name = "accessRights")
-    val accessRights: kotlin.collections.List<AccessRights>?,
+    val accessRights: AccessRights?,
 
     @Json(name = "currentRevision")
-    val currentRevision: kotlin.collections.List<InternalNotesNoteRevision>?,
+    val currentRevision: InternalNotesNoteRevision?,
 
     @Json(name = "previousRevisions")
     val previousRevisions: kotlin.collections.List<InternalNotesNoteRevision>? = null

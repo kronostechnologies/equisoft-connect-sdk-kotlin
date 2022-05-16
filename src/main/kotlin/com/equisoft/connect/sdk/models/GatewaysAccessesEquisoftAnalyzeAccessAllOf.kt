@@ -33,10 +33,10 @@ import com.squareup.moshi.Json
 data class GatewaysAccessesEquisoftAnalyzeAccessAllOf (
 
     @Json(name = "clientKey")
-    val clientKey: kotlin.String,
+    val clientKey: kotlin.String? = null,
 
     @Json(name = "version")
-    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version = Version.NATIVE
+    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = null
 
 ) {
 
