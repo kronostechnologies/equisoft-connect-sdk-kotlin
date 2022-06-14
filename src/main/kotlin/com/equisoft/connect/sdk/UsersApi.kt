@@ -20,16 +20,23 @@
 
 package com.equisoft.connect.sdk
 
+import java.io.IOException
+import okhttp3.OkHttpClient
+
 import com.equisoft.connect.sdk.models.ContextuserContext
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.UsersUser
 
+import com.squareup.moshi.Json
+
 import com.equisoft.connect.sdk.infrastructure.ApiClient
+import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
+import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -38,32 +45,32 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class UsersApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null
+    accessToken: String? = null,
+    client: OkHttpClient = ApiClient.defaultClient
 ) : ApiClient(basePath, accessToken) {
+
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
+            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
         }
     }
 
     /**
-    * Get informations about the current user
-    * 
-    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-    * @return UsersUser
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Get informations about the current user
+     * 
+     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+     * @return UsersUser
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getCurrentUser(acceptLanguage: kotlin.String?) : UsersUser {
-        val localVariableConfig = getCurrentUserRequestConfig(acceptLanguage = acceptLanguage)
-
-        val localVarResponse = request<Unit, UsersUser>(
-            localVariableConfig
-        )
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getCurrentUser(acceptLanguage: kotlin.String? = null) : UsersUser {
+        val localVarResponse = getCurrentUserWithHttpInfo(acceptLanguage = acceptLanguage)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as UsersUser
@@ -81,16 +88,35 @@ class UsersApi(
     }
 
     /**
-    * To obtain the request config of the operation getCurrentUser
-    *
-    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-    * @return RequestConfig
-    */
+     * Get informations about the current user
+     * 
+     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+     * @return ApiResponse<UsersUser?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getCurrentUserWithHttpInfo(acceptLanguage: kotlin.String?) : ApiResponse<UsersUser?> {
+        val localVariableConfig = getCurrentUserRequestConfig(acceptLanguage = acceptLanguage)
+
+        return request<Unit, UsersUser>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getCurrentUser
+     *
+     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+     * @return RequestConfig
+     */
     fun getCurrentUserRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -102,21 +128,19 @@ class UsersApi(
     }
 
     /**
-    * Get user context metadata.
-    * 
-    * @return ContextuserContext
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Get user context metadata.
+     * 
+     * @return ContextuserContext
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getUserContext() : ContextuserContext {
-        val localVariableConfig = getUserContextRequestConfig()
-
-        val localVarResponse = request<Unit, ContextuserContext>(
-            localVariableConfig
-        )
+        val localVarResponse = getUserContextWithHttpInfo()
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as ContextuserContext
@@ -134,14 +158,32 @@ class UsersApi(
     }
 
     /**
-    * To obtain the request config of the operation getUserContext
-    *
-    * @return RequestConfig
-    */
+     * Get user context metadata.
+     * 
+     * @return ApiResponse<ContextuserContext?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getUserContextWithHttpInfo() : ApiResponse<ContextuserContext?> {
+        val localVariableConfig = getUserContextRequestConfig()
+
+        return request<Unit, ContextuserContext>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getUserContext
+     *
+     * @return RequestConfig
+     */
     fun getUserContextRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,

@@ -50,12 +50,12 @@ enum class TasksDueDateFilter(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: Any?): kotlin.String? = if (data is TasksDueDateFilter) "$data" else null
+        fun encode(data: kotlin.Any?): kotlin.String? = if (data is TasksDueDateFilter) "$data" else null
 
         /**
          * Returns a valid [TasksDueDateFilter] for [data], null otherwise.
          */
-        fun decode(data: Any?): TasksDueDateFilter? = data?.let {
+        fun decode(data: kotlin.Any?): TasksDueDateFilter? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()

@@ -24,11 +24,11 @@ import com.equisoft.connect.sdk.models.ContactContactAdditionalInformation
 import com.equisoft.connect.sdk.models.ContactContactAddress
 import com.equisoft.connect.sdk.models.ContactContactEmail
 import com.equisoft.connect.sdk.models.ContactContactIdentification
-import com.equisoft.connect.sdk.models.ContactContactMaritalStatus
-import com.equisoft.connect.sdk.models.ContactContactOccupation
 import com.equisoft.connect.sdk.models.ContactContactPhone
 import com.equisoft.connect.sdk.models.ContactContactSegmentation
 import com.equisoft.connect.sdk.models.ContactContactWebsite
+import com.equisoft.connect.sdk.models.ContactsContactCurrentMaritalStatus
+import com.equisoft.connect.sdk.models.ContactsContactCurrentOccupation
 
 import com.squareup.moshi.Json
 
@@ -91,10 +91,10 @@ data class ContactsContact (
     val additionalInformation: ContactContactAdditionalInformation? = null,
 
     @Json(name = "currentMaritalStatus")
-    val currentMaritalStatus: ContactContactMaritalStatus? = null,
+    val currentMaritalStatus: ContactsContactCurrentMaritalStatus? = null,
 
     @Json(name = "currentOccupation")
-    val currentOccupation: ContactContactOccupation? = null,
+    val currentOccupation: ContactsContactCurrentOccupation? = null,
 
     @Json(name = "segmentation")
     val segmentation: ContactContactSegmentation? = null,

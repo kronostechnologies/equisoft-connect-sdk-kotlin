@@ -36,7 +36,7 @@ data class GatewaysAccessesEquisoftAnalyzeAccessAllOf (
     val clientKey: kotlin.String? = null,
 
     @Json(name = "version")
-    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = null
+    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = Version.NATIVE
 
 ) {
 

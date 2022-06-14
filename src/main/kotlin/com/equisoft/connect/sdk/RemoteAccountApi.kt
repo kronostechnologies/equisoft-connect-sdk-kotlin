@@ -20,16 +20,23 @@
 
 package com.equisoft.connect.sdk
 
+import java.io.IOException
+import okhttp3.OkHttpClient
+
 import com.equisoft.connect.sdk.models.AccessRights
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.RemoteaccountAccountSyncResponse
 
+import com.squareup.moshi.Json
+
 import com.equisoft.connect.sdk.infrastructure.ApiClient
+import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
+import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -38,32 +45,32 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class RemoteAccountApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null
+    accessToken: String? = null,
+    client: OkHttpClient = ApiClient.defaultClient
 ) : ApiClient(basePath, accessToken) {
+
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
+            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
         }
     }
 
     /**
-    * Return the mail account access rights granted to the currently connected user account.
-    * 
-    * @param remoteAccountId Remote account id. 
-    * @return AccessRights
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Return the mail account access rights granted to the currently connected user account.
+     * 
+     * @param remoteAccountId Remote account id.
+     * @return AccessRights
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getMailAccountAccessRights(remoteAccountId: kotlin.String) : AccessRights {
-        val localVariableConfig = getMailAccountAccessRightsRequestConfig(remoteAccountId = remoteAccountId)
-
-        val localVarResponse = request<Unit, AccessRights>(
-            localVariableConfig
-        )
+        val localVarResponse = getMailAccountAccessRightsWithHttpInfo(remoteAccountId = remoteAccountId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as AccessRights
@@ -81,15 +88,34 @@ class RemoteAccountApi(
     }
 
     /**
-    * To obtain the request config of the operation getMailAccountAccessRights
-    *
-    * @param remoteAccountId Remote account id. 
-    * @return RequestConfig
-    */
+     * Return the mail account access rights granted to the currently connected user account.
+     * 
+     * @param remoteAccountId Remote account id.
+     * @return ApiResponse<AccessRights?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getMailAccountAccessRightsWithHttpInfo(remoteAccountId: kotlin.String) : ApiResponse<AccessRights?> {
+        val localVariableConfig = getMailAccountAccessRightsRequestConfig(remoteAccountId = remoteAccountId)
+
+        return request<Unit, AccessRights>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getMailAccountAccessRights
+     *
+     * @param remoteAccountId Remote account id.
+     * @return RequestConfig
+     */
     fun getMailAccountAccessRightsRequestConfig(remoteAccountId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -101,26 +127,24 @@ class RemoteAccountApi(
     }
 
     /**
-    * Synchronize calendars with remote account
-    * 
-    * @param dateTimeStart  (optional)
-    * @param dateTimeEnd  (optional)
-    * @param webuserCalendarIds  (optional)
-    * @param remoteFolderIds  (optional)
-    * @param webuserIds  (optional)
-    * @return RemoteaccountAccountSyncResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Synchronize calendars with remote account
+     * 
+     * @param dateTimeStart  (optional)
+     * @param dateTimeEnd  (optional)
+     * @param webuserCalendarIds  (optional)
+     * @param remoteFolderIds  (optional)
+     * @param webuserIds  (optional)
+     * @return RemoteaccountAccountSyncResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun synchronizeCalendars(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RemoteaccountAccountSyncResponse {
-        val localVariableConfig = synchronizeCalendarsRequestConfig(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
-
-        val localVarResponse = request<Map<String, Any?>, RemoteaccountAccountSyncResponse>(
-            localVariableConfig
-        )
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun synchronizeCalendars(dateTimeStart: kotlin.String? = null, dateTimeEnd: kotlin.String? = null, webuserCalendarIds: kotlin.collections.List<kotlin.Int>? = null, remoteFolderIds: kotlin.collections.List<kotlin.Int>? = null, webuserIds: kotlin.collections.List<kotlin.Int>? = null) : RemoteaccountAccountSyncResponse {
+        val localVarResponse = synchronizeCalendarsWithHttpInfo(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as RemoteaccountAccountSyncResponse
@@ -138,19 +162,47 @@ class RemoteAccountApi(
     }
 
     /**
-    * To obtain the request config of the operation synchronizeCalendars
-    *
-    * @param dateTimeStart  (optional)
-    * @param dateTimeEnd  (optional)
-    * @param webuserCalendarIds  (optional)
-    * @param remoteFolderIds  (optional)
-    * @param webuserIds  (optional)
-    * @return RequestConfig
-    */
-    fun synchronizeCalendarsRequestConfig(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Map<String, Any?>> {
-        val localVariableBody = mapOf("dateTimeStart" to dateTimeStart, "dateTimeEnd" to dateTimeEnd, "webuserCalendarIds" to webuserCalendarIds, "remoteFolderIds" to remoteFolderIds, "webuserIds" to webuserIds)
+     * Synchronize calendars with remote account
+     * 
+     * @param dateTimeStart  (optional)
+     * @param dateTimeEnd  (optional)
+     * @param webuserCalendarIds  (optional)
+     * @param remoteFolderIds  (optional)
+     * @param webuserIds  (optional)
+     * @return ApiResponse<RemoteaccountAccountSyncResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun synchronizeCalendarsWithHttpInfo(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : ApiResponse<RemoteaccountAccountSyncResponse?> {
+        val localVariableConfig = synchronizeCalendarsRequestConfig(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
+
+        return request<Map<String, PartConfig<*>>, RemoteaccountAccountSyncResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation synchronizeCalendars
+     *
+     * @param dateTimeStart  (optional)
+     * @param dateTimeEnd  (optional)
+     * @param webuserCalendarIds  (optional)
+     * @param remoteFolderIds  (optional)
+     * @param webuserIds  (optional)
+     * @return RequestConfig
+     */
+    fun synchronizeCalendarsRequestConfig(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Map<String, PartConfig<*>>> {
+        val localVariableBody = mapOf(
+            "dateTimeStart" to PartConfig(body = dateTimeStart, headers = mutableMapOf()),
+            "dateTimeEnd" to PartConfig(body = dateTimeEnd, headers = mutableMapOf()),
+            "webuserCalendarIds" to PartConfig(body = webuserCalendarIds, headers = mutableMapOf()),
+            "remoteFolderIds" to PartConfig(body = remoteFolderIds, headers = mutableMapOf()),
+            "webuserIds" to PartConfig(body = webuserIds, headers = mutableMapOf()),)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -162,26 +214,24 @@ class RemoteAccountApi(
     }
 
     /**
-    * Synchronize tasks with remote account
-    * 
-    * @param dateTimeStart  (optional)
-    * @param dateTimeEnd  (optional)
-    * @param webuserCalendarIds  (optional)
-    * @param remoteFolderIds  (optional)
-    * @param webuserIds  (optional)
-    * @return RemoteaccountAccountSyncResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Synchronize tasks with remote account
+     * 
+     * @param dateTimeStart  (optional)
+     * @param dateTimeEnd  (optional)
+     * @param webuserCalendarIds  (optional)
+     * @param remoteFolderIds  (optional)
+     * @param webuserIds  (optional)
+     * @return RemoteaccountAccountSyncResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun synchronizeTasks(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RemoteaccountAccountSyncResponse {
-        val localVariableConfig = synchronizeTasksRequestConfig(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
-
-        val localVarResponse = request<Map<String, Any?>, RemoteaccountAccountSyncResponse>(
-            localVariableConfig
-        )
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun synchronizeTasks(dateTimeStart: kotlin.String? = null, dateTimeEnd: kotlin.String? = null, webuserCalendarIds: kotlin.collections.List<kotlin.Int>? = null, remoteFolderIds: kotlin.collections.List<kotlin.Int>? = null, webuserIds: kotlin.collections.List<kotlin.Int>? = null) : RemoteaccountAccountSyncResponse {
+        val localVarResponse = synchronizeTasksWithHttpInfo(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as RemoteaccountAccountSyncResponse
@@ -199,19 +249,47 @@ class RemoteAccountApi(
     }
 
     /**
-    * To obtain the request config of the operation synchronizeTasks
-    *
-    * @param dateTimeStart  (optional)
-    * @param dateTimeEnd  (optional)
-    * @param webuserCalendarIds  (optional)
-    * @param remoteFolderIds  (optional)
-    * @param webuserIds  (optional)
-    * @return RequestConfig
-    */
-    fun synchronizeTasksRequestConfig(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Map<String, Any?>> {
-        val localVariableBody = mapOf("dateTimeStart" to dateTimeStart, "dateTimeEnd" to dateTimeEnd, "webuserCalendarIds" to webuserCalendarIds, "remoteFolderIds" to remoteFolderIds, "webuserIds" to webuserIds)
+     * Synchronize tasks with remote account
+     * 
+     * @param dateTimeStart  (optional)
+     * @param dateTimeEnd  (optional)
+     * @param webuserCalendarIds  (optional)
+     * @param remoteFolderIds  (optional)
+     * @param webuserIds  (optional)
+     * @return ApiResponse<RemoteaccountAccountSyncResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun synchronizeTasksWithHttpInfo(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : ApiResponse<RemoteaccountAccountSyncResponse?> {
+        val localVariableConfig = synchronizeTasksRequestConfig(dateTimeStart = dateTimeStart, dateTimeEnd = dateTimeEnd, webuserCalendarIds = webuserCalendarIds, remoteFolderIds = remoteFolderIds, webuserIds = webuserIds)
+
+        return request<Map<String, PartConfig<*>>, RemoteaccountAccountSyncResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation synchronizeTasks
+     *
+     * @param dateTimeStart  (optional)
+     * @param dateTimeEnd  (optional)
+     * @param webuserCalendarIds  (optional)
+     * @param remoteFolderIds  (optional)
+     * @param webuserIds  (optional)
+     * @return RequestConfig
+     */
+    fun synchronizeTasksRequestConfig(dateTimeStart: kotlin.String?, dateTimeEnd: kotlin.String?, webuserCalendarIds: kotlin.collections.List<kotlin.Int>?, remoteFolderIds: kotlin.collections.List<kotlin.Int>?, webuserIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Map<String, PartConfig<*>>> {
+        val localVariableBody = mapOf(
+            "dateTimeStart" to PartConfig(body = dateTimeStart, headers = mutableMapOf()),
+            "dateTimeEnd" to PartConfig(body = dateTimeEnd, headers = mutableMapOf()),
+            "webuserCalendarIds" to PartConfig(body = webuserCalendarIds, headers = mutableMapOf()),
+            "remoteFolderIds" to PartConfig(body = remoteFolderIds, headers = mutableMapOf()),
+            "webuserIds" to PartConfig(body = webuserIds, headers = mutableMapOf()),)
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf("Content-Type" to "application/x-www-form-urlencoded")
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
