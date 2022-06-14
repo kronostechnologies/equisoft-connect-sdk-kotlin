@@ -48,7 +48,7 @@ data class MovementReassignmentMovementPayloadAllOf (
     val accessCode: kotlin.String? = null,
 
     @Json(name = "type")
-    val type: MovementReassignmentMovementPayloadAllOf.Type? = null
+    val type: MovementReassignmentMovementPayloadAllOf.Type? = Type.REASSIGNMENT
 
 ) {
 

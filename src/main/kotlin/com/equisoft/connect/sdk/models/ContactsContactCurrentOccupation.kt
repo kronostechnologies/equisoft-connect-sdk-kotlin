@@ -20,7 +20,7 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.ContactContactAdditionalInformationLanguage
+import com.equisoft.connect.sdk.models.ContactContactOccupation
 
 import com.squareup.moshi.Json
 
@@ -28,16 +28,23 @@ import com.squareup.moshi.Json
  * 
  *
  * @param id 
+ * @param occupation 
+ * @param employer 
  * @param startDate 
  * @param endDate 
- * @param status 
- * @param marriageContract 
+ * @param annualIncome 
  */
 
-data class ContactContactMaritalStatus (
+data class ContactsContactCurrentOccupation (
 
     @Json(name = "id")
     val id: kotlin.Int? = null,
+
+    @Json(name = "occupation")
+    val occupation: kotlin.String? = null,
+
+    @Json(name = "employer")
+    val employer: kotlin.String? = null,
 
     @Json(name = "startDate")
     val startDate: java.time.LocalDate? = null,
@@ -45,11 +52,8 @@ data class ContactContactMaritalStatus (
     @Json(name = "endDate")
     val endDate: java.time.LocalDate? = null,
 
-    @Json(name = "status")
-    val status: ContactContactAdditionalInformationLanguage? = null,
-
-    @Json(name = "marriageContract")
-    val marriageContract: ContactContactAdditionalInformationLanguage? = null
+    @Json(name = "annualIncome")
+    val annualIncome: kotlin.Float? = null
 
 )
 

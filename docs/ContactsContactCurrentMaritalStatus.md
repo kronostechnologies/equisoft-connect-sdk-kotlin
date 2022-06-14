@@ -1,5 +1,5 @@
 
-# ContactContactMaritalStatus
+# ContactsContactCurrentMaritalStatus
 
 ## Properties
 Name | Type | Description | Notes

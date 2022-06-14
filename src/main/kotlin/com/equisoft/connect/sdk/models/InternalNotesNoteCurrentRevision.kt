@@ -20,34 +20,34 @@
 
 package com.equisoft.connect.sdk.models
 
+import com.equisoft.connect.sdk.models.InternalNotesNoteRevision
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param clientKey 
- * @param version 
+ * @param id Unique numerical identifier.
+ * @param content Note content
+ * @param createdAt 
+ * @param type 
  */
 
-data class GatewaysAccessesEquisoftAnalyzeAccessAllOf (
+data class InternalNotesNoteCurrentRevision (
 
-    @Json(name = "clientKey")
-    val clientKey: kotlin.String? = null,
+    /* Unique numerical identifier. */
+    @Json(name = "id")
+    val id: kotlin.Int?,
 
-    @Json(name = "version")
-    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = Version.NATIVE
+    /* Note content */
+    @Json(name = "content")
+    val content: kotlin.String?,
 
-) {
+    @Json(name = "createdAt")
+    val createdAt: java.time.OffsetDateTime?,
 
-    /**
-     * 
-     *
-     * Values: NATIVE,LEGACY
-     */
-    enum class Version(val value: kotlin.String) {
-        @Json(name = "NATIVE") NATIVE("NATIVE"),
-        @Json(name = "LEGACY") LEGACY("LEGACY");
-    }
-}
+    @Json(name = "type")
+    val type: kotlin.String? = null
+
+)
 

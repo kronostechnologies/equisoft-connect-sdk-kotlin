@@ -21,6 +21,7 @@
 package com.equisoft.connect.sdk.models
 
 import com.equisoft.connect.sdk.models.ContactContactAdditionalInformationLanguage
+import com.equisoft.connect.sdk.models.ContactContactMaritalStatus
 
 import com.squareup.moshi.Json
 
@@ -34,7 +35,7 @@ import com.squareup.moshi.Json
  * @param marriageContract 
  */
 
-data class ContactContactMaritalStatus (
+data class ContactsContactCurrentMaritalStatus (
 
     @Json(name = "id")
     val id: kotlin.Int? = null,

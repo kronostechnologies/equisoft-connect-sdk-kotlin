@@ -20,34 +20,31 @@
 
 package com.equisoft.connect.sdk.models
 
+import com.equisoft.connect.sdk.models.InternalNotesAuthor
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param clientKey 
- * @param version 
+ * @param uuid Globally unique identifier.
+ * @param displayName Author name
+ * @param id Unique numerical identifier.
  */
 
-data class GatewaysAccessesEquisoftAnalyzeAccessAllOf (
+data class InternalNotesNoteAuthor (
 
-    @Json(name = "clientKey")
-    val clientKey: kotlin.String? = null,
+    /* Globally unique identifier. */
+    @Json(name = "uuid")
+    val uuid: kotlin.String?,
 
-    @Json(name = "version")
-    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = Version.NATIVE
+    /* Author name */
+    @Json(name = "displayName")
+    val displayName: kotlin.String?,
 
-) {
+    /* Unique numerical identifier. */
+    @Json(name = "id")
+    val id: kotlin.Int? = null
 
-    /**
-     * 
-     *
-     * Values: NATIVE,LEGACY
-     */
-    enum class Version(val value: kotlin.String) {
-        @Json(name = "NATIVE") NATIVE("NATIVE"),
-        @Json(name = "LEGACY") LEGACY("LEGACY");
-    }
-}
+)
 
