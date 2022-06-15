@@ -20,25 +20,18 @@
 
 package com.equisoft.connect.sdk
 
-import java.io.IOException
-import okhttp3.OkHttpClient
-
 import com.equisoft.connect.sdk.models.DsfCreateOrUpdateFinancialCenterResponse
 import com.equisoft.connect.sdk.models.DsfFinancialCenter
 import com.equisoft.connect.sdk.models.DsfFinancialCenterPayload
 import com.equisoft.connect.sdk.models.DsfListFinancialCenterResponse
 import com.equisoft.connect.sdk.models.ErrorResponse
 
-import com.squareup.moshi.Json
-
 import com.equisoft.connect.sdk.infrastructure.ApiClient
-import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
-import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -47,32 +40,32 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class DSFApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null,
-    client: OkHttpClient = ApiClient.defaultClient
+    accessToken: String? = null
 ) : ApiClient(basePath, accessToken) {
-
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
+            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
         }
     }
 
     /**
-     * 
-     * 
-     * @param dsfFinancialCenterPayload 
-     * @return DsfCreateOrUpdateFinancialCenterResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * 
+    * 
+    * @param dsfFinancialCenterPayload  
+    * @return DsfCreateOrUpdateFinancialCenterResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun createDsfFinancialCenter(dsfFinancialCenterPayload: DsfFinancialCenterPayload) : DsfCreateOrUpdateFinancialCenterResponse {
-        val localVarResponse = createDsfFinancialCenterWithHttpInfo(dsfFinancialCenterPayload = dsfFinancialCenterPayload)
+        val localVariableConfig = createDsfFinancialCenterRequestConfig(dsfFinancialCenterPayload = dsfFinancialCenterPayload)
+
+        val localVarResponse = request<DsfFinancialCenterPayload, DsfCreateOrUpdateFinancialCenterResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DsfCreateOrUpdateFinancialCenterResponse
@@ -90,35 +83,15 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @param dsfFinancialCenterPayload 
-     * @return ApiResponse<DsfCreateOrUpdateFinancialCenterResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun createDsfFinancialCenterWithHttpInfo(dsfFinancialCenterPayload: DsfFinancialCenterPayload) : ApiResponse<DsfCreateOrUpdateFinancialCenterResponse?> {
-        val localVariableConfig = createDsfFinancialCenterRequestConfig(dsfFinancialCenterPayload = dsfFinancialCenterPayload)
-
-        return request<DsfFinancialCenterPayload, DsfCreateOrUpdateFinancialCenterResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation createDsfFinancialCenter
-     *
-     * @param dsfFinancialCenterPayload 
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation createDsfFinancialCenter
+    *
+    * @param dsfFinancialCenterPayload  
+    * @return RequestConfig
+    */
     fun createDsfFinancialCenterRequestConfig(dsfFinancialCenterPayload: DsfFinancialCenterPayload) : RequestConfig<DsfFinancialCenterPayload> {
         val localVariableBody = dsfFinancialCenterPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -130,19 +103,21 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @param financialCenterId 
-     * @return void
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    * 
+    * 
+    * @param financialCenterId  
+    * @return void
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deleteDsfFinancialCenter(financialCenterId: kotlin.Int) : Unit {
-        val localVarResponse = deleteDsfFinancialCenterWithHttpInfo(financialCenterId = financialCenterId)
+        val localVariableConfig = deleteDsfFinancialCenterRequestConfig(financialCenterId = financialCenterId)
+
+        val localVarResponse = request<Unit, Unit>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -160,33 +135,15 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @param financialCenterId 
-     * @return ApiResponse<Unit?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Throws(IllegalStateException::class, IOException::class)
-    fun deleteDsfFinancialCenterWithHttpInfo(financialCenterId: kotlin.Int) : ApiResponse<Unit?> {
-        val localVariableConfig = deleteDsfFinancialCenterRequestConfig(financialCenterId = financialCenterId)
-
-        return request<Unit, Unit>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation deleteDsfFinancialCenter
-     *
-     * @param financialCenterId 
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation deleteDsfFinancialCenter
+    *
+    * @param financialCenterId  
+    * @return RequestConfig
+    */
     fun deleteDsfFinancialCenterRequestConfig(financialCenterId: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -198,20 +155,22 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @param financialCenterId 
-     * @return DsfFinancialCenter
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * 
+    * 
+    * @param financialCenterId  
+    * @return DsfFinancialCenter
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getDsfFinancialCenters(financialCenterId: kotlin.Int) : DsfFinancialCenter {
-        val localVarResponse = getDsfFinancialCentersWithHttpInfo(financialCenterId = financialCenterId)
+        val localVariableConfig = getDsfFinancialCentersRequestConfig(financialCenterId = financialCenterId)
+
+        val localVarResponse = request<Unit, DsfFinancialCenter>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DsfFinancialCenter
@@ -229,34 +188,15 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @param financialCenterId 
-     * @return ApiResponse<DsfFinancialCenter?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getDsfFinancialCentersWithHttpInfo(financialCenterId: kotlin.Int) : ApiResponse<DsfFinancialCenter?> {
-        val localVariableConfig = getDsfFinancialCentersRequestConfig(financialCenterId = financialCenterId)
-
-        return request<Unit, DsfFinancialCenter>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getDsfFinancialCenters
-     *
-     * @param financialCenterId 
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getDsfFinancialCenters
+    *
+    * @param financialCenterId  
+    * @return RequestConfig
+    */
     fun getDsfFinancialCentersRequestConfig(financialCenterId: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -268,19 +208,21 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @return DsfListFinancialCenterResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * 
+    * 
+    * @return DsfListFinancialCenterResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun listDsfFinancialCenters() : DsfListFinancialCenterResponse {
-        val localVarResponse = listDsfFinancialCentersWithHttpInfo()
+        val localVariableConfig = listDsfFinancialCentersRequestConfig()
+
+        val localVarResponse = request<Unit, DsfListFinancialCenterResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DsfListFinancialCenterResponse
@@ -298,32 +240,14 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @return ApiResponse<DsfListFinancialCenterResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listDsfFinancialCentersWithHttpInfo() : ApiResponse<DsfListFinancialCenterResponse?> {
-        val localVariableConfig = listDsfFinancialCentersRequestConfig()
-
-        return request<Unit, DsfListFinancialCenterResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listDsfFinancialCenters
-     *
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation listDsfFinancialCenters
+    *
+    * @return RequestConfig
+    */
     fun listDsfFinancialCentersRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -335,21 +259,23 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @param financialCenterId 
-     * @param dsfFinancialCenterPayload 
-     * @return DsfCreateOrUpdateFinancialCenterResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * 
+    * 
+    * @param financialCenterId  
+    * @param dsfFinancialCenterPayload  
+    * @return DsfCreateOrUpdateFinancialCenterResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun updateDsfFinancialCenter(financialCenterId: kotlin.Int, dsfFinancialCenterPayload: DsfFinancialCenterPayload) : DsfCreateOrUpdateFinancialCenterResponse {
-        val localVarResponse = updateDsfFinancialCenterWithHttpInfo(financialCenterId = financialCenterId, dsfFinancialCenterPayload = dsfFinancialCenterPayload)
+        val localVariableConfig = updateDsfFinancialCenterRequestConfig(financialCenterId = financialCenterId, dsfFinancialCenterPayload = dsfFinancialCenterPayload)
+
+        val localVarResponse = request<DsfFinancialCenterPayload, DsfCreateOrUpdateFinancialCenterResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as DsfCreateOrUpdateFinancialCenterResponse
@@ -367,37 +293,16 @@ class DSFApi(
     }
 
     /**
-     * 
-     * 
-     * @param financialCenterId 
-     * @param dsfFinancialCenterPayload 
-     * @return ApiResponse<DsfCreateOrUpdateFinancialCenterResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun updateDsfFinancialCenterWithHttpInfo(financialCenterId: kotlin.Int, dsfFinancialCenterPayload: DsfFinancialCenterPayload) : ApiResponse<DsfCreateOrUpdateFinancialCenterResponse?> {
-        val localVariableConfig = updateDsfFinancialCenterRequestConfig(financialCenterId = financialCenterId, dsfFinancialCenterPayload = dsfFinancialCenterPayload)
-
-        return request<DsfFinancialCenterPayload, DsfCreateOrUpdateFinancialCenterResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation updateDsfFinancialCenter
-     *
-     * @param financialCenterId 
-     * @param dsfFinancialCenterPayload 
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation updateDsfFinancialCenter
+    *
+    * @param financialCenterId  
+    * @param dsfFinancialCenterPayload  
+    * @return RequestConfig
+    */
     fun updateDsfFinancialCenterRequestConfig(financialCenterId: kotlin.Int, dsfFinancialCenterPayload: DsfFinancialCenterPayload) : RequestConfig<DsfFinancialCenterPayload> {
         val localVariableBody = dsfFinancialCenterPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,

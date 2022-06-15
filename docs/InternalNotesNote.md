@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **kotlin.Int** | Unique numerical identifier. | 
-**author** | [**InternalNotesNoteAuthor**](InternalNotesNoteAuthor.md) |  | 
+**author** | [**InternalNotesAuthor**](InternalNotesAuthor.md) |  | 
 **firstRevisionCreatedAt** | [**java.time.OffsetDateTime**](java.time.OffsetDateTime.md) |  | 
-**accessRights** | [**InternalNotesNoteAccessRights**](InternalNotesNoteAccessRights.md) |  | 
-**currentRevision** | [**InternalNotesNoteCurrentRevision**](InternalNotesNoteCurrentRevision.md) |  | 
+**accessRights** | [**AccessRights**](AccessRights.md) |  | 
+**currentRevision** | [**InternalNotesNoteRevision**](InternalNotesNoteRevision.md) |  | 
 **previousRevisions** | [**kotlin.collections.List&lt;InternalNotesNoteRevision&gt;**](InternalNotesNoteRevision.md) |  |  [optional]
 
 

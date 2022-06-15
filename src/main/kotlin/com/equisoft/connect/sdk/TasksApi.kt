@@ -20,9 +20,6 @@
 
 package com.equisoft.connect.sdk
 
-import java.io.IOException
-import okhttp3.OkHttpClient
-
 import com.equisoft.connect.sdk.models.ErrorResponse
 import com.equisoft.connect.sdk.models.InternalNotesCreateNotePayload
 import com.equisoft.connect.sdk.models.InternalNotesCreateNoteResponse
@@ -40,16 +37,12 @@ import com.equisoft.connect.sdk.models.TasksPatchTaskResponse
 import com.equisoft.connect.sdk.models.TasksTask
 import com.equisoft.connect.sdk.models.TasksTransferToCompletedResponse
 
-import com.squareup.moshi.Json
-
 import com.equisoft.connect.sdk.infrastructure.ApiClient
-import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
-import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -58,34 +51,34 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class TasksApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null,
-    client: OkHttpClient = ApiClient.defaultClient
+    accessToken: String? = null
 ) : ApiClient(basePath, accessToken) {
-
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
+            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
         }
     }
 
     /**
-     * Archive an internal note for a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return kotlin.Any
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Archive an internal note for a task.
+    * 
+    * @param taskId Task unique identifier. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return kotlin.Any
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun archiveTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String? = null) : kotlin.Any {
-        val localVarResponse = archiveTaskInternalNoteWithHttpInfo(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun archiveTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+        val localVariableConfig = archiveTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, kotlin.Any>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
@@ -103,39 +96,18 @@ class TasksApi(
     }
 
     /**
-     * Archive an internal note for a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<kotlin.Any?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun archiveTaskInternalNoteWithHttpInfo(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : ApiResponse<kotlin.Any?> {
-        val localVariableConfig = archiveTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
-
-        return request<Unit, kotlin.Any>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation archiveTaskInternalNote
-     *
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation archiveTaskInternalNote
+    *
+    * @param taskId Task unique identifier. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun archiveTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -147,21 +119,23 @@ class TasksApi(
     }
 
     /**
-     * Create a task.
-     * 
-     * @param tasksCreateTaskPayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return TasksCreateTaskResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Create a task.
+    * 
+    * @param tasksCreateTaskPayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return TasksCreateTaskResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createTask(tasksCreateTaskPayload: TasksCreateTaskPayload, acceptLanguage: kotlin.String? = null) : TasksCreateTaskResponse {
-        val localVarResponse = createTaskWithHttpInfo(tasksCreateTaskPayload = tasksCreateTaskPayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun createTask(tasksCreateTaskPayload: TasksCreateTaskPayload, acceptLanguage: kotlin.String?) : TasksCreateTaskResponse {
+        val localVariableConfig = createTaskRequestConfig(tasksCreateTaskPayload = tasksCreateTaskPayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<TasksCreateTaskPayload, TasksCreateTaskResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as TasksCreateTaskResponse
@@ -179,38 +153,17 @@ class TasksApi(
     }
 
     /**
-     * Create a task.
-     * 
-     * @param tasksCreateTaskPayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<TasksCreateTaskResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun createTaskWithHttpInfo(tasksCreateTaskPayload: TasksCreateTaskPayload, acceptLanguage: kotlin.String?) : ApiResponse<TasksCreateTaskResponse?> {
-        val localVariableConfig = createTaskRequestConfig(tasksCreateTaskPayload = tasksCreateTaskPayload, acceptLanguage = acceptLanguage)
-
-        return request<TasksCreateTaskPayload, TasksCreateTaskResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation createTask
-     *
-     * @param tasksCreateTaskPayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation createTask
+    *
+    * @param tasksCreateTaskPayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun createTaskRequestConfig(tasksCreateTaskPayload: TasksCreateTaskPayload, acceptLanguage: kotlin.String?) : RequestConfig<TasksCreateTaskPayload> {
         val localVariableBody = tasksCreateTaskPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -222,22 +175,24 @@ class TasksApi(
     }
 
     /**
-     * Add an internal note to a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param internalNotesCreateNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return InternalNotesCreateNoteResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Add an internal note to a task.
+    * 
+    * @param taskId Task unique identifier. 
+    * @param internalNotesCreateNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return InternalNotesCreateNoteResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createTaskInternalNote(taskId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String? = null) : InternalNotesCreateNoteResponse {
-        val localVarResponse = createTaskInternalNoteWithHttpInfo(taskId = taskId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun createTaskInternalNote(taskId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : InternalNotesCreateNoteResponse {
+        val localVariableConfig = createTaskInternalNoteRequestConfig(taskId = taskId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<InternalNotesCreateNotePayload, InternalNotesCreateNoteResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as InternalNotesCreateNoteResponse
@@ -255,40 +210,18 @@ class TasksApi(
     }
 
     /**
-     * Add an internal note to a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param internalNotesCreateNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<InternalNotesCreateNoteResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun createTaskInternalNoteWithHttpInfo(taskId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : ApiResponse<InternalNotesCreateNoteResponse?> {
-        val localVariableConfig = createTaskInternalNoteRequestConfig(taskId = taskId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
-
-        return request<InternalNotesCreateNotePayload, InternalNotesCreateNoteResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation createTaskInternalNote
-     *
-     * @param taskId Task unique identifier.
-     * @param internalNotesCreateNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation createTaskInternalNote
+    *
+    * @param taskId Task unique identifier. 
+    * @param internalNotesCreateNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun createTaskInternalNoteRequestConfig(taskId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesCreateNotePayload> {
         val localVariableBody = internalNotesCreateNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -300,20 +233,22 @@ class TasksApi(
     }
 
     /**
-     * Delete a task.
-     * 
-     * @param taskId 
-     * @return kotlin.Any
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Delete a task.
+    * 
+    * @param taskId  
+    * @return kotlin.Any
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deleteTask(taskId: kotlin.String) : kotlin.Any {
-        val localVarResponse = deleteTaskWithHttpInfo(taskId = taskId)
+        val localVariableConfig = deleteTaskRequestConfig(taskId = taskId)
+
+        val localVarResponse = request<Unit, kotlin.Any>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
@@ -331,34 +266,15 @@ class TasksApi(
     }
 
     /**
-     * Delete a task.
-     * 
-     * @param taskId 
-     * @return ApiResponse<kotlin.Any?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun deleteTaskWithHttpInfo(taskId: kotlin.String) : ApiResponse<kotlin.Any?> {
-        val localVariableConfig = deleteTaskRequestConfig(taskId = taskId)
-
-        return request<Unit, kotlin.Any>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation deleteTask
-     *
-     * @param taskId 
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation deleteTask
+    *
+    * @param taskId  
+    * @return RequestConfig
+    */
     fun deleteTaskRequestConfig(taskId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -370,21 +286,23 @@ class TasksApi(
     }
 
     /**
-     * Return the detail of a task.
-     * 
-     * @param taskId 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return TasksTask
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Return the detail of a task.
+    * 
+    * @param taskId  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return TasksTask
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getTask(taskId: kotlin.String, acceptLanguage: kotlin.String? = null) : TasksTask {
-        val localVarResponse = getTaskWithHttpInfo(taskId = taskId, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getTask(taskId: kotlin.String, acceptLanguage: kotlin.String?) : TasksTask {
+        val localVariableConfig = getTaskRequestConfig(taskId = taskId, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, TasksTask>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as TasksTask
@@ -402,37 +320,17 @@ class TasksApi(
     }
 
     /**
-     * Return the detail of a task.
-     * 
-     * @param taskId 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<TasksTask?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getTaskWithHttpInfo(taskId: kotlin.String, acceptLanguage: kotlin.String?) : ApiResponse<TasksTask?> {
-        val localVariableConfig = getTaskRequestConfig(taskId = taskId, acceptLanguage = acceptLanguage)
-
-        return request<Unit, TasksTask>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getTask
-     *
-     * @param taskId 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getTask
+    *
+    * @param taskId  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun getTaskRequestConfig(taskId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -444,22 +342,24 @@ class TasksApi(
     }
 
     /**
-     * Get the internal notes list for a task.
-     * 
-     * @param taskId 
-     * @param history Query all revisions or not. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return InternalNotesNoteList
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Get the internal notes list for a task.
+    * 
+    * @param taskId  
+    * @param history Query all revisions or not. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return InternalNotesNoteList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getTaskInternalNoteList(taskId: kotlin.String, history: InternalNotesHistoryType? = null, acceptLanguage: kotlin.String? = null) : InternalNotesNoteList {
-        val localVarResponse = getTaskInternalNoteListWithHttpInfo(taskId = taskId, history = history, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getTaskInternalNoteList(taskId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : InternalNotesNoteList {
+        val localVariableConfig = getTaskInternalNoteListRequestConfig(taskId = taskId, history = history, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, InternalNotesNoteList>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as InternalNotesNoteList
@@ -477,36 +377,16 @@ class TasksApi(
     }
 
     /**
-     * Get the internal notes list for a task.
-     * 
-     * @param taskId 
-     * @param history Query all revisions or not. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<InternalNotesNoteList?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getTaskInternalNoteListWithHttpInfo(taskId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : ApiResponse<InternalNotesNoteList?> {
-        val localVariableConfig = getTaskInternalNoteListRequestConfig(taskId = taskId, history = history, acceptLanguage = acceptLanguage)
-
-        return request<Unit, InternalNotesNoteList>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getTaskInternalNoteList
-     *
-     * @param taskId 
-     * @param history Query all revisions or not. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getTaskInternalNoteList
+    *
+    * @param taskId  
+    * @param history Query all revisions or not. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun getTaskInternalNoteListRequestConfig(taskId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (history != null) {
                     put("history", listOf(history.toString()))
@@ -514,7 +394,6 @@ class TasksApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -526,29 +405,31 @@ class TasksApi(
     }
 
     /**
-     * List or search tasks.
-     * 
-     * @param ownerId Owner ID filter param. (optional)
-     * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
-     * @param minDueDate Minimum (inclusive) due date of the task. (optional)
-     * @param maxDueDate Maximum (exclusive) due date of the task. (optional)
-     * @param isCompleted If true, include only completed tasks. If false, include only TODO tasks. If not set or null, include both. (optional)
-     * @param dueDateFilter Include or exclude tasks with or without due date. (optional)
-     * @param orderBy Specify the order of the results. (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return TasksListTaskResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * List or search tasks.
+    * 
+    * @param ownerId Owner ID filter param. (optional)
+    * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
+    * @param minDueDate Minimum (inclusive) due date of the task. (optional)
+    * @param maxDueDate Maximum (exclusive) due date of the task. (optional)
+    * @param isCompleted If true, include only completed tasks. If false, include only TODO tasks. If not set or null, include both. (optional)
+    * @param dueDateFilter Include or exclude tasks with or without due date. (optional)
+    * @param orderBy Specify the order of the results. (optional)
+    * @param pageToken Token to specify which page to fetch. (optional)
+    * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return TasksListTaskResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listTasks(ownerId: kotlin.String? = null, contactIds: kotlin.collections.List<kotlin.Int>? = null, minDueDate: java.time.LocalDate? = null, maxDueDate: java.time.LocalDate? = null, isCompleted: kotlin.Boolean? = null, dueDateFilter: TasksDueDateFilter? = null, orderBy: TasksOrderByType? = null, pageToken: kotlin.String? = null, maxResults: kotlin.String? = null, acceptLanguage: kotlin.String? = null) : TasksListTaskResponse {
-        val localVarResponse = listTasksWithHttpInfo(ownerId = ownerId, contactIds = contactIds, minDueDate = minDueDate, maxDueDate = maxDueDate, isCompleted = isCompleted, dueDateFilter = dueDateFilter, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun listTasks(ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minDueDate: java.time.LocalDate?, maxDueDate: java.time.LocalDate?, isCompleted: kotlin.Boolean?, dueDateFilter: TasksDueDateFilter?, orderBy: TasksOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : TasksListTaskResponse {
+        val localVariableConfig = listTasksRequestConfig(ownerId = ownerId, contactIds = contactIds, minDueDate = minDueDate, maxDueDate = maxDueDate, isCompleted = isCompleted, dueDateFilter = dueDateFilter, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, TasksListTaskResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as TasksListTaskResponse
@@ -566,50 +447,23 @@ class TasksApi(
     }
 
     /**
-     * List or search tasks.
-     * 
-     * @param ownerId Owner ID filter param. (optional)
-     * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
-     * @param minDueDate Minimum (inclusive) due date of the task. (optional)
-     * @param maxDueDate Maximum (exclusive) due date of the task. (optional)
-     * @param isCompleted If true, include only completed tasks. If false, include only TODO tasks. If not set or null, include both. (optional)
-     * @param dueDateFilter Include or exclude tasks with or without due date. (optional)
-     * @param orderBy Specify the order of the results. (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<TasksListTaskResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listTasksWithHttpInfo(ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minDueDate: java.time.LocalDate?, maxDueDate: java.time.LocalDate?, isCompleted: kotlin.Boolean?, dueDateFilter: TasksDueDateFilter?, orderBy: TasksOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : ApiResponse<TasksListTaskResponse?> {
-        val localVariableConfig = listTasksRequestConfig(ownerId = ownerId, contactIds = contactIds, minDueDate = minDueDate, maxDueDate = maxDueDate, isCompleted = isCompleted, dueDateFilter = dueDateFilter, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
-
-        return request<Unit, TasksListTaskResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listTasks
-     *
-     * @param ownerId Owner ID filter param. (optional)
-     * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
-     * @param minDueDate Minimum (inclusive) due date of the task. (optional)
-     * @param maxDueDate Maximum (exclusive) due date of the task. (optional)
-     * @param isCompleted If true, include only completed tasks. If false, include only TODO tasks. If not set or null, include both. (optional)
-     * @param dueDateFilter Include or exclude tasks with or without due date. (optional)
-     * @param orderBy Specify the order of the results. (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation listTasks
+    *
+    * @param ownerId Owner ID filter param. (optional)
+    * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
+    * @param minDueDate Minimum (inclusive) due date of the task. (optional)
+    * @param maxDueDate Maximum (exclusive) due date of the task. (optional)
+    * @param isCompleted If true, include only completed tasks. If false, include only TODO tasks. If not set or null, include both. (optional)
+    * @param dueDateFilter Include or exclude tasks with or without due date. (optional)
+    * @param orderBy Specify the order of the results. (optional)
+    * @param pageToken Token to specify which page to fetch. (optional)
+    * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun listTasksRequestConfig(ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minDueDate: java.time.LocalDate?, maxDueDate: java.time.LocalDate?, isCompleted: kotlin.Boolean?, dueDateFilter: TasksDueDateFilter?, orderBy: TasksOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (ownerId != null) {
                     put("ownerId", listOf(ownerId.toString()))
@@ -641,7 +495,6 @@ class TasksApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -653,22 +506,24 @@ class TasksApi(
     }
 
     /**
-     * Partially update a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param tasksPatchTaskPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return TasksPatchTaskResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Partially update a task.
+    * 
+    * @param taskId Task unique identifier. 
+    * @param tasksPatchTaskPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return TasksPatchTaskResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun patchTask(taskId: kotlin.String, tasksPatchTaskPayload: TasksPatchTaskPayload, acceptLanguage: kotlin.String? = null) : TasksPatchTaskResponse {
-        val localVarResponse = patchTaskWithHttpInfo(taskId = taskId, tasksPatchTaskPayload = tasksPatchTaskPayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun patchTask(taskId: kotlin.String, tasksPatchTaskPayload: TasksPatchTaskPayload, acceptLanguage: kotlin.String?) : TasksPatchTaskResponse {
+        val localVariableConfig = patchTaskRequestConfig(taskId = taskId, tasksPatchTaskPayload = tasksPatchTaskPayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<TasksPatchTaskPayload, TasksPatchTaskResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as TasksPatchTaskResponse
@@ -686,40 +541,18 @@ class TasksApi(
     }
 
     /**
-     * Partially update a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param tasksPatchTaskPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<TasksPatchTaskResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun patchTaskWithHttpInfo(taskId: kotlin.String, tasksPatchTaskPayload: TasksPatchTaskPayload, acceptLanguage: kotlin.String?) : ApiResponse<TasksPatchTaskResponse?> {
-        val localVariableConfig = patchTaskRequestConfig(taskId = taskId, tasksPatchTaskPayload = tasksPatchTaskPayload, acceptLanguage = acceptLanguage)
-
-        return request<TasksPatchTaskPayload, TasksPatchTaskResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation patchTask
-     *
-     * @param taskId Task unique identifier.
-     * @param tasksPatchTaskPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation patchTask
+    *
+    * @param taskId Task unique identifier. 
+    * @param tasksPatchTaskPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun patchTaskRequestConfig(taskId: kotlin.String, tasksPatchTaskPayload: TasksPatchTaskPayload, acceptLanguage: kotlin.String?) : RequestConfig<TasksPatchTaskPayload> {
         val localVariableBody = tasksPatchTaskPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.PATCH,
@@ -731,23 +564,25 @@ class TasksApi(
     }
 
     /**
-     * Add an internal note to a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param internalNotesPatchNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return InternalNotesPatchNoteResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Add an internal note to a task.
+    * 
+    * @param taskId Task unique identifier. 
+    * @param noteId Note unique identifier. 
+    * @param internalNotesPatchNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return InternalNotesPatchNoteResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun patchTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String? = null) : InternalNotesPatchNoteResponse {
-        val localVarResponse = patchTaskInternalNoteWithHttpInfo(taskId = taskId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun patchTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : InternalNotesPatchNoteResponse {
+        val localVariableConfig = patchTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<InternalNotesPatchNotePayload, InternalNotesPatchNoteResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as InternalNotesPatchNoteResponse
@@ -765,42 +600,19 @@ class TasksApi(
     }
 
     /**
-     * Add an internal note to a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param internalNotesPatchNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<InternalNotesPatchNoteResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun patchTaskInternalNoteWithHttpInfo(taskId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : ApiResponse<InternalNotesPatchNoteResponse?> {
-        val localVariableConfig = patchTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
-
-        return request<InternalNotesPatchNotePayload, InternalNotesPatchNoteResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation patchTaskInternalNote
-     *
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param internalNotesPatchNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation patchTaskInternalNote
+    *
+    * @param taskId Task unique identifier. 
+    * @param noteId Note unique identifier. 
+    * @param internalNotesPatchNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun patchTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesPatchNotePayload> {
         val localVariableBody = internalNotesPatchNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.PATCH,
@@ -812,22 +624,24 @@ class TasksApi(
     }
 
     /**
-     * Restore an archived internal note for a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return kotlin.Any
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Restore an archived internal note for a task.
+    * 
+    * @param taskId Task unique identifier. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return kotlin.Any
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun restoreTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String? = null) : kotlin.Any {
-        val localVarResponse = restoreTaskInternalNoteWithHttpInfo(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun restoreTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+        val localVariableConfig = restoreTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, kotlin.Any>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
@@ -845,39 +659,18 @@ class TasksApi(
     }
 
     /**
-     * Restore an archived internal note for a task.
-     * 
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<kotlin.Any?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun restoreTaskInternalNoteWithHttpInfo(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : ApiResponse<kotlin.Any?> {
-        val localVariableConfig = restoreTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
-
-        return request<Unit, kotlin.Any>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation restoreTaskInternalNote
-     *
-     * @param taskId Task unique identifier.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation restoreTaskInternalNote
+    *
+    * @param taskId Task unique identifier. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun restoreTaskInternalNoteRequestConfig(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -889,20 +682,22 @@ class TasksApi(
     }
 
     /**
-     * Transfer a task to completed/done.
-     * 
-     * @param taskId Task unique identifier.
-     * @return TasksTransferToCompletedResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Transfer a task to completed/done.
+    * 
+    * @param taskId Task unique identifier. 
+    * @return TasksTransferToCompletedResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun transferTaskToCompleted(taskId: kotlin.String) : TasksTransferToCompletedResponse {
-        val localVarResponse = transferTaskToCompletedWithHttpInfo(taskId = taskId)
+        val localVariableConfig = transferTaskToCompletedRequestConfig(taskId = taskId)
+
+        val localVarResponse = request<Unit, TasksTransferToCompletedResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as TasksTransferToCompletedResponse
@@ -920,34 +715,15 @@ class TasksApi(
     }
 
     /**
-     * Transfer a task to completed/done.
-     * 
-     * @param taskId Task unique identifier.
-     * @return ApiResponse<TasksTransferToCompletedResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun transferTaskToCompletedWithHttpInfo(taskId: kotlin.String) : ApiResponse<TasksTransferToCompletedResponse?> {
-        val localVariableConfig = transferTaskToCompletedRequestConfig(taskId = taskId)
-
-        return request<Unit, TasksTransferToCompletedResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation transferTaskToCompleted
-     *
-     * @param taskId Task unique identifier.
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation transferTaskToCompleted
+    *
+    * @param taskId Task unique identifier. 
+    * @return RequestConfig
+    */
     fun transferTaskToCompletedRequestConfig(taskId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,

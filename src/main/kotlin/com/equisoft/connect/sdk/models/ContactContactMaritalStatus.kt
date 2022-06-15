@@ -20,7 +20,7 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.ContactContactAdditionalInformationLanguage
+import com.equisoft.connect.sdk.models.FieldValue
 
 import com.squareup.moshi.Json
 
@@ -46,10 +46,10 @@ data class ContactContactMaritalStatus (
     val endDate: java.time.LocalDate? = null,
 
     @Json(name = "status")
-    val status: ContactContactAdditionalInformationLanguage? = null,
+    val status: FieldValue? = null,
 
     @Json(name = "marriageContract")
-    val marriageContract: ContactContactAdditionalInformationLanguage? = null
+    val marriageContract: FieldValue? = null
 
 )
 

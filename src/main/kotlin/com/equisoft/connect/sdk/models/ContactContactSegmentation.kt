@@ -20,7 +20,6 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.ContactContactAdditionalInformationLanguage
 import com.equisoft.connect.sdk.models.FieldValue
 
 import com.squareup.moshi.Json
@@ -65,25 +64,25 @@ data class ContactContactSegmentation (
     val industries: kotlin.collections.List<FieldValue>,
 
     @Json(name = "segmentation1")
-    val segmentation1: ContactContactAdditionalInformationLanguage? = null,
+    val segmentation1: FieldValue? = null,
 
     @Json(name = "segmentation2")
-    val segmentation2: ContactContactAdditionalInformationLanguage? = null,
+    val segmentation2: FieldValue? = null,
 
     @Json(name = "segmentation3")
-    val segmentation3: ContactContactAdditionalInformationLanguage? = null,
+    val segmentation3: FieldValue? = null,
 
     @Json(name = "segmentation4")
-    val segmentation4: ContactContactAdditionalInformationLanguage? = null,
+    val segmentation4: FieldValue? = null,
 
     @Json(name = "segmentation5")
-    val segmentation5: ContactContactAdditionalInformationLanguage? = null,
+    val segmentation5: FieldValue? = null,
 
     @Json(name = "segmentation6")
-    val segmentation6: ContactContactAdditionalInformationLanguage? = null,
+    val segmentation6: FieldValue? = null,
 
     @Json(name = "territory")
-    val territory: ContactContactAdditionalInformationLanguage? = null
+    val territory: FieldValue? = null
 
 )
 

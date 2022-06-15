@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**title** | [**ContactContactAdditionalInformationLanguage**](ContactContactAdditionalInformationLanguage.md) |  |  [optional]
+**title** | [**FieldValue**](FieldValue.md) |  |  [optional]
 **gender** | **kotlin.String** |  |  [optional]
 **firstName** | **kotlin.String** |  |  [optional]
 **middleName** | **kotlin.String** |  |  [optional]

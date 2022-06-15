@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **facebookLink** | **kotlin.String** |  |  [optional]
 **twitterLink** | **kotlin.String** |  |  [optional]
 **linkedInLink** | **kotlin.String** |  |  [optional]
-**language** | [**ContactContactAdditionalInformationLanguage**](ContactContactAdditionalInformationLanguage.md) |  |  [optional]
+**language** | [**FieldValue**](FieldValue.md) |  |  [optional]
 **pictureId** | **kotlin.Int** |  |  [optional]
 
 

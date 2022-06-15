@@ -20,9 +20,8 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.InternalNotesNoteAccessRights
-import com.equisoft.connect.sdk.models.InternalNotesNoteAuthor
-import com.equisoft.connect.sdk.models.InternalNotesNoteCurrentRevision
+import com.equisoft.connect.sdk.models.AccessRights
+import com.equisoft.connect.sdk.models.InternalNotesAuthor
 import com.equisoft.connect.sdk.models.InternalNotesNoteRevision
 
 import com.squareup.moshi.Json
@@ -45,16 +44,16 @@ data class InternalNotesNote (
     val id: kotlin.Int?,
 
     @Json(name = "author")
-    val author: InternalNotesNoteAuthor?,
+    val author: InternalNotesAuthor?,
 
     @Json(name = "firstRevisionCreatedAt")
     val firstRevisionCreatedAt: java.time.OffsetDateTime?,
 
     @Json(name = "accessRights")
-    val accessRights: InternalNotesNoteAccessRights?,
+    val accessRights: AccessRights?,
 
     @Json(name = "currentRevision")
-    val currentRevision: InternalNotesNoteCurrentRevision?,
+    val currentRevision: InternalNotesNoteRevision?,
 
     @Json(name = "previousRevisions")
     val previousRevisions: kotlin.collections.List<InternalNotesNoteRevision>? = null
