@@ -20,20 +20,22 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.GatewaysaccessesAccess
+import com.equisoft.connect.sdk.models.GatewaysaccessesUser
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param items 
+ * @param id 
+ * @param users 
  */
 
-data class GatewaysaccessesListGatewayAccessesResponse (
+interface GatewaysaccessesAccess {
 
-    @Json(name = "items")
-    val items: kotlin.collections.List<GatewaysaccessesAccess>
-
-)
+    @Json(name = "id")
+    val id: kotlin.Int
+    @Json(name = "users")
+    val users: kotlin.collections.List<GatewaysaccessesUser>
+}
 
