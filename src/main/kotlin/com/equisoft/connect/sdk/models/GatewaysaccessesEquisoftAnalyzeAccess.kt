@@ -20,8 +20,6 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.GatewaysAccessesEquisoftAnalyzeAccessAllOf
-import com.equisoft.connect.sdk.models.GatewaysaccessesAccess
 import com.equisoft.connect.sdk.models.GatewaysaccessesUser
 
 import com.squareup.moshi.Json
@@ -29,27 +27,27 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param clientKey 
- * @param version 
  * @param id 
  * @param users 
+ * @param clientKey 
+ * @param version 
  */
 
 data class GatewaysaccessesEquisoftAnalyzeAccess (
+
+    @Json(name = "id")
+    val id: kotlin.Int,
+
+    @Json(name = "users")
+    val users: kotlin.collections.List<GatewaysaccessesUser>,
 
     @Json(name = "clientKey")
     val clientKey: kotlin.String,
 
     @Json(name = "version")
-    val version: GatewaysaccessesEquisoftAnalyzeAccess.Version = Version.NATIVE,
+    val version: GatewaysaccessesEquisoftAnalyzeAccess.Version = Version.NATIVE
 
-    @Json(name = "id")
-    override val id: kotlin.Int,
-
-    @Json(name = "users")
-    override val users: kotlin.collections.List<GatewaysaccessesUser>
-
-) : GatewaysaccessesAccess {
+) {
 
     /**
      * 
