@@ -20,20 +20,34 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.GatewaysaccessesAccess
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param items 
+ * @param clientKey 
+ * @param version 
  */
 
-data class GatewaysaccessesListGatewayAccessesResponse (
+data class GatewaysAccessesEquisoftAnalyzeAccessAllOf (
 
-    @Json(name = "items")
-    val items: kotlin.collections.List<GatewaysaccessesAccess>
+    @Json(name = "clientKey")
+    val clientKey: kotlin.String? = null,
 
-)
+    @Json(name = "version")
+    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = null
+
+) {
+
+    /**
+     * 
+     *
+     * Values: NATIVE,LEGACY
+     */
+    enum class Version(val value: kotlin.String) {
+        @Json(name = "NATIVE") NATIVE("NATIVE"),
+        @Json(name = "LEGACY") LEGACY("LEGACY");
+    }
+}
 
