@@ -20,7 +20,7 @@
 
 package com.equisoft.connect.sdk.models
 
-import com.equisoft.connect.sdk.models.GatewaysaccessesAccess
+import com.equisoft.connect.sdk.models.GatewaysaccessesEquisoftAnalyzeAccess
 
 import com.squareup.moshi.Json
 
@@ -33,7 +33,7 @@ import com.squareup.moshi.Json
 data class GatewaysaccessesListGatewayAccessesResponse (
 
     @Json(name = "items")
-    val items: kotlin.collections.List<GatewaysaccessesAccess>
+    val items: kotlin.collections.List<GatewaysaccessesEquisoftAnalyzeAccess>
 
 )
 
