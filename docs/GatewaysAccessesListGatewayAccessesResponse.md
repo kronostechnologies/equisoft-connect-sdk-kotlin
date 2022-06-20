@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**items** | [**kotlin.collections.List&lt;GatewaysaccessesEquisoftAnalyzeAccess&gt;**](GatewaysaccessesEquisoftAnalyzeAccess.md) |  | 
+**items** | [**kotlin.collections.List&lt;GatewaysaccessesAccess&gt;**](GatewaysaccessesAccess.md) |  | 
 
 
 
