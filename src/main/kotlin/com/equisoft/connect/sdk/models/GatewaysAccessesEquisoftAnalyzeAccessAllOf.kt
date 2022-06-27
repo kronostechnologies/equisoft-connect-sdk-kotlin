@@ -26,18 +26,28 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param userUuid Uuid of the user attached to the gateway access
  * @param clientKey 
+ * @param version 
  */
 
-data class GatewaysaccessesCreateEquisoftAnalyzeAccessPayload (
-
-    /* Uuid of the user attached to the gateway access */
-    @Json(name = "userUuid")
-    val userUuid: kotlin.String,
+data class GatewaysAccessesEquisoftAnalyzeAccessAllOf (
 
     @Json(name = "clientKey")
-    val clientKey: kotlin.String
+    val clientKey: kotlin.String? = null,
 
-)
+    @Json(name = "version")
+    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = null
+
+) {
+
+    /**
+     * 
+     *
+     * Values: NATIVE,LEGACY
+     */
+    enum class Version(val value: kotlin.String) {
+        @Json(name = "NATIVE") NATIVE("NATIVE"),
+        @Json(name = "LEGACY") LEGACY("LEGACY");
+    }
+}
 
