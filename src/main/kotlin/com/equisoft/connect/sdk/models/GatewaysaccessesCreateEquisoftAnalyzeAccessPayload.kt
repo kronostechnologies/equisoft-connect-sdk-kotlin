@@ -28,6 +28,7 @@ import com.squareup.moshi.Json
  *
  * @param userUuid Uuid of the user attached to the gateway access
  * @param clientKey 
+ * @param billingType 
  */
 
 data class GatewaysaccessesCreateEquisoftAnalyzeAccessPayload (
@@ -37,7 +38,10 @@ data class GatewaysaccessesCreateEquisoftAnalyzeAccessPayload (
     val userUuid: kotlin.String,
 
     @Json(name = "clientKey")
-    val clientKey: kotlin.String
+    val clientKey: kotlin.String,
+
+    @Json(name = "billingType")
+    val billingType: kotlin.Int
 
 )
 
