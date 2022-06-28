@@ -60,7 +60,7 @@ Configure OAuth2:
 
 <a name="cancelMovement"></a>
 # **cancelMovement**
-> cancelMovement(movementId)
+> kotlin.Any cancelMovement(movementId)
 
 
 
@@ -73,7 +73,8 @@ Configure OAuth2:
 val apiInstance = MovementApi()
 val movementId : kotlin.Int = 56 // kotlin.Int | 
 try {
-    apiInstance.cancelMovement(movementId)
+    val result : kotlin.Any = apiInstance.cancelMovement(movementId)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling MovementApi#cancelMovement")
     e.printStackTrace()
@@ -91,7 +92,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 
@@ -106,7 +107,7 @@ Configure OAuth2:
 
 <a name="deleteMovement"></a>
 # **deleteMovement**
-> deleteMovement(movementId)
+> kotlin.Any deleteMovement(movementId)
 
 
 
@@ -119,7 +120,8 @@ Configure OAuth2:
 val apiInstance = MovementApi()
 val movementId : kotlin.Int = 56 // kotlin.Int | 
 try {
-    apiInstance.deleteMovement(movementId)
+    val result : kotlin.Any = apiInstance.deleteMovement(movementId)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling MovementApi#deleteMovement")
     e.printStackTrace()
@@ -137,7 +139,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 

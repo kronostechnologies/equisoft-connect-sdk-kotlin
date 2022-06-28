@@ -46,7 +46,7 @@ data class MovementCopyMovementAllOf (
     val userTuples: kotlin.collections.List<MovementUserTuple>? = null,
 
     @Json(name = "type")
-    val type: MovementCopyMovementAllOf.Type? = Type.COPY
+    val type: MovementCopyMovementAllOf.Type? = null
 
 ) {
 

@@ -20,41 +20,22 @@
 
 package com.equisoft.connect.sdk.models
 
+import com.equisoft.connect.sdk.models.GatewaysaccessesUser
 
 import com.squareup.moshi.Json
 
 /**
  * 
  *
- * @param sourceDatabase 
- * @param destinationDatabase 
+ * @param id 
  * @param users 
- * @param type 
  */
 
-data class MovementMoveMovementPayloadAllOf (
+interface GatewaysaccessesAccess {
 
-    @Json(name = "sourceDatabase")
-    val sourceDatabase: kotlin.String? = null,
-
-    @Json(name = "destinationDatabase")
-    val destinationDatabase: kotlin.String? = null,
-
+    @Json(name = "id")
+    val id: kotlin.Int
     @Json(name = "users")
-    val users: kotlin.collections.List<kotlin.String>? = null,
-
-    @Json(name = "type")
-    val type: MovementMoveMovementPayloadAllOf.Type? = null
-
-) {
-
-    /**
-     * 
-     *
-     * Values: MOVE
-     */
-    enum class Type(val value: kotlin.String) {
-        @Json(name = "MOVE") MOVE("MOVE");
-    }
+    val users: kotlin.collections.List<GatewaysaccessesUser>
 }
 

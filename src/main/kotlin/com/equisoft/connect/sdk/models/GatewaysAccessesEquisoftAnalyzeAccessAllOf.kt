@@ -26,35 +26,28 @@ import com.squareup.moshi.Json
 /**
  * 
  *
- * @param sourceDatabase 
- * @param destinationDatabase 
- * @param users 
- * @param type 
+ * @param clientKey 
+ * @param version 
  */
 
-data class MovementMoveMovementPayloadAllOf (
+data class GatewaysAccessesEquisoftAnalyzeAccessAllOf (
 
-    @Json(name = "sourceDatabase")
-    val sourceDatabase: kotlin.String? = null,
+    @Json(name = "clientKey")
+    val clientKey: kotlin.String? = null,
 
-    @Json(name = "destinationDatabase")
-    val destinationDatabase: kotlin.String? = null,
-
-    @Json(name = "users")
-    val users: kotlin.collections.List<kotlin.String>? = null,
-
-    @Json(name = "type")
-    val type: MovementMoveMovementPayloadAllOf.Type? = null
+    @Json(name = "version")
+    val version: GatewaysAccessesEquisoftAnalyzeAccessAllOf.Version? = null
 
 ) {
 
     /**
      * 
      *
-     * Values: MOVE
+     * Values: NATIVE,LEGACY
      */
-    enum class Type(val value: kotlin.String) {
-        @Json(name = "MOVE") MOVE("MOVE");
+    enum class Version(val value: kotlin.String) {
+        @Json(name = "NATIVE") NATIVE("NATIVE"),
+        @Json(name = "LEGACY") LEGACY("LEGACY");
     }
 }
 
