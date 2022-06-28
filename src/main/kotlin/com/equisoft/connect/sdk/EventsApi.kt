@@ -68,22 +68,21 @@ class EventsApi(
     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
     * @param noteId Note unique identifier. 
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun archiveEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+    fun archiveEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : Unit {
         val localVariableConfig = archiveEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -238,22 +237,21 @@ class EventsApi(
     * Delete an event.
     * **Note:** To delete an instance of recurring event, use the master event id suffixed by the original start date of the occurrence.
     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun deleteEvent(eventId: kotlin.String) : kotlin.Any {
+    fun deleteEvent(eventId: kotlin.String) : Unit {
         val localVariableConfig = deleteEventRequestConfig(eventId = eventId)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -824,22 +822,21 @@ class EventsApi(
     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
     * @param noteId Note unique identifier. 
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun restoreEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+    fun restoreEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : Unit {
         val localVariableConfig = restoreEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

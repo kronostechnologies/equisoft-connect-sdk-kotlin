@@ -110,22 +110,21 @@ class GatewaysApi(
     * 
     * Delete user access configuration for given gateway
     * @param accessId  
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun deleteEquisoftAnalyzeAccess(accessId: kotlin.Int) : kotlin.Any {
+    fun deleteEquisoftAnalyzeAccess(accessId: kotlin.Int) : Unit {
         val localVariableConfig = deleteEquisoftAnalyzeAccessRequestConfig(accessId = accessId)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -501,22 +500,21 @@ class GatewaysApi(
     * Update user access configuration for Equisoft/analyze gateway
     * @param accessId  
     * @param gatewaysaccessesPatchEquisoftAnalyzeAccessPayload  
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun patchEquisoftAnalyzeAccess(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : kotlin.Any {
+    fun patchEquisoftAnalyzeAccess(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : Unit {
         val localVariableConfig = patchEquisoftAnalyzeAccessRequestConfig(accessId = accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
 
-        val localVarResponse = request<GatewaysaccessesPatchEquisoftAnalyzeAccessPayload, kotlin.Any>(
+        val localVarResponse = request<GatewaysaccessesPatchEquisoftAnalyzeAccessPayload, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

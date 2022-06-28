@@ -66,22 +66,21 @@ class TasksApi(
     * @param taskId Task unique identifier. 
     * @param noteId Note unique identifier. 
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun archiveTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+    fun archiveTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : Unit {
         val localVariableConfig = archiveTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -236,22 +235,21 @@ class TasksApi(
     * Delete a task.
     * 
     * @param taskId  
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun deleteTask(taskId: kotlin.String) : kotlin.Any {
+    fun deleteTask(taskId: kotlin.String) : Unit {
         val localVariableConfig = deleteTaskRequestConfig(taskId = taskId)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -629,22 +627,21 @@ class TasksApi(
     * @param taskId Task unique identifier. 
     * @param noteId Note unique identifier. 
     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun restoreTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+    fun restoreTaskInternalNote(taskId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : Unit {
         val localVariableConfig = restoreTaskInternalNoteRequestConfig(taskId = taskId, noteId = noteId, acceptLanguage = acceptLanguage)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {

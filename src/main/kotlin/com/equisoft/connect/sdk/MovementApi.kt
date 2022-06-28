@@ -107,22 +107,21 @@ class MovementApi(
     * 
     * 
     * @param movementId  
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun cancelMovement(movementId: kotlin.Int) : kotlin.Any {
+    fun cancelMovement(movementId: kotlin.Int) : Unit {
         val localVariableConfig = cancelMovementRequestConfig(movementId = movementId)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -160,22 +159,21 @@ class MovementApi(
     * 
     * 
     * @param movementId  
-    * @return kotlin.Any
+    * @return void
     * @throws UnsupportedOperationException If the API returns an informational or redirection response
     * @throws ClientException If the API returns a client error response
     * @throws ServerException If the API returns a server error response
     */
-    @Suppress("UNCHECKED_CAST")
     @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun deleteMovement(movementId: kotlin.Int) : kotlin.Any {
+    fun deleteMovement(movementId: kotlin.Int) : Unit {
         val localVariableConfig = deleteMovementRequestConfig(movementId = movementId)
 
-        val localVarResponse = request<Unit, kotlin.Any>(
+        val localVarResponse = request<Unit, Unit>(
             localVariableConfig
         )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
+            ResponseType.Success -> Unit
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
