@@ -20,6 +20,9 @@
 
 package com.equisoft.connect.sdk
 
+import java.io.IOException
+import okhttp3.OkHttpClient
+
 import com.equisoft.connect.sdk.models.AdminCredentialPayload
 import com.equisoft.connect.sdk.models.AdminCredentialResponse
 import com.equisoft.connect.sdk.models.CredentialsResponse
@@ -30,12 +33,16 @@ import com.equisoft.connect.sdk.models.GatewaysaccessesCreateEquisoftAnalyzeAcce
 import com.equisoft.connect.sdk.models.GatewaysaccessesListGatewayAccessesResponse
 import com.equisoft.connect.sdk.models.GatewaysaccessesPatchEquisoftAnalyzeAccessPayload
 
+import com.squareup.moshi.Json
+
 import com.equisoft.connect.sdk.infrastructure.ApiClient
+import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
+import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -44,32 +51,32 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class GatewaysApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null
-) : ApiClient(basePath, accessToken) {
+    accessToken: String? = null,
+    client: OkHttpClient = ApiClient.defaultClient
+) : ApiClient(basePath, accessToken, client) {
+
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
+            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
         }
     }
 
     /**
-    * 
-    * Create a user access configuration for Equisoft/analyze gateway
-    * @param gatewaysaccessesCreateEquisoftAnalyzeAccessPayload  
-    * @return GatewaysaccessesCreateAccessResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * Create a user access configuration for Equisoft/analyze gateway
+     * @param gatewaysaccessesCreateEquisoftAnalyzeAccessPayload 
+     * @return GatewaysaccessesCreateAccessResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun createEquisoftAnalyzeAccess(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload: GatewaysaccessesCreateEquisoftAnalyzeAccessPayload) : GatewaysaccessesCreateAccessResponse {
-        val localVariableConfig = createEquisoftAnalyzeAccessRequestConfig(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload)
-
-        val localVarResponse = request<GatewaysaccessesCreateEquisoftAnalyzeAccessPayload, GatewaysaccessesCreateAccessResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = createEquisoftAnalyzeAccessWithHttpInfo(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GatewaysaccessesCreateAccessResponse
@@ -87,15 +94,35 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation createEquisoftAnalyzeAccess
-    *
-    * @param gatewaysaccessesCreateEquisoftAnalyzeAccessPayload  
-    * @return RequestConfig
-    */
+     * 
+     * Create a user access configuration for Equisoft/analyze gateway
+     * @param gatewaysaccessesCreateEquisoftAnalyzeAccessPayload 
+     * @return ApiResponse<GatewaysaccessesCreateAccessResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun createEquisoftAnalyzeAccessWithHttpInfo(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload: GatewaysaccessesCreateEquisoftAnalyzeAccessPayload) : ApiResponse<GatewaysaccessesCreateAccessResponse?> {
+        val localVariableConfig = createEquisoftAnalyzeAccessRequestConfig(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload)
+
+        return request<GatewaysaccessesCreateEquisoftAnalyzeAccessPayload, GatewaysaccessesCreateAccessResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation createEquisoftAnalyzeAccess
+     *
+     * @param gatewaysaccessesCreateEquisoftAnalyzeAccessPayload 
+     * @return RequestConfig
+     */
     fun createEquisoftAnalyzeAccessRequestConfig(gatewaysaccessesCreateEquisoftAnalyzeAccessPayload: GatewaysaccessesCreateEquisoftAnalyzeAccessPayload) : RequestConfig<GatewaysaccessesCreateEquisoftAnalyzeAccessPayload> {
         val localVariableBody = gatewaysaccessesCreateEquisoftAnalyzeAccessPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -107,21 +134,19 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * Delete user access configuration for given gateway
-    * @param accessId  
-    * @return void
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+     * 
+     * Delete user access configuration for given gateway
+     * @param accessId 
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deleteEquisoftAnalyzeAccess(accessId: kotlin.Int) : Unit {
-        val localVariableConfig = deleteEquisoftAnalyzeAccessRequestConfig(accessId = accessId)
-
-        val localVarResponse = request<Unit, Unit>(
-            localVariableConfig
-        )
+        val localVarResponse = deleteEquisoftAnalyzeAccessWithHttpInfo(accessId = accessId)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -139,15 +164,33 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation deleteEquisoftAnalyzeAccess
-    *
-    * @param accessId  
-    * @return RequestConfig
-    */
+     * 
+     * Delete user access configuration for given gateway
+     * @param accessId 
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Throws(IllegalStateException::class, IOException::class)
+    fun deleteEquisoftAnalyzeAccessWithHttpInfo(accessId: kotlin.Int) : ApiResponse<Unit?> {
+        val localVariableConfig = deleteEquisoftAnalyzeAccessRequestConfig(accessId = accessId)
+
+        return request<Unit, Unit>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation deleteEquisoftAnalyzeAccess
+     *
+     * @param accessId 
+     * @return RequestConfig
+     */
     fun deleteEquisoftAnalyzeAccessRequestConfig(accessId: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -159,24 +202,22 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * 
-    * @param gatewayName  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @param adminCredentialPayload  
-    * @return AdminCredentialResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * 
+     * @param gatewayName 
+     * @param authorization Authorization header using the Bearer scheme
+     * @param adminCredentialPayload 
+     * @return AdminCredentialResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun gatewayAdminLogin(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : AdminCredentialResponse {
-        val localVariableConfig = gatewayAdminLoginRequestConfig(gatewayName = gatewayName, authorization = authorization, adminCredentialPayload = adminCredentialPayload)
-
-        val localVarResponse = request<AdminCredentialPayload, AdminCredentialResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = gatewayAdminLoginWithHttpInfo(gatewayName = gatewayName, authorization = authorization, adminCredentialPayload = adminCredentialPayload)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as AdminCredentialResponse
@@ -194,18 +235,40 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation gatewayAdminLogin
-    *
-    * @param gatewayName  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @param adminCredentialPayload  
-    * @return RequestConfig
-    */
+     * 
+     * 
+     * @param gatewayName 
+     * @param authorization Authorization header using the Bearer scheme
+     * @param adminCredentialPayload 
+     * @return ApiResponse<AdminCredentialResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun gatewayAdminLoginWithHttpInfo(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : ApiResponse<AdminCredentialResponse?> {
+        val localVariableConfig = gatewayAdminLoginRequestConfig(gatewayName = gatewayName, authorization = authorization, adminCredentialPayload = adminCredentialPayload)
+
+        return request<AdminCredentialPayload, AdminCredentialResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation gatewayAdminLogin
+     *
+     * @param gatewayName 
+     * @param authorization Authorization header using the Bearer scheme
+     * @param adminCredentialPayload 
+     * @return RequestConfig
+     */
     fun gatewayAdminLoginRequestConfig(gatewayName: kotlin.String, authorization: kotlin.String, adminCredentialPayload: AdminCredentialPayload) : RequestConfig<AdminCredentialPayload> {
         val localVariableBody = adminCredentialPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -217,21 +280,19 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * 
-    * @return GatewaysListCredentialsResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * 
+     * @return GatewaysListCredentialsResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun listAssetBookCredentials() : GatewaysListCredentialsResponse {
-        val localVariableConfig = listAssetBookCredentialsRequestConfig()
-
-        val localVarResponse = request<Unit, GatewaysListCredentialsResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = listAssetBookCredentialsWithHttpInfo()
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GatewaysListCredentialsResponse
@@ -249,14 +310,32 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation listAssetBookCredentials
-    *
-    * @return RequestConfig
-    */
+     * 
+     * 
+     * @return ApiResponse<GatewaysListCredentialsResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun listAssetBookCredentialsWithHttpInfo() : ApiResponse<GatewaysListCredentialsResponse?> {
+        val localVariableConfig = listAssetBookCredentialsRequestConfig()
+
+        return request<Unit, GatewaysListCredentialsResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation listAssetBookCredentials
+     *
+     * @return RequestConfig
+     */
     fun listAssetBookCredentialsRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -268,24 +347,22 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * 
-    * @param gatewayId  
-    * @param status  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @return CredentialsResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * 
+     * @param gatewayId 
+     * @param status 
+     * @param authorization Authorization header using the Bearer scheme
+     * @return CredentialsResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun listCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : CredentialsResponse {
-        val localVariableConfig = listCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization)
-
-        val localVarResponse = request<Unit, CredentialsResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = listCredentialsWithHttpInfo(gatewayId = gatewayId, status = status, authorization = authorization)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CredentialsResponse
@@ -303,18 +380,39 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation listCredentials
-    *
-    * @param gatewayId  
-    * @param status  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @return RequestConfig
-    */
+     * 
+     * 
+     * @param gatewayId 
+     * @param status 
+     * @param authorization Authorization header using the Bearer scheme
+     * @return ApiResponse<CredentialsResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun listCredentialsWithHttpInfo(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : ApiResponse<CredentialsResponse?> {
+        val localVariableConfig = listCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization)
+
+        return request<Unit, CredentialsResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation listCredentials
+     *
+     * @param gatewayId 
+     * @param status 
+     * @param authorization Authorization header using the Bearer scheme
+     * @return RequestConfig
+     */
     fun listCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -326,22 +424,20 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * List user accesses configuration for equisoft/analyze gateway
-    * @param userUuid  (optional)
-    * @return GatewaysaccessesListGatewayAccessesResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * List user accesses configuration for equisoft/analyze gateway
+     * @param userUuid  (optional)
+     * @return GatewaysaccessesListGatewayAccessesResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listEquisoftAnalyzeAccesses(userUuid: kotlin.String?) : GatewaysaccessesListGatewayAccessesResponse {
-        val localVariableConfig = listEquisoftAnalyzeAccessesRequestConfig(userUuid = userUuid)
-
-        val localVarResponse = request<Unit, GatewaysaccessesListGatewayAccessesResponse>(
-            localVariableConfig
-        )
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun listEquisoftAnalyzeAccesses(userUuid: kotlin.String? = null) : GatewaysaccessesListGatewayAccessesResponse {
+        val localVarResponse = listEquisoftAnalyzeAccessesWithHttpInfo(userUuid = userUuid)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GatewaysaccessesListGatewayAccessesResponse
@@ -359,20 +455,39 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation listEquisoftAnalyzeAccesses
-    *
-    * @param userUuid  (optional)
-    * @return RequestConfig
-    */
+     * 
+     * List user accesses configuration for equisoft/analyze gateway
+     * @param userUuid  (optional)
+     * @return ApiResponse<GatewaysaccessesListGatewayAccessesResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun listEquisoftAnalyzeAccessesWithHttpInfo(userUuid: kotlin.String?) : ApiResponse<GatewaysaccessesListGatewayAccessesResponse?> {
+        val localVariableConfig = listEquisoftAnalyzeAccessesRequestConfig(userUuid = userUuid)
+
+        return request<Unit, GatewaysaccessesListGatewayAccessesResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation listEquisoftAnalyzeAccesses
+     *
+     * @param userUuid  (optional)
+     * @return RequestConfig
+     */
     fun listEquisoftAnalyzeAccessesRequestConfig(userUuid: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (userUuid != null) {
                     put("userUuid", listOf(userUuid.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -384,21 +499,19 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * 
-    * @param gatewayName  
-    * @return void
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+     * 
+     * 
+     * @param gatewayName 
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun listGatewayConfigurations(gatewayName: kotlin.String) : Unit {
-        val localVariableConfig = listGatewayConfigurationsRequestConfig(gatewayName = gatewayName)
-
-        val localVarResponse = request<Unit, Unit>(
-            localVariableConfig
-        )
+        val localVarResponse = listGatewayConfigurationsWithHttpInfo(gatewayName = gatewayName)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -416,15 +529,33 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation listGatewayConfigurations
-    *
-    * @param gatewayName  
-    * @return RequestConfig
-    */
+     * 
+     * 
+     * @param gatewayName 
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Throws(IllegalStateException::class, IOException::class)
+    fun listGatewayConfigurationsWithHttpInfo(gatewayName: kotlin.String) : ApiResponse<Unit?> {
+        val localVariableConfig = listGatewayConfigurationsRequestConfig(gatewayName = gatewayName)
+
+        return request<Unit, Unit>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation listGatewayConfigurations
+     *
+     * @param gatewayName 
+     * @return RequestConfig
+     */
     fun listGatewayConfigurationsRequestConfig(gatewayName: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -436,23 +567,21 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * 
-    * @param gatewayName  
-    * @param includeSsn Include the list of SSN for each credentials. Defaults to false (optional)
-    * @return GatewaysListCredentialsResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * 
+     * @param gatewayName 
+     * @param includeSsn Include the list of SSN for each credentials. Defaults to false (optional)
+     * @return GatewaysListCredentialsResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listGenericCredentials(gatewayName: kotlin.String, includeSsn: kotlin.Boolean?) : GatewaysListCredentialsResponse {
-        val localVariableConfig = listGenericCredentialsRequestConfig(gatewayName = gatewayName, includeSsn = includeSsn)
-
-        val localVarResponse = request<Unit, GatewaysListCredentialsResponse>(
-            localVariableConfig
-        )
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun listGenericCredentials(gatewayName: kotlin.String, includeSsn: kotlin.Boolean? = null) : GatewaysListCredentialsResponse {
+        val localVarResponse = listGenericCredentialsWithHttpInfo(gatewayName = gatewayName, includeSsn = includeSsn)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as GatewaysListCredentialsResponse
@@ -470,21 +599,41 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation listGenericCredentials
-    *
-    * @param gatewayName  
-    * @param includeSsn Include the list of SSN for each credentials. Defaults to false (optional)
-    * @return RequestConfig
-    */
+     * 
+     * 
+     * @param gatewayName 
+     * @param includeSsn Include the list of SSN for each credentials. Defaults to false (optional)
+     * @return ApiResponse<GatewaysListCredentialsResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun listGenericCredentialsWithHttpInfo(gatewayName: kotlin.String, includeSsn: kotlin.Boolean?) : ApiResponse<GatewaysListCredentialsResponse?> {
+        val localVariableConfig = listGenericCredentialsRequestConfig(gatewayName = gatewayName, includeSsn = includeSsn)
+
+        return request<Unit, GatewaysListCredentialsResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation listGenericCredentials
+     *
+     * @param gatewayName 
+     * @param includeSsn Include the list of SSN for each credentials. Defaults to false (optional)
+     * @return RequestConfig
+     */
     fun listGenericCredentialsRequestConfig(gatewayName: kotlin.String, includeSsn: kotlin.Boolean?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (includeSsn != null) {
                     put("includeSsn", listOf(includeSsn.toString()))
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -496,22 +645,20 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * Update user access configuration for Equisoft/analyze gateway
-    * @param accessId  
-    * @param gatewaysaccessesPatchEquisoftAnalyzeAccessPayload  
-    * @return void
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+     * 
+     * Update user access configuration for Equisoft/analyze gateway
+     * @param accessId 
+     * @param gatewaysaccessesPatchEquisoftAnalyzeAccessPayload 
+     * @return void
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun patchEquisoftAnalyzeAccess(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : Unit {
-        val localVariableConfig = patchEquisoftAnalyzeAccessRequestConfig(accessId = accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
-
-        val localVarResponse = request<GatewaysaccessesPatchEquisoftAnalyzeAccessPayload, Unit>(
-            localVariableConfig
-        )
+        val localVarResponse = patchEquisoftAnalyzeAccessWithHttpInfo(accessId = accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> Unit
@@ -529,16 +676,36 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation patchEquisoftAnalyzeAccess
-    *
-    * @param accessId  
-    * @param gatewaysaccessesPatchEquisoftAnalyzeAccessPayload  
-    * @return RequestConfig
-    */
+     * 
+     * Update user access configuration for Equisoft/analyze gateway
+     * @param accessId 
+     * @param gatewaysaccessesPatchEquisoftAnalyzeAccessPayload 
+     * @return ApiResponse<Unit?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Throws(IllegalStateException::class, IOException::class)
+    fun patchEquisoftAnalyzeAccessWithHttpInfo(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : ApiResponse<Unit?> {
+        val localVariableConfig = patchEquisoftAnalyzeAccessRequestConfig(accessId = accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
+
+        return request<GatewaysaccessesPatchEquisoftAnalyzeAccessPayload, Unit>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation patchEquisoftAnalyzeAccess
+     *
+     * @param accessId 
+     * @param gatewaysaccessesPatchEquisoftAnalyzeAccessPayload 
+     * @return RequestConfig
+     */
     fun patchEquisoftAnalyzeAccessRequestConfig(accessId: kotlin.Int, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload: GatewaysaccessesPatchEquisoftAnalyzeAccessPayload) : RequestConfig<GatewaysaccessesPatchEquisoftAnalyzeAccessPayload> {
         val localVariableBody = gatewaysaccessesPatchEquisoftAnalyzeAccessPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.PATCH,
@@ -550,25 +717,23 @@ class GatewaysApi(
     }
 
     /**
-    * 
-    * 
-    * @param gatewayId  
-    * @param status  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
-    * @return CredentialsResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * 
+     * 
+     * @param gatewayId 
+     * @param status 
+     * @param authorization Authorization header using the Bearer scheme
+     * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
+     * @return CredentialsResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun updateCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : CredentialsResponse {
-        val localVariableConfig = updateCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization, credentialIds = credentialIds)
-
-        val localVarResponse = request<Unit, CredentialsResponse>(
-            localVariableConfig
-        )
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun updateCredentials(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>? = null) : CredentialsResponse {
+        val localVarResponse = updateCredentialsWithHttpInfo(gatewayId = gatewayId, status = status, authorization = authorization, credentialIds = credentialIds)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CredentialsResponse
@@ -586,17 +751,38 @@ class GatewaysApi(
     }
 
     /**
-    * To obtain the request config of the operation updateCredentials
-    *
-    * @param gatewayId  
-    * @param status  
-    * @param authorization Authorization header using the Bearer scheme 
-    * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
-    * @return RequestConfig
-    */
+     * 
+     * 
+     * @param gatewayId 
+     * @param status 
+     * @param authorization Authorization header using the Bearer scheme
+     * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
+     * @return ApiResponse<CredentialsResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun updateCredentialsWithHttpInfo(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : ApiResponse<CredentialsResponse?> {
+        val localVariableConfig = updateCredentialsRequestConfig(gatewayId = gatewayId, status = status, authorization = authorization, credentialIds = credentialIds)
+
+        return request<Unit, CredentialsResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation updateCredentials
+     *
+     * @param gatewayId 
+     * @param status 
+     * @param authorization Authorization header using the Bearer scheme
+     * @param credentialIds Many ids can be passed to this argument separated by coma. Ex: &#39;?credentialIds&#x3D;1,2,3&#39;. (optional)
+     * @return RequestConfig
+     */
     fun updateCredentialsRequestConfig(gatewayId: kotlin.String, status: kotlin.String, authorization: kotlin.String, credentialIds: kotlin.collections.List<kotlin.Int>?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 if (credentialIds != null) {
                     put("credentialIds", toMultiValue(credentialIds.toList(), "multi"))
@@ -604,6 +790,7 @@ class GatewaysApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         authorization.apply { localVariableHeaders["Authorization"] = this.toString() }
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.PUT,
