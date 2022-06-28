@@ -44,7 +44,7 @@ data class MovementMoveMovementPayloadAllOf (
     val users: kotlin.collections.List<kotlin.String>? = null,
 
     @Json(name = "type")
-    val type: MovementMoveMovementPayloadAllOf.Type? = null
+    val type: MovementMoveMovementPayloadAllOf.Type? = Type.MOVE
 
 ) {
 

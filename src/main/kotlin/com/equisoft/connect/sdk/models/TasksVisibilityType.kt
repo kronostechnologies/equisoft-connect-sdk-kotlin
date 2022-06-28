@@ -50,12 +50,12 @@ enum class TasksVisibilityType(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: Any?): kotlin.String? = if (data is TasksVisibilityType) "$data" else null
+        fun encode(data: kotlin.Any?): kotlin.String? = if (data is TasksVisibilityType) "$data" else null
 
         /**
          * Returns a valid [TasksVisibilityType] for [data], null otherwise.
          */
-        fun decode(data: Any?): TasksVisibilityType? = data?.let {
+        fun decode(data: kotlin.Any?): TasksVisibilityType? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()

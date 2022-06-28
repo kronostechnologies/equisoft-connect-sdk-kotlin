@@ -49,11 +49,9 @@ docs/EventsPatchEventResponse.md
 docs/EventsTransferToCompletedResponse.md
 docs/EventsVisibilityType.md
 docs/FieldValue.md
-docs/GatewaysAccessesAccess.md
 docs/GatewaysAccessesCreateAccessResponse.md
 docs/GatewaysAccessesCreateEquisoftAnalyzeAccessPayload.md
 docs/GatewaysAccessesEquisoftAnalyzeAccess.md
-docs/GatewaysAccessesEquisoftAnalyzeAccessAllOf.md
 docs/GatewaysAccessesListGatewayAccessesResponse.md
 docs/GatewaysAccessesPatchEquisoftAnalyzeAccessPayload.md
 docs/GatewaysAccessesUser.md
@@ -218,7 +216,7 @@ src/main/kotlin/com/equisoft/connect/sdk/TasksApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/UsersApi.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiAbstractions.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiClient.kt
-src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiInfrastructureResponse.kt
+src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ApiResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/BigDecimalAdapter.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/BigIntegerAdapter.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ByteArrayAdapter.kt
@@ -226,6 +224,7 @@ src/main/kotlin/com/equisoft/connect/sdk/infrastructure/Errors.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/LocalDateAdapter.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/LocalDateTimeAdapter.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/OffsetDateTimeAdapter.kt
+src/main/kotlin/com/equisoft/connect/sdk/infrastructure/PartConfig.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/RequestConfig.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/RequestMethod.kt
 src/main/kotlin/com/equisoft/connect/sdk/infrastructure/ResponseExtensions.kt
@@ -277,14 +276,12 @@ src/main/kotlin/com/equisoft/connect/sdk/models/EventsPatchEventResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/EventsTransferToCompletedResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/EventsVisibilityType.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/FieldValue.kt
-src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysAccessesEquisoftAnalyzeAccessAllOf.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysCredentials.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysCredentialsWithSsn.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysCredentialsWithSsnAllOf.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysGatewayName.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysGatewayType.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysListCredentialsResponse.kt
-src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesAccess.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesCreateAccessResponse.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesCreateEquisoftAnalyzeAccessPayload.kt
 src/main/kotlin/com/equisoft/connect/sdk/models/GatewaysaccessesEquisoftAnalyzeAccess.kt
