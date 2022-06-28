@@ -20,22 +20,15 @@
 
 package com.equisoft.connect.sdk
 
-import java.io.IOException
-import okhttp3.OkHttpClient
-
 import com.equisoft.connect.sdk.models.MxrecipientsPayload
 import com.equisoft.connect.sdk.models.MxvalidateRecipientsResponse
 
-import com.squareup.moshi.Json
-
 import com.equisoft.connect.sdk.infrastructure.ApiClient
-import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
-import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -44,32 +37,32 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class MxApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null,
-    client: OkHttpClient = ApiClient.defaultClient
-) : ApiClient(basePath, accessToken, client) {
-
+    accessToken: String? = null
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
+            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
         }
     }
 
     /**
-     * Validate recipients
-     * 
-     * @param mxrecipientsPayload 
-     * @return MxvalidateRecipientsResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Validate recipients
+    * 
+    * @param mxrecipientsPayload  
+    * @return MxvalidateRecipientsResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun validateRecipients(mxrecipientsPayload: MxrecipientsPayload) : MxvalidateRecipientsResponse {
-        val localVarResponse = validateRecipientsWithHttpInfo(mxrecipientsPayload = mxrecipientsPayload)
+        val localVariableConfig = validateRecipientsRequestConfig(mxrecipientsPayload = mxrecipientsPayload)
+
+        val localVarResponse = request<MxrecipientsPayload, MxvalidateRecipientsResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as MxvalidateRecipientsResponse
@@ -87,35 +80,15 @@ class MxApi(
     }
 
     /**
-     * Validate recipients
-     * 
-     * @param mxrecipientsPayload 
-     * @return ApiResponse<MxvalidateRecipientsResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun validateRecipientsWithHttpInfo(mxrecipientsPayload: MxrecipientsPayload) : ApiResponse<MxvalidateRecipientsResponse?> {
-        val localVariableConfig = validateRecipientsRequestConfig(mxrecipientsPayload = mxrecipientsPayload)
-
-        return request<MxrecipientsPayload, MxvalidateRecipientsResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation validateRecipients
-     *
-     * @param mxrecipientsPayload 
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation validateRecipients
+    *
+    * @param mxrecipientsPayload  
+    * @return RequestConfig
+    */
     fun validateRecipientsRequestConfig(mxrecipientsPayload: MxrecipientsPayload) : RequestConfig<MxrecipientsPayload> {
         val localVariableBody = mxrecipientsPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
