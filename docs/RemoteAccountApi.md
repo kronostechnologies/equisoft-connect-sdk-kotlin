@@ -69,9 +69,9 @@ Synchronize calendars with remote account
 val apiInstance = RemoteAccountApi()
 val dateTimeStart : kotlin.String = dateTimeStart_example // kotlin.String | 
 val dateTimeEnd : kotlin.String = dateTimeEnd_example // kotlin.String | 
-val webuserCalendarIds : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | 
-val remoteFolderIds : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | 
-val webuserIds : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | 
+val webuserCalendarIds : kotlin.collections.List<kotlin.Int> = 56 // kotlin.collections.List<kotlin.Int> | 
+val remoteFolderIds : kotlin.collections.List<kotlin.Int> = 56 // kotlin.collections.List<kotlin.Int> | 
+val webuserIds : kotlin.collections.List<kotlin.Int> = 56 // kotlin.collections.List<kotlin.Int> | 
 try {
     val result : RemoteaccountAccountSyncResponse = apiInstance.synchronizeCalendars(dateTimeStart, dateTimeEnd, webuserCalendarIds, remoteFolderIds, webuserIds)
     println(result)
@@ -122,9 +122,9 @@ Synchronize tasks with remote account
 val apiInstance = RemoteAccountApi()
 val dateTimeStart : kotlin.String = dateTimeStart_example // kotlin.String | 
 val dateTimeEnd : kotlin.String = dateTimeEnd_example // kotlin.String | 
-val webuserCalendarIds : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | 
-val remoteFolderIds : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | 
-val webuserIds : kotlin.collections.List<kotlin.Int> =  // kotlin.collections.List<kotlin.Int> | 
+val webuserCalendarIds : kotlin.collections.List<kotlin.Int> = 56 // kotlin.collections.List<kotlin.Int> | 
+val remoteFolderIds : kotlin.collections.List<kotlin.Int> = 56 // kotlin.collections.List<kotlin.Int> | 
+val webuserIds : kotlin.collections.List<kotlin.Int> = 56 // kotlin.collections.List<kotlin.Int> | 
 try {
     val result : RemoteaccountAccountSyncResponse = apiInstance.synchronizeTasks(dateTimeStart, dateTimeEnd, webuserCalendarIds, remoteFolderIds, webuserIds)
     println(result)
