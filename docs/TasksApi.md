@@ -19,7 +19,7 @@ Method | HTTP request | Description
 
 <a name="archiveTaskInternalNote"></a>
 # **archiveTaskInternalNote**
-> kotlin.Any archiveTaskInternalNote(taskId, noteId, acceptLanguage)
+> archiveTaskInternalNote(taskId, noteId, acceptLanguage)
 
 Archive an internal note for a task.
 
@@ -34,8 +34,7 @@ val taskId : kotlin.String = taskId_example // kotlin.String | Task unique ident
 val noteId : kotlin.Int = 56 // kotlin.Int | Note unique identifier.
 val acceptLanguage : kotlin.String = acceptLanguage_example // kotlin.String | Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282
 try {
-    val result : kotlin.Any = apiInstance.archiveTaskInternalNote(taskId, noteId, acceptLanguage)
-    println(result)
+    apiInstance.archiveTaskInternalNote(taskId, noteId, acceptLanguage)
 } catch (e: ClientException) {
     println("4xx response calling TasksApi#archiveTaskInternalNote")
     e.printStackTrace()
@@ -55,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**kotlin.Any**](kotlin.Any.md)
+null (empty response body)
 
 ### Authorization
 
@@ -170,7 +169,7 @@ Configure OAuth2:
 
 <a name="deleteTask"></a>
 # **deleteTask**
-> kotlin.Any deleteTask(taskId)
+> deleteTask(taskId)
 
 Delete a task.
 
@@ -183,8 +182,7 @@ Delete a task.
 val apiInstance = TasksApi()
 val taskId : kotlin.String = taskId_example // kotlin.String | 
 try {
-    val result : kotlin.Any = apiInstance.deleteTask(taskId)
-    println(result)
+    apiInstance.deleteTask(taskId)
 } catch (e: ClientException) {
     println("4xx response calling TasksApi#deleteTask")
     e.printStackTrace()
@@ -202,7 +200,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**kotlin.Any**](kotlin.Any.md)
+null (empty response body)
 
 ### Authorization
 
@@ -486,7 +484,7 @@ Configure OAuth2:
 
 <a name="restoreTaskInternalNote"></a>
 # **restoreTaskInternalNote**
-> kotlin.Any restoreTaskInternalNote(taskId, noteId, acceptLanguage)
+> restoreTaskInternalNote(taskId, noteId, acceptLanguage)
 
 Restore an archived internal note for a task.
 
@@ -501,8 +499,7 @@ val taskId : kotlin.String = taskId_example // kotlin.String | Task unique ident
 val noteId : kotlin.Int = 56 // kotlin.Int | Note unique identifier.
 val acceptLanguage : kotlin.String = acceptLanguage_example // kotlin.String | Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282
 try {
-    val result : kotlin.Any = apiInstance.restoreTaskInternalNote(taskId, noteId, acceptLanguage)
-    println(result)
+    apiInstance.restoreTaskInternalNote(taskId, noteId, acceptLanguage)
 } catch (e: ClientException) {
     println("4xx response calling TasksApi#restoreTaskInternalNote")
     e.printStackTrace()
@@ -522,7 +519,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**kotlin.Any**](kotlin.Any.md)
+null (empty response body)
 
 ### Authorization
 
