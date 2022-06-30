@@ -41,7 +41,7 @@ data class GatewaysaccessesCreateEquisoftAnalyzeAccessPayload (
     val clientKey: kotlin.String,
 
     @Json(name = "billingType")
-    val billingType: kotlin.String
+    val billingType: kotlin.Int
 
 )
 

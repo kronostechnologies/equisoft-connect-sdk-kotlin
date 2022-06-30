@@ -63,7 +63,7 @@ data class MovementClientBaseUsingDistributionListMovementAllOf (
     val transferOption: kotlin.String? = null,
 
     @Json(name = "type")
-    val type: MovementClientBaseUsingDistributionListMovementAllOf.Type? = Type.CLIENTBASE_USING_DISTLIST
+    val type: MovementClientBaseUsingDistributionListMovementAllOf.Type? = null
 
 ) {
 
