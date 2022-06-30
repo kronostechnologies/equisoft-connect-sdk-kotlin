@@ -60,7 +60,7 @@ data class MovementClientBaseUsingFileMovementPayloadAllOf (
     val dataphileFile: kotlin.String? = null,
 
     @Json(name = "type")
-    val type: MovementClientBaseUsingFileMovementPayloadAllOf.Type? = null
+    val type: MovementClientBaseUsingFileMovementPayloadAllOf.Type? = Type.CLIENTBASE_USING_FILE
 
 ) {
 

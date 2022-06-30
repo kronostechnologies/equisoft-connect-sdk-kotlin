@@ -20,6 +20,9 @@
 
 package com.equisoft.connect.sdk
 
+import java.io.IOException
+import okhttp3.OkHttpClient
+
 import com.equisoft.connect.sdk.models.LegacyAddUpdateResponse
 import com.equisoft.connect.sdk.models.LegacyResponse
 import com.equisoft.connect.sdk.models.LegacydocumentDocumentPayloadRequest
@@ -28,12 +31,16 @@ import com.equisoft.connect.sdk.models.LegacydocumentGetListResponse
 import com.equisoft.connect.sdk.models.LegacydocumentGetResponse
 import com.equisoft.connect.sdk.models.LegacydocumentUploadDocumentFileRequest
 
+import com.squareup.moshi.Json
+
 import com.equisoft.connect.sdk.infrastructure.ApiClient
+import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
+import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -42,32 +49,32 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class LegacyDocumentApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null
-) : ApiClient(basePath, accessToken) {
+    accessToken: String? = null,
+    client: OkHttpClient = ApiClient.defaultClient
+) : ApiClient(basePath, accessToken, client) {
+
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
+            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
         }
     }
 
     /**
-    * Create a new document.
-    * 
-    * @param legacydocumentDocumentPayloadRequest  
-    * @return LegacyAddUpdateResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Create a new document.
+     * 
+     * @param legacydocumentDocumentPayloadRequest 
+     * @return LegacyAddUpdateResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun addDocument(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : LegacyAddUpdateResponse {
-        val localVariableConfig = addDocumentRequestConfig(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
-
-        val localVarResponse = request<LegacydocumentDocumentPayloadRequest, LegacyAddUpdateResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = addDocumentWithHttpInfo(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyAddUpdateResponse
@@ -85,15 +92,35 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation addDocument
-    *
-    * @param legacydocumentDocumentPayloadRequest  
-    * @return RequestConfig
-    */
+     * Create a new document.
+     * 
+     * @param legacydocumentDocumentPayloadRequest 
+     * @return ApiResponse<LegacyAddUpdateResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun addDocumentWithHttpInfo(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : ApiResponse<LegacyAddUpdateResponse?> {
+        val localVariableConfig = addDocumentRequestConfig(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
+
+        return request<LegacydocumentDocumentPayloadRequest, LegacyAddUpdateResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation addDocument
+     *
+     * @param legacydocumentDocumentPayloadRequest 
+     * @return RequestConfig
+     */
     fun addDocumentRequestConfig(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : RequestConfig<LegacydocumentDocumentPayloadRequest> {
         val localVariableBody = legacydocumentDocumentPayloadRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -105,22 +132,20 @@ class LegacyDocumentApi(
     }
 
     /**
-    * Delete a document and it&#39;s related files.
-    * 
-    * @param id Document Id 
-    * @return LegacyResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Delete a document and it&#39;s related files.
+     * 
+     * @param id Document Id
+     * @return LegacyResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deleteDocument(id: kotlin.String) : LegacyResponse {
-        val localVariableConfig = deleteDocumentRequestConfig(id = id)
-
-        val localVarResponse = request<Unit, LegacyResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = deleteDocumentWithHttpInfo(id = id)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyResponse
@@ -138,18 +163,37 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation deleteDocument
-    *
-    * @param id Document Id 
-    * @return RequestConfig
-    */
+     * Delete a document and it&#39;s related files.
+     * 
+     * @param id Document Id
+     * @return ApiResponse<LegacyResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun deleteDocumentWithHttpInfo(id: kotlin.String) : ApiResponse<LegacyResponse?> {
+        val localVariableConfig = deleteDocumentRequestConfig(id = id)
+
+        return request<Unit, LegacyResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation deleteDocument
+     *
+     * @param id Document Id
+     * @return RequestConfig
+     */
     fun deleteDocumentRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -161,22 +205,20 @@ class LegacyDocumentApi(
     }
 
     /**
-    * Delete one file from a document
-    * 
-    * @param id Document File Id 
-    * @return LegacyResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Delete one file from a document
+     * 
+     * @param id Document File Id
+     * @return LegacyResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun deleteDocumentFile(id: kotlin.String) : LegacyResponse {
-        val localVariableConfig = deleteDocumentFileRequestConfig(id = id)
-
-        val localVarResponse = request<Unit, LegacyResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = deleteDocumentFileWithHttpInfo(id = id)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyResponse
@@ -194,18 +236,37 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation deleteDocumentFile
-    *
-    * @param id Document File Id 
-    * @return RequestConfig
-    */
+     * Delete one file from a document
+     * 
+     * @param id Document File Id
+     * @return ApiResponse<LegacyResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun deleteDocumentFileWithHttpInfo(id: kotlin.String) : ApiResponse<LegacyResponse?> {
+        val localVariableConfig = deleteDocumentFileRequestConfig(id = id)
+
+        return request<Unit, LegacyResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation deleteDocumentFile
+     *
+     * @param id Document File Id
+     * @return RequestConfig
+     */
     fun deleteDocumentFileRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -217,22 +278,20 @@ class LegacyDocumentApi(
     }
 
     /**
-    * Download a file. File data is encoded in base64.
-    * 
-    * @param id Document File Id 
-    * @return LegacydocumentDownloadFileResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Download a file. File data is encoded in base64.
+     * 
+     * @param id Document File Id
+     * @return LegacydocumentDownloadFileResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun downloadDocumentFile(id: kotlin.String) : LegacydocumentDownloadFileResponse {
-        val localVariableConfig = downloadDocumentFileRequestConfig(id = id)
-
-        val localVarResponse = request<Unit, LegacydocumentDownloadFileResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = downloadDocumentFileWithHttpInfo(id = id)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacydocumentDownloadFileResponse
@@ -250,18 +309,37 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation downloadDocumentFile
-    *
-    * @param id Document File Id 
-    * @return RequestConfig
-    */
+     * Download a file. File data is encoded in base64.
+     * 
+     * @param id Document File Id
+     * @return ApiResponse<LegacydocumentDownloadFileResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun downloadDocumentFileWithHttpInfo(id: kotlin.String) : ApiResponse<LegacydocumentDownloadFileResponse?> {
+        val localVariableConfig = downloadDocumentFileRequestConfig(id = id)
+
+        return request<Unit, LegacydocumentDownloadFileResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation downloadDocumentFile
+     *
+     * @param id Document File Id
+     * @return RequestConfig
+     */
     fun downloadDocumentFileRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -273,22 +351,20 @@ class LegacyDocumentApi(
     }
 
     /**
-    * Get all data for a document record.
-    * 
-    * @param id Document Id 
-    * @return LegacydocumentGetResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Get all data for a document record.
+     * 
+     * @param id Document Id
+     * @return LegacydocumentGetResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getDocument(id: kotlin.String) : LegacydocumentGetResponse {
-        val localVariableConfig = getDocumentRequestConfig(id = id)
-
-        val localVarResponse = request<Unit, LegacydocumentGetResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = getDocumentWithHttpInfo(id = id)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacydocumentGetResponse
@@ -306,18 +382,37 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation getDocument
-    *
-    * @param id Document Id 
-    * @return RequestConfig
-    */
+     * Get all data for a document record.
+     * 
+     * @param id Document Id
+     * @return ApiResponse<LegacydocumentGetResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getDocumentWithHttpInfo(id: kotlin.String) : ApiResponse<LegacydocumentGetResponse?> {
+        val localVariableConfig = getDocumentRequestConfig(id = id)
+
+        return request<Unit, LegacydocumentGetResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getDocument
+     *
+     * @param id Document Id
+     * @return RequestConfig
+     */
     fun getDocumentRequestConfig(id: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -329,21 +424,19 @@ class LegacyDocumentApi(
     }
 
     /**
-    * Get a list of all documents. This will return basic information about the document.
-    * Please note that a document is similar to a folder and may contain one or many files.
-    * @return LegacydocumentGetListResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Get a list of all documents. This will return basic information about the document.
+     * Please note that a document is similar to a folder and may contain one or many files.
+     * @return LegacydocumentGetListResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getDocumentList() : LegacydocumentGetListResponse {
-        val localVariableConfig = getDocumentListRequestConfig()
-
-        val localVarResponse = request<Unit, LegacydocumentGetListResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = getDocumentListWithHttpInfo()
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacydocumentGetListResponse
@@ -361,14 +454,32 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation getDocumentList
-    *
-    * @return RequestConfig
-    */
+     * Get a list of all documents. This will return basic information about the document.
+     * Please note that a document is similar to a folder and may contain one or many files.
+     * @return ApiResponse<LegacydocumentGetListResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun getDocumentListWithHttpInfo() : ApiResponse<LegacydocumentGetListResponse?> {
+        val localVariableConfig = getDocumentListRequestConfig()
+
+        return request<Unit, LegacydocumentGetListResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation getDocumentList
+     *
+     * @return RequestConfig
+     */
     fun getDocumentListRequestConfig() : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -380,22 +491,20 @@ class LegacyDocumentApi(
     }
 
     /**
-    * Update a document.
-    * 
-    * @param legacydocumentDocumentPayloadRequest  
-    * @return LegacyAddUpdateResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Update a document.
+     * 
+     * @param legacydocumentDocumentPayloadRequest 
+     * @return LegacyAddUpdateResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun updateDocument(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : LegacyAddUpdateResponse {
-        val localVariableConfig = updateDocumentRequestConfig(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
-
-        val localVarResponse = request<LegacydocumentDocumentPayloadRequest, LegacyAddUpdateResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = updateDocumentWithHttpInfo(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyAddUpdateResponse
@@ -413,15 +522,35 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation updateDocument
-    *
-    * @param legacydocumentDocumentPayloadRequest  
-    * @return RequestConfig
-    */
+     * Update a document.
+     * 
+     * @param legacydocumentDocumentPayloadRequest 
+     * @return ApiResponse<LegacyAddUpdateResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun updateDocumentWithHttpInfo(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : ApiResponse<LegacyAddUpdateResponse?> {
+        val localVariableConfig = updateDocumentRequestConfig(legacydocumentDocumentPayloadRequest = legacydocumentDocumentPayloadRequest)
+
+        return request<LegacydocumentDocumentPayloadRequest, LegacyAddUpdateResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation updateDocument
+     *
+     * @param legacydocumentDocumentPayloadRequest 
+     * @return RequestConfig
+     */
     fun updateDocumentRequestConfig(legacydocumentDocumentPayloadRequest: LegacydocumentDocumentPayloadRequest) : RequestConfig<LegacydocumentDocumentPayloadRequest> {
         val localVariableBody = legacydocumentDocumentPayloadRequest
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -433,23 +562,21 @@ class LegacyDocumentApi(
     }
 
     /**
-    * Upload a new file in a document
-    * 
-    * @param id Document File Id 
-    * @param legacydocumentUploadDocumentFileRequest  
-    * @return LegacyAddUpdateResponse
-    * @throws UnsupportedOperationException If the API returns an informational or redirection response
-    * @throws ClientException If the API returns a client error response
-    * @throws ServerException If the API returns a server error response
-    */
+     * Upload a new file in a document
+     * 
+     * @param id Document File Id
+     * @param legacydocumentUploadDocumentFileRequest 
+     * @return LegacyAddUpdateResponse
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     * @throws UnsupportedOperationException If the API returns an informational or redirection response
+     * @throws ClientException If the API returns a client error response
+     * @throws ServerException If the API returns a server error response
+     */
     @Suppress("UNCHECKED_CAST")
-    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun uploadDocumentFile(id: kotlin.String, legacydocumentUploadDocumentFileRequest: LegacydocumentUploadDocumentFileRequest) : LegacyAddUpdateResponse {
-        val localVariableConfig = uploadDocumentFileRequestConfig(id = id, legacydocumentUploadDocumentFileRequest = legacydocumentUploadDocumentFileRequest)
-
-        val localVarResponse = request<LegacydocumentUploadDocumentFileRequest, LegacyAddUpdateResponse>(
-            localVariableConfig
-        )
+        val localVarResponse = uploadDocumentFileWithHttpInfo(id = id, legacydocumentUploadDocumentFileRequest = legacydocumentUploadDocumentFileRequest)
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyAddUpdateResponse
@@ -467,19 +594,40 @@ class LegacyDocumentApi(
     }
 
     /**
-    * To obtain the request config of the operation uploadDocumentFile
-    *
-    * @param id Document File Id 
-    * @param legacydocumentUploadDocumentFileRequest  
-    * @return RequestConfig
-    */
+     * Upload a new file in a document
+     * 
+     * @param id Document File Id
+     * @param legacydocumentUploadDocumentFileRequest 
+     * @return ApiResponse<LegacyAddUpdateResponse?>
+     * @throws IllegalStateException If the request is not correctly configured
+     * @throws IOException Rethrows the OkHttp execute method exception
+     */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(IllegalStateException::class, IOException::class)
+    fun uploadDocumentFileWithHttpInfo(id: kotlin.String, legacydocumentUploadDocumentFileRequest: LegacydocumentUploadDocumentFileRequest) : ApiResponse<LegacyAddUpdateResponse?> {
+        val localVariableConfig = uploadDocumentFileRequestConfig(id = id, legacydocumentUploadDocumentFileRequest = legacydocumentUploadDocumentFileRequest)
+
+        return request<LegacydocumentUploadDocumentFileRequest, LegacyAddUpdateResponse>(
+            localVariableConfig
+        )
+    }
+
+    /**
+     * To obtain the request config of the operation uploadDocumentFile
+     *
+     * @param id Document File Id
+     * @param legacydocumentUploadDocumentFileRequest 
+     * @return RequestConfig
+     */
     fun uploadDocumentFileRequestConfig(id: kotlin.String, legacydocumentUploadDocumentFileRequest: LegacydocumentUploadDocumentFileRequest) : RequestConfig<LegacydocumentUploadDocumentFileRequest> {
         val localVariableBody = legacydocumentUploadDocumentFileRequest
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
             .apply {
                 put("id", listOf(id.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
+        localVariableHeaders["Content-Type"] = "application/json"
+        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
