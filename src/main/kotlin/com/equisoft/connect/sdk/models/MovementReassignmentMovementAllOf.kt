@@ -51,7 +51,7 @@ data class MovementReassignmentMovementAllOf (
     val accessCode: MovementGatewayAccessCode? = null,
 
     @Json(name = "type")
-    val type: MovementReassignmentMovementAllOf.Type? = null
+    val type: MovementReassignmentMovementAllOf.Type? = Type.REASSIGNMENT
 
 ) {
 
