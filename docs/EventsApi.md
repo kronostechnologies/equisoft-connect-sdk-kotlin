@@ -22,7 +22,7 @@ Method | HTTP request | Description
 
 <a name="archiveEventInternalNote"></a>
 # **archiveEventInternalNote**
-> archiveEventInternalNote(eventId, noteId, acceptLanguage)
+> kotlin.Any archiveEventInternalNote(eventId, noteId, acceptLanguage)
 
 Archive an internal note for and event.
 
@@ -37,7 +37,8 @@ val eventId : kotlin.String = eventId_example // kotlin.String | Event unique id
 val noteId : kotlin.Int = 56 // kotlin.Int | Note unique identifier.
 val acceptLanguage : kotlin.String = acceptLanguage_example // kotlin.String | Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282
 try {
-    apiInstance.archiveEventInternalNote(eventId, noteId, acceptLanguage)
+    val result : kotlin.Any = apiInstance.archiveEventInternalNote(eventId, noteId, acceptLanguage)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling EventsApi#archiveEventInternalNote")
     e.printStackTrace()
@@ -57,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 
@@ -172,7 +173,7 @@ Configure OAuth2:
 
 <a name="deleteEvent"></a>
 # **deleteEvent**
-> deleteEvent(eventId)
+> kotlin.Any deleteEvent(eventId)
 
 Delete an event.
 
@@ -187,7 +188,8 @@ Delete an event.
 val apiInstance = EventsApi()
 val eventId : kotlin.String = eventId_example // kotlin.String | Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
 try {
-    apiInstance.deleteEvent(eventId)
+    val result : kotlin.Any = apiInstance.deleteEvent(eventId)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling EventsApi#deleteEvent")
     e.printStackTrace()
@@ -205,7 +207,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 
@@ -646,7 +648,7 @@ Configure OAuth2:
 
 <a name="restoreEventInternalNote"></a>
 # **restoreEventInternalNote**
-> restoreEventInternalNote(eventId, noteId, acceptLanguage)
+> kotlin.Any restoreEventInternalNote(eventId, noteId, acceptLanguage)
 
 Restore an archived internal note for an event.
 
@@ -661,7 +663,8 @@ val eventId : kotlin.String = eventId_example // kotlin.String | Event unique id
 val noteId : kotlin.Int = 56 // kotlin.Int | Note unique identifier.
 val acceptLanguage : kotlin.String = acceptLanguage_example // kotlin.String | Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282
 try {
-    apiInstance.restoreEventInternalNote(eventId, noteId, acceptLanguage)
+    val result : kotlin.Any = apiInstance.restoreEventInternalNote(eventId, noteId, acceptLanguage)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling EventsApi#restoreEventInternalNote")
     e.printStackTrace()
@@ -681,7 +684,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 
