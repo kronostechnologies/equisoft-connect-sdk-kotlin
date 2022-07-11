@@ -39,7 +39,7 @@ jobs:
         uses: kronostechnologies/actions/with-asdf-vm@v0.0.23
 
       - name: Compile source and test code
-        uses: burrunan/gradle-cache-action@v1.10
+        uses: burrunan/gradle-cache-action@v1.11
         with:
           gradle-version: wrapper
           arguments: "assemble"
@@ -91,7 +91,7 @@ jobs:
 
       # Publish
       - name: Publish
-        uses: burrunan/gradle-cache-action@v1.10
+        uses: burrunan/gradle-cache-action@v1.11
         with:
           gradle-version: wrapper
           arguments: "publish"
