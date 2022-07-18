@@ -50,12 +50,12 @@ enum class UsersRole(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is UsersRole) "$data" else null
+        fun encode(data: Any?): kotlin.String? = if (data is UsersRole) "$data" else null
 
         /**
          * Returns a valid [UsersRole] for [data], null otherwise.
          */
-        fun decode(data: kotlin.Any?): UsersRole? = data?.let {
+        fun decode(data: Any?): UsersRole? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()

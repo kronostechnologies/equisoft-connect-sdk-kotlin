@@ -62,12 +62,12 @@ enum class TasksOrderByType(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is TasksOrderByType) "$data" else null
+        fun encode(data: Any?): kotlin.String? = if (data is TasksOrderByType) "$data" else null
 
         /**
          * Returns a valid [TasksOrderByType] for [data], null otherwise.
          */
-        fun decode(data: kotlin.Any?): TasksOrderByType? = data?.let {
+        fun decode(data: Any?): TasksOrderByType? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()

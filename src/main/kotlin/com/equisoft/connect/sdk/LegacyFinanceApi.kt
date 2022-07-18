@@ -20,23 +20,16 @@
 
 package com.equisoft.connect.sdk
 
-import java.io.IOException
-import okhttp3.OkHttpClient
-
 import com.equisoft.connect.sdk.models.LegacyResponse
 import com.equisoft.connect.sdk.models.LegacyfinanceGetLiabilitiesResponse
 import com.equisoft.connect.sdk.models.LegacyfinancegetAccountStatementResponse
 
-import com.squareup.moshi.Json
-
 import com.equisoft.connect.sdk.infrastructure.ApiClient
-import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
-import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -45,33 +38,33 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class LegacyFinanceApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null,
-    client: OkHttpClient = ApiClient.defaultClient
-) : ApiClient(basePath, accessToken, client) {
-
+    accessToken: String? = null
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
+            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
         }
     }
 
     /**
-     * Get Account Statement information for a contact.
-     * 
-     * @param contactId Contact Id
-     * @param includeUnmanagedAssets Include unmagned assets, by default false (optional)
-     * @return LegacyfinancegetAccountStatementResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Get Account Statement information for a contact.
+    * 
+    * @param contactId Contact Id 
+    * @param includeUnmanagedAssets Include unmagned assets, by default false (optional)
+    * @return LegacyfinancegetAccountStatementResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getAccountStatement(contactId: kotlin.Int, includeUnmanagedAssets: kotlin.Boolean? = null) : LegacyfinancegetAccountStatementResponse {
-        val localVarResponse = getAccountStatementWithHttpInfo(contactId = contactId, includeUnmanagedAssets = includeUnmanagedAssets)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getAccountStatement(contactId: kotlin.Int, includeUnmanagedAssets: kotlin.Boolean?) : LegacyfinancegetAccountStatementResponse {
+        val localVariableConfig = getAccountStatementRequestConfig(contactId = contactId, includeUnmanagedAssets = includeUnmanagedAssets)
+
+        val localVarResponse = request<Unit, LegacyfinancegetAccountStatementResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyfinancegetAccountStatementResponse
@@ -89,34 +82,15 @@ class LegacyFinanceApi(
     }
 
     /**
-     * Get Account Statement information for a contact.
-     * 
-     * @param contactId Contact Id
-     * @param includeUnmanagedAssets Include unmagned assets, by default false (optional)
-     * @return ApiResponse<LegacyfinancegetAccountStatementResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getAccountStatementWithHttpInfo(contactId: kotlin.Int, includeUnmanagedAssets: kotlin.Boolean?) : ApiResponse<LegacyfinancegetAccountStatementResponse?> {
-        val localVariableConfig = getAccountStatementRequestConfig(contactId = contactId, includeUnmanagedAssets = includeUnmanagedAssets)
-
-        return request<Unit, LegacyfinancegetAccountStatementResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getAccountStatement
-     *
-     * @param contactId Contact Id
-     * @param includeUnmanagedAssets Include unmagned assets, by default false (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getAccountStatement
+    *
+    * @param contactId Contact Id 
+    * @param includeUnmanagedAssets Include unmagned assets, by default false (optional)
+    * @return RequestConfig
+    */
     fun getAccountStatementRequestConfig(contactId: kotlin.Int, includeUnmanagedAssets: kotlin.Boolean?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 put("contact_id", listOf(contactId.toString()))
                 if (includeUnmanagedAssets != null) {
@@ -124,7 +98,6 @@ class LegacyFinanceApi(
                 }
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -136,20 +109,22 @@ class LegacyFinanceApi(
     }
 
     /**
-     * Get Liabilities information for a contact.
-     * 
-     * @param contactId Contact Id
-     * @return LegacyfinanceGetLiabilitiesResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Get Liabilities information for a contact.
+    * 
+    * @param contactId Contact Id 
+    * @return LegacyfinanceGetLiabilitiesResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun getLiabilities(contactId: kotlin.Int) : LegacyfinanceGetLiabilitiesResponse {
-        val localVarResponse = getLiabilitiesWithHttpInfo(contactId = contactId)
+        val localVariableConfig = getLiabilitiesRequestConfig(contactId = contactId)
+
+        val localVarResponse = request<Unit, LegacyfinanceGetLiabilitiesResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as LegacyfinanceGetLiabilitiesResponse
@@ -167,37 +142,18 @@ class LegacyFinanceApi(
     }
 
     /**
-     * Get Liabilities information for a contact.
-     * 
-     * @param contactId Contact Id
-     * @return ApiResponse<LegacyfinanceGetLiabilitiesResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getLiabilitiesWithHttpInfo(contactId: kotlin.Int) : ApiResponse<LegacyfinanceGetLiabilitiesResponse?> {
-        val localVariableConfig = getLiabilitiesRequestConfig(contactId = contactId)
-
-        return request<Unit, LegacyfinanceGetLiabilitiesResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getLiabilities
-     *
-     * @param contactId Contact Id
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getLiabilities
+    *
+    * @param contactId Contact Id 
+    * @return RequestConfig
+    */
     fun getLiabilitiesRequestConfig(contactId: kotlin.Int) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 put("contact_id", listOf(contactId.toString()))
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,

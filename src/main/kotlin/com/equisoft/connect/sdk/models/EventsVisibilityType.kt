@@ -50,12 +50,12 @@ enum class EventsVisibilityType(val value: kotlin.String) {
         /**
          * Converts the provided [data] to a [String] on success, null otherwise.
          */
-        fun encode(data: kotlin.Any?): kotlin.String? = if (data is EventsVisibilityType) "$data" else null
+        fun encode(data: Any?): kotlin.String? = if (data is EventsVisibilityType) "$data" else null
 
         /**
          * Returns a valid [EventsVisibilityType] for [data], null otherwise.
          */
-        fun decode(data: kotlin.Any?): EventsVisibilityType? = data?.let {
+        fun decode(data: Any?): EventsVisibilityType? = data?.let {
           val normalizedData = "$it".lowercase()
           values().firstOrNull { value ->
             it == value || normalizedData == "$value".lowercase()

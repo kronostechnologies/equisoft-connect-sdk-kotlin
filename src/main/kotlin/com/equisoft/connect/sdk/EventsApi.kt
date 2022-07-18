@@ -20,9 +20,6 @@
 
 package com.equisoft.connect.sdk
 
-import java.io.IOException
-import okhttp3.OkHttpClient
-
 import com.equisoft.connect.sdk.models.CalendarsCalendar
 import com.equisoft.connect.sdk.models.CalendarsListCalendarResponse
 import com.equisoft.connect.sdk.models.ErrorResponse
@@ -42,16 +39,12 @@ import com.equisoft.connect.sdk.models.InternalNotesNoteList
 import com.equisoft.connect.sdk.models.InternalNotesPatchNotePayload
 import com.equisoft.connect.sdk.models.InternalNotesPatchNoteResponse
 
-import com.squareup.moshi.Json
-
 import com.equisoft.connect.sdk.infrastructure.ApiClient
-import com.equisoft.connect.sdk.infrastructure.ApiResponse
 import com.equisoft.connect.sdk.infrastructure.ClientException
 import com.equisoft.connect.sdk.infrastructure.ClientError
 import com.equisoft.connect.sdk.infrastructure.ServerException
 import com.equisoft.connect.sdk.infrastructure.ServerError
 import com.equisoft.connect.sdk.infrastructure.MultiValueMap
-import com.equisoft.connect.sdk.infrastructure.PartConfig
 import com.equisoft.connect.sdk.infrastructure.RequestConfig
 import com.equisoft.connect.sdk.infrastructure.RequestMethod
 import com.equisoft.connect.sdk.infrastructure.ResponseType
@@ -60,36 +53,37 @@ import com.equisoft.connect.sdk.infrastructure.toMultiValue
 
 class EventsApi(
     basePath: kotlin.String = defaultBasePath,
-    accessToken: String? = null,
-    client: OkHttpClient = ApiClient.defaultClient
-) : ApiClient(basePath, accessToken, client) {
-
+    accessToken: String? = null
+) : ApiClient(basePath, accessToken) {
     companion object {
         @JvmStatic
         val defaultBasePath: String by lazy {
-            System.getProperties().getProperty(ApiClient.baseUrlKey, "http://localhost")
+            System.getProperties().getProperty("com.equisoft.connect.sdk.baseUrl", "http://localhost")
         }
     }
 
     /**
-     * Archive an internal note for and event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return void
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun archiveEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String? = null) : Unit {
-        val localVarResponse = archiveEventInternalNoteWithHttpInfo(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
+    * Archive an internal note for and event.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return kotlin.Any
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun archiveEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+        val localVariableConfig = archiveEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, kotlin.Any>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -104,38 +98,18 @@ class EventsApi(
     }
 
     /**
-     * Archive an internal note for and event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<Unit?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Throws(IllegalStateException::class, IOException::class)
-    fun archiveEventInternalNoteWithHttpInfo(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : ApiResponse<Unit?> {
-        val localVariableConfig = archiveEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
-
-        return request<Unit, Unit>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation archiveEventInternalNote
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation archiveEventInternalNote
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun archiveEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -147,21 +121,23 @@ class EventsApi(
     }
 
     /**
-     * Create an event.
-     * 
-     * @param eventsCreateEventPayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return EventsCreateEventResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Create an event.
+    * 
+    * @param eventsCreateEventPayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return EventsCreateEventResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createEvent(eventsCreateEventPayload: EventsCreateEventPayload, acceptLanguage: kotlin.String? = null) : EventsCreateEventResponse {
-        val localVarResponse = createEventWithHttpInfo(eventsCreateEventPayload = eventsCreateEventPayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun createEvent(eventsCreateEventPayload: EventsCreateEventPayload, acceptLanguage: kotlin.String?) : EventsCreateEventResponse {
+        val localVariableConfig = createEventRequestConfig(eventsCreateEventPayload = eventsCreateEventPayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<EventsCreateEventPayload, EventsCreateEventResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as EventsCreateEventResponse
@@ -179,38 +155,17 @@ class EventsApi(
     }
 
     /**
-     * Create an event.
-     * 
-     * @param eventsCreateEventPayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<EventsCreateEventResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun createEventWithHttpInfo(eventsCreateEventPayload: EventsCreateEventPayload, acceptLanguage: kotlin.String?) : ApiResponse<EventsCreateEventResponse?> {
-        val localVariableConfig = createEventRequestConfig(eventsCreateEventPayload = eventsCreateEventPayload, acceptLanguage = acceptLanguage)
-
-        return request<EventsCreateEventPayload, EventsCreateEventResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation createEvent
-     *
-     * @param eventsCreateEventPayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation createEvent
+    *
+    * @param eventsCreateEventPayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun createEventRequestConfig(eventsCreateEventPayload: EventsCreateEventPayload, acceptLanguage: kotlin.String?) : RequestConfig<EventsCreateEventPayload> {
         val localVariableBody = eventsCreateEventPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -222,22 +177,24 @@ class EventsApi(
     }
 
     /**
-     * Add an internal note to and event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param internalNotesCreateNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return InternalNotesCreateNoteResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Add an internal note to and event.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param internalNotesCreateNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return InternalNotesCreateNoteResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun createEventInternalNote(eventId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String? = null) : InternalNotesCreateNoteResponse {
-        val localVarResponse = createEventInternalNoteWithHttpInfo(eventId = eventId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun createEventInternalNote(eventId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : InternalNotesCreateNoteResponse {
+        val localVariableConfig = createEventInternalNoteRequestConfig(eventId = eventId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<InternalNotesCreateNotePayload, InternalNotesCreateNoteResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as InternalNotesCreateNoteResponse
@@ -255,40 +212,18 @@ class EventsApi(
     }
 
     /**
-     * Add an internal note to and event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param internalNotesCreateNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<InternalNotesCreateNoteResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun createEventInternalNoteWithHttpInfo(eventId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : ApiResponse<InternalNotesCreateNoteResponse?> {
-        val localVariableConfig = createEventInternalNoteRequestConfig(eventId = eventId, internalNotesCreateNotePayload = internalNotesCreateNotePayload, acceptLanguage = acceptLanguage)
-
-        return request<InternalNotesCreateNotePayload, InternalNotesCreateNoteResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation createEventInternalNote
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param internalNotesCreateNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation createEventInternalNote
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param internalNotesCreateNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun createEventInternalNoteRequestConfig(eventId: kotlin.String, internalNotesCreateNotePayload: InternalNotesCreateNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesCreateNotePayload> {
         val localVariableBody = internalNotesCreateNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -300,22 +235,25 @@ class EventsApi(
     }
 
     /**
-     * Delete an event.
-     * **Note:** To delete an instance of recurring event, use the master event id suffixed by the original start date of the occurrence.
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @return void
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun deleteEvent(eventId: kotlin.String) : Unit {
-        val localVarResponse = deleteEventWithHttpInfo(eventId = eventId)
+    * Delete an event.
+    * **Note:** To delete an instance of recurring event, use the master event id suffixed by the original start date of the occurrence.
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @return kotlin.Any
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun deleteEvent(eventId: kotlin.String) : kotlin.Any {
+        val localVariableConfig = deleteEventRequestConfig(eventId = eventId)
+
+        val localVarResponse = request<Unit, kotlin.Any>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -330,33 +268,15 @@ class EventsApi(
     }
 
     /**
-     * Delete an event.
-     * **Note:** To delete an instance of recurring event, use the master event id suffixed by the original start date of the occurrence.
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @return ApiResponse<Unit?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Throws(IllegalStateException::class, IOException::class)
-    fun deleteEventWithHttpInfo(eventId: kotlin.String) : ApiResponse<Unit?> {
-        val localVariableConfig = deleteEventRequestConfig(eventId = eventId)
-
-        return request<Unit, Unit>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation deleteEvent
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation deleteEvent
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @return RequestConfig
+    */
     fun deleteEventRequestConfig(eventId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.DELETE,
@@ -368,21 +288,23 @@ class EventsApi(
     }
 
     /**
-     *  Get informations about a calendar or a default calendar.
-     * 
-     * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return CalendarsCalendar
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    *  Get informations about a calendar or a default calendar.
+    * 
+    * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return CalendarsCalendar
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getCalendar(calendarId: kotlin.String, acceptLanguage: kotlin.String? = null) : CalendarsCalendar {
-        val localVarResponse = getCalendarWithHttpInfo(calendarId = calendarId, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getCalendar(calendarId: kotlin.String, acceptLanguage: kotlin.String?) : CalendarsCalendar {
+        val localVariableConfig = getCalendarRequestConfig(calendarId = calendarId, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, CalendarsCalendar>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CalendarsCalendar
@@ -400,37 +322,17 @@ class EventsApi(
     }
 
     /**
-     *  Get informations about a calendar or a default calendar.
-     * 
-     * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<CalendarsCalendar?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getCalendarWithHttpInfo(calendarId: kotlin.String, acceptLanguage: kotlin.String?) : ApiResponse<CalendarsCalendar?> {
-        val localVariableConfig = getCalendarRequestConfig(calendarId = calendarId, acceptLanguage = acceptLanguage)
-
-        return request<Unit, CalendarsCalendar>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getCalendar
-     *
-     * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getCalendar
+    *
+    * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun getCalendarRequestConfig(calendarId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -442,21 +344,23 @@ class EventsApi(
     }
 
     /**
-     * Return the detail of an event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return EventsEvent
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Return the detail of an event.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return EventsEvent
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getEvent(eventId: kotlin.String, acceptLanguage: kotlin.String? = null) : EventsEvent {
-        val localVarResponse = getEventWithHttpInfo(eventId = eventId, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getEvent(eventId: kotlin.String, acceptLanguage: kotlin.String?) : EventsEvent {
+        val localVariableConfig = getEventRequestConfig(eventId = eventId, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, EventsEvent>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as EventsEvent
@@ -474,37 +378,17 @@ class EventsApi(
     }
 
     /**
-     * Return the detail of an event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<EventsEvent?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getEventWithHttpInfo(eventId: kotlin.String, acceptLanguage: kotlin.String?) : ApiResponse<EventsEvent?> {
-        val localVariableConfig = getEventRequestConfig(eventId = eventId, acceptLanguage = acceptLanguage)
-
-        return request<Unit, EventsEvent>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getEvent
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getEvent
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun getEventRequestConfig(eventId: kotlin.String, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -516,25 +400,27 @@ class EventsApi(
     }
 
     /**
-     * Get a recurring event instances.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return EventsGetEventInstancesResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Get a recurring event instances.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param pageToken Token to specify which page to fetch. (optional)
+    * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return EventsGetEventInstancesResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getEventInstances(eventId: kotlin.String, minTime: java.time.OffsetDateTime? = null, maxTime: java.time.OffsetDateTime? = null, pageToken: kotlin.String? = null, maxResults: kotlin.String? = null, acceptLanguage: kotlin.String? = null) : EventsGetEventInstancesResponse {
-        val localVarResponse = getEventInstancesWithHttpInfo(eventId = eventId, minTime = minTime, maxTime = maxTime, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getEventInstances(eventId: kotlin.String, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : EventsGetEventInstancesResponse {
+        val localVariableConfig = getEventInstancesRequestConfig(eventId = eventId, minTime = minTime, maxTime = maxTime, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, EventsGetEventInstancesResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as EventsGetEventInstancesResponse
@@ -552,42 +438,19 @@ class EventsApi(
     }
 
     /**
-     * Get a recurring event instances.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<EventsGetEventInstancesResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getEventInstancesWithHttpInfo(eventId: kotlin.String, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : ApiResponse<EventsGetEventInstancesResponse?> {
-        val localVariableConfig = getEventInstancesRequestConfig(eventId = eventId, minTime = minTime, maxTime = maxTime, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
-
-        return request<Unit, EventsGetEventInstancesResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getEventInstances
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getEventInstances
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param pageToken Token to specify which page to fetch. (optional)
+    * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun getEventInstancesRequestConfig(eventId: kotlin.String, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (minTime != null) {
                     put("minTime", listOf(parseDateToQueryString(minTime)))
@@ -604,7 +467,6 @@ class EventsApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -616,22 +478,24 @@ class EventsApi(
     }
 
     /**
-     * Get the internal notes list for an event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param history Query all revisions or not. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return InternalNotesNoteList
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Get the internal notes list for an event.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param history Query all revisions or not. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return InternalNotesNoteList
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun getEventInternalNoteList(eventId: kotlin.String, history: InternalNotesHistoryType? = null, acceptLanguage: kotlin.String? = null) : InternalNotesNoteList {
-        val localVarResponse = getEventInternalNoteListWithHttpInfo(eventId = eventId, history = history, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun getEventInternalNoteList(eventId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : InternalNotesNoteList {
+        val localVariableConfig = getEventInternalNoteListRequestConfig(eventId = eventId, history = history, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, InternalNotesNoteList>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as InternalNotesNoteList
@@ -649,36 +513,16 @@ class EventsApi(
     }
 
     /**
-     * Get the internal notes list for an event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param history Query all revisions or not. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<InternalNotesNoteList?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun getEventInternalNoteListWithHttpInfo(eventId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : ApiResponse<InternalNotesNoteList?> {
-        val localVariableConfig = getEventInternalNoteListRequestConfig(eventId = eventId, history = history, acceptLanguage = acceptLanguage)
-
-        return request<Unit, InternalNotesNoteList>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation getEventInternalNoteList
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param history Query all revisions or not. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation getEventInternalNoteList
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param history Query all revisions or not. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun getEventInternalNoteListRequestConfig(eventId: kotlin.String, history: InternalNotesHistoryType?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (history != null) {
                     put("history", listOf(history.toString()))
@@ -686,7 +530,6 @@ class EventsApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -698,20 +541,22 @@ class EventsApi(
     }
 
     /**
-     * Get the list of available calendars.
-     * 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return CalendarsListCalendarResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Get the list of available calendars.
+    * 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return CalendarsListCalendarResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listCalendars(acceptLanguage: kotlin.String? = null) : CalendarsListCalendarResponse {
-        val localVarResponse = listCalendarsWithHttpInfo(acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun listCalendars(acceptLanguage: kotlin.String?) : CalendarsListCalendarResponse {
+        val localVariableConfig = listCalendarsRequestConfig(acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, CalendarsListCalendarResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as CalendarsListCalendarResponse
@@ -729,35 +574,16 @@ class EventsApi(
     }
 
     /**
-     * Get the list of available calendars.
-     * 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<CalendarsListCalendarResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listCalendarsWithHttpInfo(acceptLanguage: kotlin.String?) : ApiResponse<CalendarsListCalendarResponse?> {
-        val localVariableConfig = listCalendarsRequestConfig(acceptLanguage = acceptLanguage)
-
-        return request<Unit, CalendarsListCalendarResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listCalendars
-     *
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation listCalendars
+    *
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun listCalendarsRequestConfig(acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -769,30 +595,32 @@ class EventsApi(
     }
 
     /**
-     * List or search events.
-     * 
-     * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar. (optional)
-     * @param ownerId Owner ID filter param. (optional)
-     * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
-     * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param singleEvents Expand recurring events into occurrences. When singleEvents is true, master recurrences are not returned in list. (optional)
-     * @param isCompleted If true, include only completed events. If false, include only TODO event. If not set or null, include both. (optional)
-     * @param orderBy Specify the order of the results. &#x60;startTime&#x60; may result in inconsistant sort when used without the &#x60;singleEvents&#x60; option. (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return EventsListEventResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * List or search events.
+    * 
+    * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar. (optional)
+    * @param ownerId Owner ID filter param. (optional)
+    * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
+    * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param singleEvents Expand recurring events into occurrences. When singleEvents is true, master recurrences are not returned in list. (optional)
+    * @param isCompleted If true, include only completed events. If false, include only TODO event. If not set or null, include both. (optional)
+    * @param orderBy Specify the order of the results. &#x60;startTime&#x60; may result in inconsistant sort when used without the &#x60;singleEvents&#x60; option. (optional)
+    * @param pageToken Token to specify which page to fetch. (optional)
+    * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return EventsListEventResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun listEvents(calendarId: kotlin.String? = null, ownerId: kotlin.String? = null, contactIds: kotlin.collections.List<kotlin.Int>? = null, minTime: java.time.OffsetDateTime? = null, maxTime: java.time.OffsetDateTime? = null, singleEvents: kotlin.Boolean? = null, isCompleted: kotlin.Boolean? = null, orderBy: EventsOrderByType? = null, pageToken: kotlin.String? = null, maxResults: kotlin.String? = null, acceptLanguage: kotlin.String? = null) : EventsListEventResponse {
-        val localVarResponse = listEventsWithHttpInfo(calendarId = calendarId, ownerId = ownerId, contactIds = contactIds, minTime = minTime, maxTime = maxTime, singleEvents = singleEvents, isCompleted = isCompleted, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun listEvents(calendarId: kotlin.String?, ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, singleEvents: kotlin.Boolean?, isCompleted: kotlin.Boolean?, orderBy: EventsOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : EventsListEventResponse {
+        val localVariableConfig = listEventsRequestConfig(calendarId = calendarId, ownerId = ownerId, contactIds = contactIds, minTime = minTime, maxTime = maxTime, singleEvents = singleEvents, isCompleted = isCompleted, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, EventsListEventResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as EventsListEventResponse
@@ -810,52 +638,24 @@ class EventsApi(
     }
 
     /**
-     * List or search events.
-     * 
-     * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar. (optional)
-     * @param ownerId Owner ID filter param. (optional)
-     * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
-     * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param singleEvents Expand recurring events into occurrences. When singleEvents is true, master recurrences are not returned in list. (optional)
-     * @param isCompleted If true, include only completed events. If false, include only TODO event. If not set or null, include both. (optional)
-     * @param orderBy Specify the order of the results. &#x60;startTime&#x60; may result in inconsistant sort when used without the &#x60;singleEvents&#x60; option. (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<EventsListEventResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun listEventsWithHttpInfo(calendarId: kotlin.String?, ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, singleEvents: kotlin.Boolean?, isCompleted: kotlin.Boolean?, orderBy: EventsOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : ApiResponse<EventsListEventResponse?> {
-        val localVariableConfig = listEventsRequestConfig(calendarId = calendarId, ownerId = ownerId, contactIds = contactIds, minTime = minTime, maxTime = maxTime, singleEvents = singleEvents, isCompleted = isCompleted, orderBy = orderBy, pageToken = pageToken, maxResults = maxResults, acceptLanguage = acceptLanguage)
-
-        return request<Unit, EventsListEventResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation listEvents
-     *
-     * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar. (optional)
-     * @param ownerId Owner ID filter param. (optional)
-     * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
-     * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
-     * @param singleEvents Expand recurring events into occurrences. When singleEvents is true, master recurrences are not returned in list. (optional)
-     * @param isCompleted If true, include only completed events. If false, include only TODO event. If not set or null, include both. (optional)
-     * @param orderBy Specify the order of the results. &#x60;startTime&#x60; may result in inconsistant sort when used without the &#x60;singleEvents&#x60; option. (optional)
-     * @param pageToken Token to specify which page to fetch. (optional)
-     * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation listEvents
+    *
+    * @param calendarId Calendar ID filter param. An id returned by listCalendars. The string &#x60;primary&#x60; for the current connected user primary (TODO) calendar. The string &#x60;completed&#x60; for the current connected user completed (DONE) calendar. (optional)
+    * @param ownerId Owner ID filter param. (optional)
+    * @param contactIds Contact ID filter param. Many ids can be passed to this argument separated by coma. Ex: &#39;?contactId&#x3D;1,2,3&#39;. Any of the given contacts will be returned in the result. (optional)
+    * @param minTime Minimum (inclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param maxTime Maximum (exclusive) date and time of the event start time. As defined by date-time - RFC3339 (optional)
+    * @param singleEvents Expand recurring events into occurrences. When singleEvents is true, master recurrences are not returned in list. (optional)
+    * @param isCompleted If true, include only completed events. If false, include only TODO event. If not set or null, include both. (optional)
+    * @param orderBy Specify the order of the results. &#x60;startTime&#x60; may result in inconsistant sort when used without the &#x60;singleEvents&#x60; option. (optional)
+    * @param pageToken Token to specify which page to fetch. (optional)
+    * @param maxResults Maximum number of records for one result page.  If the query return more records, nextPageToken will be specified in the result to get the records of the next page. Defaults to 250 records. Can never be more than 2500 records. (optional)
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun listEventsRequestConfig(calendarId: kotlin.String?, ownerId: kotlin.String?, contactIds: kotlin.collections.List<kotlin.Int>?, minTime: java.time.OffsetDateTime?, maxTime: java.time.OffsetDateTime?, singleEvents: kotlin.Boolean?, isCompleted: kotlin.Boolean?, orderBy: EventsOrderByType?, pageToken: kotlin.String?, maxResults: kotlin.String?, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
-        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, kotlin.collections.List<kotlin.String>>()
+        val localVariableQuery: MultiValueMap = mutableMapOf<kotlin.String, List<kotlin.String>>()
             .apply {
                 if (calendarId != null) {
                     put("calendarId", listOf(calendarId.toString()))
@@ -890,7 +690,6 @@ class EventsApi(
             }
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.GET,
@@ -902,22 +701,24 @@ class EventsApi(
     }
 
     /**
-     * Partially update an event.
-     * **Note:** To update an instance of recurring event, use the master event id suffixed by the original start date of the occurrence.
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param eventsPatchEventPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return EventsPatchEventResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Partially update an event.
+    * **Note:** To update an instance of recurring event, use the master event id suffixed by the original start date of the occurrence.
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param eventsPatchEventPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return EventsPatchEventResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun patchEvent(eventId: kotlin.String, eventsPatchEventPayload: EventsPatchEventPayload, acceptLanguage: kotlin.String? = null) : EventsPatchEventResponse {
-        val localVarResponse = patchEventWithHttpInfo(eventId = eventId, eventsPatchEventPayload = eventsPatchEventPayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun patchEvent(eventId: kotlin.String, eventsPatchEventPayload: EventsPatchEventPayload, acceptLanguage: kotlin.String?) : EventsPatchEventResponse {
+        val localVariableConfig = patchEventRequestConfig(eventId = eventId, eventsPatchEventPayload = eventsPatchEventPayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<EventsPatchEventPayload, EventsPatchEventResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as EventsPatchEventResponse
@@ -935,40 +736,18 @@ class EventsApi(
     }
 
     /**
-     * Partially update an event.
-     * **Note:** To update an instance of recurring event, use the master event id suffixed by the original start date of the occurrence.
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param eventsPatchEventPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<EventsPatchEventResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun patchEventWithHttpInfo(eventId: kotlin.String, eventsPatchEventPayload: EventsPatchEventPayload, acceptLanguage: kotlin.String?) : ApiResponse<EventsPatchEventResponse?> {
-        val localVariableConfig = patchEventRequestConfig(eventId = eventId, eventsPatchEventPayload = eventsPatchEventPayload, acceptLanguage = acceptLanguage)
-
-        return request<EventsPatchEventPayload, EventsPatchEventResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation patchEvent
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param eventsPatchEventPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation patchEvent
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param eventsPatchEventPayload Event fields to update. The body of the patch request includes only the resource fields you want to modify. To delete a field, set it to null. Collections are always overridden if defined. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun patchEventRequestConfig(eventId: kotlin.String, eventsPatchEventPayload: EventsPatchEventPayload, acceptLanguage: kotlin.String?) : RequestConfig<EventsPatchEventPayload> {
         val localVariableBody = eventsPatchEventPayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.PATCH,
@@ -980,23 +759,25 @@ class EventsApi(
     }
 
     /**
-     * Add an internal note to and event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param internalNotesPatchNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return InternalNotesPatchNoteResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Add an internal note to and event.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param noteId Note unique identifier. 
+    * @param internalNotesPatchNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return InternalNotesPatchNoteResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun patchEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String? = null) : InternalNotesPatchNoteResponse {
-        val localVarResponse = patchEventInternalNoteWithHttpInfo(eventId = eventId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun patchEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : InternalNotesPatchNoteResponse {
+        val localVariableConfig = patchEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<InternalNotesPatchNotePayload, InternalNotesPatchNoteResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as InternalNotesPatchNoteResponse
@@ -1014,42 +795,19 @@ class EventsApi(
     }
 
     /**
-     * Add an internal note to and event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param internalNotesPatchNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<InternalNotesPatchNoteResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun patchEventInternalNoteWithHttpInfo(eventId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : ApiResponse<InternalNotesPatchNoteResponse?> {
-        val localVariableConfig = patchEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, internalNotesPatchNotePayload = internalNotesPatchNotePayload, acceptLanguage = acceptLanguage)
-
-        return request<InternalNotesPatchNotePayload, InternalNotesPatchNoteResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation patchEventInternalNote
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param internalNotesPatchNotePayload 
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation patchEventInternalNote
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param noteId Note unique identifier. 
+    * @param internalNotesPatchNotePayload  
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun patchEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, internalNotesPatchNotePayload: InternalNotesPatchNotePayload, acceptLanguage: kotlin.String?) : RequestConfig<InternalNotesPatchNotePayload> {
         val localVariableBody = internalNotesPatchNotePayload
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Content-Type"] = "application/json"
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.PATCH,
@@ -1061,24 +819,27 @@ class EventsApi(
     }
 
     /**
-     * Restore an archived internal note for an event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return void
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
-    fun restoreEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String? = null) : Unit {
-        val localVarResponse = restoreEventInternalNoteWithHttpInfo(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
+    * Restore an archived internal note for an event.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return kotlin.Any
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
+    @Suppress("UNCHECKED_CAST")
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    fun restoreEventInternalNote(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : kotlin.Any {
+        val localVariableConfig = restoreEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
+
+        val localVarResponse = request<Unit, kotlin.Any>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
-            ResponseType.Success -> Unit
+            ResponseType.Success -> (localVarResponse as Success<*>).data as kotlin.Any
             ResponseType.Informational -> throw UnsupportedOperationException("Client does not support Informational responses.")
             ResponseType.Redirection -> throw UnsupportedOperationException("Client does not support Redirection responses.")
             ResponseType.ClientError -> {
@@ -1093,38 +854,18 @@ class EventsApi(
     }
 
     /**
-     * Restore an archived internal note for an event.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return ApiResponse<Unit?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Throws(IllegalStateException::class, IOException::class)
-    fun restoreEventInternalNoteWithHttpInfo(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : ApiResponse<Unit?> {
-        val localVariableConfig = restoreEventInternalNoteRequestConfig(eventId = eventId, noteId = noteId, acceptLanguage = acceptLanguage)
-
-        return request<Unit, Unit>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation restoreEventInternalNote
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @param noteId Note unique identifier.
-     * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation restoreEventInternalNote
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @param noteId Note unique identifier. 
+    * @param acceptLanguage Specify preferred language for returned data. Format is https://tools.ietf.org/html/rfc3282 (optional)
+    * @return RequestConfig
+    */
     fun restoreEventInternalNoteRequestConfig(eventId: kotlin.String, noteId: kotlin.Int, acceptLanguage: kotlin.String?) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
         acceptLanguage?.apply { localVariableHeaders["Accept-Language"] = this.toString() }
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,
@@ -1136,20 +877,22 @@ class EventsApi(
     }
 
     /**
-     * Transfer an event to the completed/done calendar.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @return EventsTransferToCompletedResponse
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     * @throws UnsupportedOperationException If the API returns an informational or redirection response
-     * @throws ClientException If the API returns a client error response
-     * @throws ServerException If the API returns a server error response
-     */
+    * Transfer an event to the completed/done calendar.
+    * 
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @return EventsTransferToCompletedResponse
+    * @throws UnsupportedOperationException If the API returns an informational or redirection response
+    * @throws ClientException If the API returns a client error response
+    * @throws ServerException If the API returns a server error response
+    */
     @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class, UnsupportedOperationException::class, ClientException::class, ServerException::class)
+    @Throws(UnsupportedOperationException::class, ClientException::class, ServerException::class)
     fun transferEventToCompleted(eventId: kotlin.String) : EventsTransferToCompletedResponse {
-        val localVarResponse = transferEventToCompletedWithHttpInfo(eventId = eventId)
+        val localVariableConfig = transferEventToCompletedRequestConfig(eventId = eventId)
+
+        val localVarResponse = request<Unit, EventsTransferToCompletedResponse>(
+            localVariableConfig
+        )
 
         return when (localVarResponse.responseType) {
             ResponseType.Success -> (localVarResponse as Success<*>).data as EventsTransferToCompletedResponse
@@ -1167,34 +910,15 @@ class EventsApi(
     }
 
     /**
-     * Transfer an event to the completed/done calendar.
-     * 
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @return ApiResponse<EventsTransferToCompletedResponse?>
-     * @throws IllegalStateException If the request is not correctly configured
-     * @throws IOException Rethrows the OkHttp execute method exception
-     */
-    @Suppress("UNCHECKED_CAST")
-    @Throws(IllegalStateException::class, IOException::class)
-    fun transferEventToCompletedWithHttpInfo(eventId: kotlin.String) : ApiResponse<EventsTransferToCompletedResponse?> {
-        val localVariableConfig = transferEventToCompletedRequestConfig(eventId = eventId)
-
-        return request<Unit, EventsTransferToCompletedResponse>(
-            localVariableConfig
-        )
-    }
-
-    /**
-     * To obtain the request config of the operation transferEventToCompleted
-     *
-     * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101.
-     * @return RequestConfig
-     */
+    * To obtain the request config of the operation transferEventToCompleted
+    *
+    * @param eventId Event unique identifier. For recurrence occurrence/exception, eventId is suffixed with the original start date of the occurrence. For example 999_20180101. 
+    * @return RequestConfig
+    */
     fun transferEventToCompletedRequestConfig(eventId: kotlin.String) : RequestConfig<Unit> {
         val localVariableBody = null
         val localVariableQuery: MultiValueMap = mutableMapOf()
         val localVariableHeaders: MutableMap<String, String> = mutableMapOf()
-        localVariableHeaders["Accept"] = "application/json"
 
         return RequestConfig(
             method = RequestMethod.POST,

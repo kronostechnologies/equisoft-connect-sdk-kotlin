@@ -67,7 +67,7 @@ Configure OAuth2:
 
 <a name="deleteEquisoftAnalyzeAccess"></a>
 # **deleteEquisoftAnalyzeAccess**
-> deleteEquisoftAnalyzeAccess(accessId)
+> kotlin.Any deleteEquisoftAnalyzeAccess(accessId)
 
 
 
@@ -82,7 +82,8 @@ Delete user access configuration for given gateway
 val apiInstance = GatewaysApi()
 val accessId : kotlin.Int = 56 // kotlin.Int | 
 try {
-    apiInstance.deleteEquisoftAnalyzeAccess(accessId)
+    val result : kotlin.Any = apiInstance.deleteEquisoftAnalyzeAccess(accessId)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling GatewaysApi#deleteEquisoftAnalyzeAccess")
     e.printStackTrace()
@@ -100,7 +101,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 
@@ -404,7 +405,7 @@ Configure OAuth2:
 
 <a name="patchEquisoftAnalyzeAccess"></a>
 # **patchEquisoftAnalyzeAccess**
-> patchEquisoftAnalyzeAccess(accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
+> kotlin.Any patchEquisoftAnalyzeAccess(accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
 
 
 
@@ -420,7 +421,8 @@ val apiInstance = GatewaysApi()
 val accessId : kotlin.Int = 56 // kotlin.Int | 
 val gatewaysaccessesPatchEquisoftAnalyzeAccessPayload : GatewaysaccessesPatchEquisoftAnalyzeAccessPayload =  // GatewaysaccessesPatchEquisoftAnalyzeAccessPayload | 
 try {
-    apiInstance.patchEquisoftAnalyzeAccess(accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
+    val result : kotlin.Any = apiInstance.patchEquisoftAnalyzeAccess(accessId, gatewaysaccessesPatchEquisoftAnalyzeAccessPayload)
+    println(result)
 } catch (e: ClientException) {
     println("4xx response calling GatewaysApi#patchEquisoftAnalyzeAccess")
     e.printStackTrace()
@@ -439,7 +441,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**kotlin.Any**](kotlin.Any.md)
 
 ### Authorization
 
